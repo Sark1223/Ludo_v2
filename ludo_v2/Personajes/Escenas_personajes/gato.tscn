@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0emri15vp873"]
+
+[ext_resource type="SpriteFrames" path="res://Personajes/Codigo_personajes/player_animations.tres" id="1_dh40n"]
+[ext_resource type="Script" path="res://Personajes/Codigo_personajes/gato.gd" id="2_polqn"]
+
+[node name="Gato" type="AnimatedSprite2D"]
+texture_filter = 1
+position = Vector2(33, 18)
+sprite_frames = ExtResource("1_dh40n")
+animation = &"salto"
+autoplay = "salto"
+script = ExtResource("2_polqn")

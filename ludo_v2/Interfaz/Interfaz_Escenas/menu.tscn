@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=4 uid="uid://5xdhye7kq1cq"]
 
-[ext_resource type="Texture2D" path="res://Solaria Demo Tiles.png" id="2_bemn5"]
+[ext_resource type="Texture2D" uid="uid://q05tv38sfwxp" path="res://tileset_diseño_general/Solaria Demo Tiles.png" id="2_bemn5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1jphu"]
 texture = ExtResource("2_bemn5")

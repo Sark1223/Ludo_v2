@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://cxxvmy3ca5tm0"]
+
+[ext_resource type="Texture2D" uid="uid://dwxkocf5uarjy" path="res://Personajes/Spritesheets_personajes/backup-1726972359.png" id="1_i243t"]
+[ext_resource type="Script" path="res://Personajes/Codigo_personajes/Mono.gd" id="2_m7ctx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00ocj"]
+atlas = ExtResource("1_i243t")
+region = Rect2(0, 0, 64, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7eba"]
+atlas = ExtResource("1_i243t")
+region = Rect2(64, 0, 64, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fk3qo"]
+atlas = ExtResource("1_i243t")
+region = Rect2(128, 0, 64, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqbhd"]
+atlas = ExtResource("1_i243t")
+region = Rect2(192, 0, 64, 56)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4t8g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00ocj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7eba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fk3qo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqbhd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="Mono" type="AnimatedSprite2D"]
+texture_filter = 1
+position = Vector2(6, -27)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_g4t8g")
+autoplay = "default"
+script = ExtResource("2_m7ctx")

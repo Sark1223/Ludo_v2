@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://cg8hb54ru7s54"]
+
+[ext_resource type="Script" path="res://Personajes/Codigo_personajes/ficha.gd" id="1_41rod"]
+[ext_resource type="Texture2D" uid="uid://dlvxeixm3rnab" path="res://Personajes/Spritesheets_personajes/Imagen.png" id="2_w0dnr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kabax"]
+atlas = ExtResource("2_w0dnr")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8j3yi"]
+atlas = ExtResource("2_w0dnr")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fety"]
+atlas = ExtResource("2_w0dnr")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0or5d"]
+atlas = ExtResource("2_w0dnr")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2h2m"]
+atlas = ExtResource("2_w0dnr")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcigx"]
+atlas = ExtResource("2_w0dnr")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_05d7l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kabax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8j3yi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fety")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0or5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2h2m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gcigx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Ficha" type="Node2D"]
+script = ExtResource("1_41rod")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(17, 16)
+sprite_frames = SubResource("SpriteFrames_05d7l")
