@@ -12,7 +12,8 @@ func _process(delta: float) -> void:
 
 
 func _on_btn_jugar_pressed() -> void:
-	get_tree().change_scene_to_file("res://Mapas/MapaIsleño/tumba_del_heroe.tscn")
+	#get_tree().change_scene_to_file("res://Mapas/MapaIsleño/tumba_del_heroe.tscn")
+	get_tree().change_scene_to_file("res://Interfaz/Interfaz_Escenas/tipo_conexion_popUp.tscn")
 	DisplayServer.window_set_size(Vector2(942, 734))
 	
 

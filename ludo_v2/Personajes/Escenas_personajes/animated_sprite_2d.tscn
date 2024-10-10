@@ -7,5 +7,6 @@
 texture_filter = 1
 position = Vector2(0, -16)
 sprite_frames = ExtResource("1_vvw5v")
+animation = &"default_atras"
 autoplay = "default"
 script = ExtResource("2_nb6cq")

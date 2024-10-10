@@ -1,4 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://ccgss22fobcmo"]
+[gd_scene load_steps=11 format=3 uid="uid://ccgss22fobcmo"]
+
+[ext_resource type="Texture2D" uid="uid://bxriq1ph4lgxy" path="res://Interfaz/mundo.png" id="1_8jahl"]
+[ext_resource type="Texture2D" uid="uid://cvecom3r7p55k" path="res://Interfaz/Captura de pantalla 2024-10-10 123545.png" id="2_p47t7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g1kqk"]
 bg_color = Color(0, 0.509804, 0.431373, 1)
@@ -80,6 +83,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 2
 offset_left = -1.0
@@ -89,10 +97,10 @@ color = Color(0, 0, 0, 0.482353)
 
 [node name="btnOnline" type="Button" parent="."]
 layout_mode = 2
-offset_left = 55.0
-offset_top = 135.0
-offset_right = 121.0
-offset_bottom = 158.0
+offset_left = 56.2812
+offset_top = 162.625
+offset_right = 122.281
+offset_bottom = 185.625
 theme_override_styles/focus = SubResource("StyleBoxFlat_g1kqk")
 theme_override_styles/hover = SubResource("StyleBoxFlat_q4qh6")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ep5g5")
@@ -100,12 +108,31 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_et1h0")
 text = "online"
 
 [node name="btnLocal" type="Button" parent="."]
-offset_left = 224.0
-offset_top = 135.0
-offset_right = 290.0
-offset_bottom = 158.0
+layout_mode = 0
+offset_left = 213.0
+offset_top = 163.0
+offset_right = 279.0
+offset_bottom = 186.0
 theme_override_styles/focus = SubResource("StyleBoxFlat_geesn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_hyu7l")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_rl8uv")
 theme_override_styles/normal = SubResource("StyleBoxFlat_fg6pg")
 text = "Local"
+
+[node name="Mundo" type="Sprite2D" parent="."]
+position = Vector2(88.2812, 99.625)
+scale = Vector2(0.328078, 0.328078)
+texture = ExtResource("1_8jahl")
+
+[node name="CapturaDePantalla2024-10-10123545" type="Sprite2D" parent="."]
+position = Vector2(247.421, 101)
+scale = Vector2(0.218263, 0.218263)
+texture = ExtResource("2_p47t7")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_top = 16.0
+offset_right = 352.0
+offset_bottom = 39.0
+text = "¿Como quieres conectarte?"
+horizontal_alignment = 1
