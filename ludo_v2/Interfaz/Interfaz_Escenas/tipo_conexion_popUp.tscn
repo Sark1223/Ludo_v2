@@ -1,0 +1,111 @@
+[gd_scene load_steps=9 format=3 uid="uid://ccgss22fobcmo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g1kqk"]
+bg_color = Color(0, 0.509804, 0.431373, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.756197, 0.64355, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q4qh6"]
+bg_color = Color(0, 0.598709, 0.507932, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ep5g5"]
+bg_color = Color(2.64719e-07, 0.361365, 0.303546, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_et1h0"]
+bg_color = Color(1.92523e-07, 0.50878, 0.431914, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_geesn"]
+bg_color = Color(0.619608, 0.160784, 0.509804, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.862434, 0.352671, 0.726374, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hyu7l"]
+bg_color = Color(0.762304, 0.242288, 0.632829, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rl8uv"]
+bg_color = Color(0.488235, 0.111405, 0.39917, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fg6pg"]
+bg_color = Color(0.617741, 0.158984, 0.509625, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Tipo_conexion" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+offset_left = -1.0
+offset_right = 352.0
+offset_bottom = 210.0
+color = Color(0, 0, 0, 0.482353)
+
+[node name="btnOnline" type="Button" parent="."]
+layout_mode = 2
+offset_left = 55.0
+offset_top = 135.0
+offset_right = 121.0
+offset_bottom = 158.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_g1kqk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_q4qh6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ep5g5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_et1h0")
+text = "online"
+
+[node name="btnLocal" type="Button" parent="."]
+offset_left = 224.0
+offset_top = 135.0
+offset_right = 290.0
+offset_bottom = 158.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_geesn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hyu7l")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rl8uv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_fg6pg")
+text = "Local"

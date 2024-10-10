@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=4 uid="uid://5xdhye7kq1cq"]
 
-[ext_resource type="Texture2D" uid="uid://q05tv38sfwxp" path="res://tileset_diseño_general/Solaria Demo Tiles.png" id="2_bemn5"]
+[ext_resource type="Texture2D" uid="uid://q05tv38sfwxp" path="res://tileset_diseño_general/Tiles_Menu_tableroWills.png" id="2_bemn5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1jphu"]
 texture = ExtResource("2_bemn5")
@@ -423,12 +423,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -74.5
-offset_top = -70.0
-offset_right = 74.5
-offset_bottom = 70.0
+offset_left = -74.0
+offset_top = -76.0
+offset_right = 104.0
+offset_bottom = 84.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
 
 [node name="btnJugar" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -440,7 +441,7 @@ theme_override_colors/font_outline_color = Color(0.140596, 0.104703, 0.172278, 1
 theme_override_constants/outline_size = 6
 theme_override_fonts/font = SubResource("SystemFont_37mdy")
 theme_override_font_sizes/font_size = 30
-text = "Juegar"
+text = "Jugar"
 flat = true
 
 [node name="btnTutorial" type="Button" parent="VBoxContainer"]
