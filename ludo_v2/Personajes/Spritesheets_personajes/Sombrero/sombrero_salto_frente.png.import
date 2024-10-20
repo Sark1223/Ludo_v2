@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://begt1ju1a0rm6"
-path="res://.godot/imported/Solaria Palette.png-241be80fe9435aa830eaa017465a5ee6.ctex"
+uid="uid://r4msh1y068wr"
+path="res://.godot/imported/sombrero_salto_frente.png-65e02d1c5444ae3404f5abeff81976a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tileset_diseño_general/Solaria Palette.png"
-dest_files=["res://.godot/imported/Solaria Palette.png-241be80fe9435aa830eaa017465a5ee6.ctex"]
+source_file="res://Personajes/Spritesheets_personajes/Sombrero/sombrero_salto_frente.png"
+dest_files=["res://.godot/imported/sombrero_salto_frente.png-65e02d1c5444ae3404f5abeff81976a6.ctex"]
 
 [params]
 

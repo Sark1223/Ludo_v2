@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://c48nhxac7vkkp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f8m0i"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"gato_default_atras",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"gato_default_frente",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"gato_default_lado",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"gato_salto_atras",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"gato_salto_frentre",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"gato_salto_lado",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"gato_transportado_frente",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"gato_trasnportado_atras",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"gato_trasnportado_lado",
+"speed": 5.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_f8m0i")
+animation = &"gato_default_atras"

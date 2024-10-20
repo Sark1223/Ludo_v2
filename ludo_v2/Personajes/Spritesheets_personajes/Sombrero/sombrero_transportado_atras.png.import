@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dquggcy22md8x"
-path="res://.godot/imported/static_cat.png-681016eb4ec0f76055b02b08afb74cb0.ctex"
+uid="uid://cjntgvnemw777"
+path="res://.godot/imported/sombrero_transportado_atras.png-65ad1131fe3d9275968f49e96868badd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Personajes/Archivos PXO personajes/GATO/static_cat.png"
-dest_files=["res://.godot/imported/static_cat.png-681016eb4ec0f76055b02b08afb74cb0.ctex"]
+source_file="res://Personajes/Spritesheets_personajes/Sombrero/sombrero_transportado_atras.png"
+dest_files=["res://.godot/imported/sombrero_transportado_atras.png-65ad1131fe3d9275968f49e96868badd.ctex"]
 
 [params]
 

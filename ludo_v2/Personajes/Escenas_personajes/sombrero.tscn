@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://0jsekysatrqe"]
+
+[ext_resource type="SpriteFrames" uid="uid://bhfaqq44tuepe" path="res://Personajes/Codigo_personajes/player_animations.tres" id="1_8ksny"]
+[ext_resource type="Script" path="res://Personajes/Codigo_personajes/animated_sprite_2d.gd" id="2_waj0j"]
+
+[node name="sombrero" type="AnimatedSprite2D"]
+texture_filter = 1
+position = Vector2(0, -16)
+sprite_frames = ExtResource("1_8ksny")
+animation = &"sombrero_trasnsportar_lado"
+autoplay = "default"
+frame_progress = 0.270976
+script = ExtResource("2_waj0j")
