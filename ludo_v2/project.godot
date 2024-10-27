@@ -19,3 +19,11 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=1122
 window/stretch/mode="viewport"
+
+[dotnet]
+
+project/assembly_name="Ludo_v2"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
