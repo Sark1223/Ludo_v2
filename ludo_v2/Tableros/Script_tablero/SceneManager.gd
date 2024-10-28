@@ -13,6 +13,8 @@ extends Node2D
 	Vector2(65, 65)     # Diagonal (esquina inferior derecha)
 ]
 
+var GameManager = preload("res://Interfaz/Interfaz_Codigo/GameManager.gd")
+
 func _ready():
 	var index = 0
 	for i in GameManager.Players:

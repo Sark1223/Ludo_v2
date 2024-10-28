@@ -5,6 +5,7 @@ extends Control
 @export var port = 8910
 var peer
 
+var GameManager = preload("res://Interfaz/Interfaz_Codigo/GameManager.gd")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

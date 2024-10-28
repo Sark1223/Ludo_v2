@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dheqq47d6inc2" path="res://tileset_diseño_general/demonstration.png" id="1_26xk8"]
 [ext_resource type="Texture2D" uid="uid://i2i2ky7gtbs3" path="res://tileset_diseño_general/Serene_Village_16x16_edit.png" id="2_piml8"]
 [ext_resource type="Texture2D" uid="uid://b4tr8hi02jumv" path="res://tileset_diseño_general/Tileset-Terrain2.png" id="3_36plr"]
-[ext_resource type="Texture2D" uid="uid://crhe485bousbu" path="res://Tableros/Diseño_tablero/Cuadros_M1.png" id="4_0m07p"]
+[ext_resource type="Texture2D" uid="uid://crhe485bousbu" path="res://Interfaz/Diseño_tablero/Cuadros_M1.png" id="4_0m07p"]
 [ext_resource type="Script" path="res://Tableros/Script_tablero/btn_dado.gd" id="5_q20fc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rpebs"]
