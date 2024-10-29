@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crhe485bousbu"
-path="res://.godot/imported/Cuadros_M1.png-8f81803dbfc07f172b02650fbfa93408.ctex"
+uid="uid://bb4r4recdvuei"
+path="res://.godot/imported/Egg_item.png-e685883749699be47fd0701a055ea12c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Interfaz/Diseño_tablero/Cuadros_M1.png"
-dest_files=["res://.godot/imported/Cuadros_M1.png-8f81803dbfc07f172b02650fbfa93408.ctex"]
+source_file="res://Interfaz/interfaz_diseño/Objects/Egg_item.png"
+dest_files=["res://.godot/imported/Egg_item.png-e685883749699be47fd0701a055ea12c.ctex"]
 
 [params]
 
