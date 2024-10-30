@@ -7,7 +7,6 @@
 texture_filter = 1
 position = Vector2(0, -16)
 sprite_frames = ExtResource("1_8ksny")
-animation = &"sombrero_salto_frente"
-autoplay = "default"
-frame_progress = 0.36244
+animation = &"sombrero_default_frente"
+autoplay = "sombrero_default_frente"
 script = ExtResource("2_waj0j")
