@@ -1536,96 +1536,112 @@ tile_map_data = PackedByteArray("AAD+//7/AAAHAAMAAAD+////AAAHAAQAAAAEAAMAAAAIAAM
 tile_set = SubResource("TileSet_w5451")
 
 [node name="J1P1" type="Sprite2D" parent="."]
-position = Vector2(50, 497.662)
+visible = false
+position = Vector2(51, 377.724)
 scale = Vector2(1, 0.999996)
 texture = ExtResource("3_41ro2")
 
 [node name="J1P2" type="Sprite2D" parent="."]
-position = Vector2(54, 467.23)
+visible = false
+position = Vector2(55, 347.292)
 scale = Vector2(1, 1.00322)
 texture = ExtResource("3_41ro2")
 
 [node name="J1P3" type="Sprite2D" parent="."]
-position = Vector2(89, 467.23)
+visible = false
+position = Vector2(90, 347.292)
 scale = Vector2(1, 1.00968)
 texture = ExtResource("3_41ro2")
 
 [node name="J1P4" type="Sprite2D" parent="."]
-position = Vector2(87, 498.192)
+visible = false
+position = Vector2(88, 378.254)
 scale = Vector2(1, 1.02275)
 texture = ExtResource("3_41ro2")
 
 [node name="J2P1" type="Sprite2D" parent="."]
-position = Vector2(711, -20.359)
+visible = false
+position = Vector2(368, -58.5729)
 scale = Vector2(1, 1.0494)
 texture = ExtResource("3_41ro2")
 
 [node name="J2P2" type="Sprite2D" parent="."]
-position = Vector2(750, -19.3602)
+visible = false
+position = Vector2(407, -57.5741)
 scale = Vector2(1, 1.10479)
 texture = ExtResource("3_41ro2")
 
 [node name="J2P3" type="Sprite2D" parent="."]
-position = Vector2(709, 17.5944)
+visible = false
+position = Vector2(366, -20.6195)
 scale = Vector2(1, 1.00277)
 texture = ExtResource("3_41ro2")
 
 [node name="J2P4" type="Sprite2D" parent="."]
-position = Vector2(750, 19.5919)
+visible = false
+position = Vector2(407, -18.622)
 scale = Vector2(1, 1.00277)
 texture = ExtResource("3_41ro2")
 
 [node name="J3P1" type="Sprite2D" parent="."]
-position = Vector2(136, -445.647)
+visible = false
+position = Vector2(52, -320.57)
 scale = Vector2(1, 1.00277)
 texture = ExtResource("3_41ro2")
 
 [node name="J3P2" type="Sprite2D" parent="."]
-position = Vector2(176, -441.652)
+visible = false
+position = Vector2(92, -316.575)
 scale = Vector2(1, 1.00277)
 texture = ExtResource("3_41ro2")
 
 [node name="J3P3" type="Sprite2D" parent="."]
-position = Vector2(135, -414.685)
+visible = false
+position = Vector2(51, -289.608)
 scale = Vector2(1, 1.00277)
 texture = ExtResource("3_41ro2")
 
 [node name="J3P4" type="Sprite2D" parent="."]
-position = Vector2(174, -412.687)
+visible = false
+position = Vector2(90, -287.61)
 scale = Vector2(1, 1.00277)
 texture = ExtResource("3_41ro2")
 
 [node name="J4P1" type="Sprite2D" parent="."]
-position = Vector2(-504, -24.1653)
+visible = false
+position = Vector2(-336, -37.346)
 scale = Vector2(1, 1.00277)
 texture = ExtResource("3_41ro2")
 
 [node name="J4P2" type="Sprite2D" parent="."]
-position = Vector2(-461, -19.1714)
+visible = false
+position = Vector2(-293, -32.3521)
 scale = Vector2(1, 1.00277)
 texture = ExtResource("3_41ro2")
 
 [node name="J4P3" type="Sprite2D" parent="."]
-position = Vector2(-508, 9.79295)
+visible = false
+position = Vector2(-340, -3.38774)
 scale = Vector2(1, 1.00277)
 texture = ExtResource("3_41ro2")
 
 [node name="J4P4" type="Sprite2D" parent="."]
-position = Vector2(-466, 10.7917)
+visible = false
+position = Vector2(-298, -2.38899)
 scale = Vector2(1, 1.00879)
 texture = ExtResource("3_41ro2")
 
 [node name="TirarDado" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.792
-anchor_top = 0.721
-anchor_right = 0.945
-anchor_bottom = 0.8
-offset_left = -2.85602
-offset_top = 0.0784302
-offset_right = 0.23999
-offset_bottom = -0.190186
+anchor_left = 0.532
+anchor_top = 0.521
+anchor_right = 0.688
+anchor_bottom = 0.6
+offset_left = -0.0759277
+offset_top = 0.256256
+offset_right = -0.408936
+offset_bottom = -0.0123596
 text = "Tirar Dado
 "
 script = ExtResource("3_jvxlr")
@@ -1633,38 +1649,42 @@ script = ExtResource("3_jvxlr")
 [node name="TextureButton" type="TextureButton" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.86
-anchor_top = 0.5
-anchor_right = -0.86
-anchor_bottom = 0.5
-offset_left = 1.48001
-offset_top = 0.658264
-offset_right = 41.48
-offset_bottom = 40.6583
+anchor_left = -0.549
+anchor_top = -0.043
+anchor_right = -0.515
+anchor_bottom = 0.02
+offset_left = -2.30899
+offset_top = -7.80847
+offset_right = 11.885
+offset_bottom = 13.6983
 texture_normal = ExtResource("3_41ro2")
 
 [node name="gatito" parent="." instance=ExtResource("4_cc1gf")]
-position = Vector2(-459, 78.2557)
+position = Vector2(-113, 145.395)
 
 [node name="gatito2" parent="." instance=ExtResource("4_cc1gf")]
-position = Vector2(-514, 77.257)
+position = Vector2(-168, 144.396)
 
 [node name="gatito3" parent="." instance=ExtResource("4_cc1gf")]
-position = Vector2(-463, 126.197)
+position = Vector2(-117, 193.336)
 
 [node name="gatito4" parent="." instance=ExtResource("4_cc1gf")]
-position = Vector2(-514, 125.198)
+position = Vector2(-168, 192.337)
 
 [node name="sombrero" parent="." instance=ExtResource("5_4i7ov")]
-position = Vector2(72, -413.159)
+position = Vector2(210, -120.288)
 
 [node name="sombrero2" parent="." instance=ExtResource("5_4i7ov")]
-position = Vector2(20, -413.159)
+position = Vector2(158, -120.288)
 
 [node name="sombrero3" parent="." instance=ExtResource("5_4i7ov")]
-position = Vector2(69, -457.105)
+position = Vector2(207, -164.234)
 
 [node name="sombrero4" parent="." instance=ExtResource("5_4i7ov")]
-position = Vector2(23, -457.105)
+position = Vector2(161, -164.234)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-375, -343.034)
+anchor_mode = 0
 
 [connection signal="pressed" from="TirarDado" to="TirarDado" method="OnDiceButtonPressed"]
