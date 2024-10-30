@@ -1,7 +1,11 @@
 extends Node
-var posicionActualIndex = 0 #Posicion Inicial
-var dado# Valor del dado
-var piezaJugador #Referencia al jugador
+
+var dado # Valor del dado
+var piezaJugador # Referencia al jugador
+var turnoActual = 1 # Turno del jugador actual (1-4)
+var totalJugadores = 4 # Número total de jugadores
+var posicionActualIndex = [-1, -1, -1, -1] # Índice de la posición actual para cada jugador
+var piezasHanSalidoDeCasa = [false, false, false, false] # Estado de cada pieza
 
 var posicionValidaJ1 = [
 	Vector2(1,23), Vector2(1,19), Vector2(5,19), Vector2(9,19), Vector2(13,19), Vector2(17,19),
@@ -36,41 +40,86 @@ var posicionValidaJ4 = [
 	Vector2(-18,-15), Vector2(-18,-11),Vector2(-18,-7),Vector2(-18,-3),Vector2(-18,1), Vector2(-14,1), Vector2(-10,1), Vector2(-6,1),	Vector2(1,1)
 ]	
 var posicionInicio = [
-	Vector2(1,23),Vector2(24,1),Vector2(1,-20),Vector2(-22,1)
+	Vector2(1,23), Vector2(24,1), Vector2(1,-20), Vector2(-22,1)
 ]
 
 var PosicionGanar = Vector2(1,1)
 
-func tirarDADO():
-	dado = randi()%6+1
-	print("Dado Lanzado: ", dado)
-	moverPieza(dado)
-	
-# Called when the node enters the scene tree for the first time.
+# Función para obtener las posiciones válidas de un jugador según su número
+func obtener_posiciones_validas(jugador):
+	match jugador:
+		1:
+			return posicionValidaJ1
+		2:
+			return posicionValidaJ2
+		3:
+			return posicionValidaJ3
+		4:
+			return posicionValidaJ4
+		_:
+			return posicionValidaJ1
+
+# Función para tirar el dado y mover la pieza del jugador actual
+func tirar_dado():
+	dado = randi() % 6 + 1
+	print("Jugador ", turnoActual, " lanzó el dado: ", dado)
+	mover_pieza(dado)
+
 func _ready() -> void:
-	piezaJugador = $Cat
+	piezaJugador = get_pieza_jugador(turnoActual)
 	var boton = $TirarDado
 	boton.connect("pressed", Callable(self, "_on_dice_button_pressed"))
 
-	
 func _on_dice_button_pressed():
-	tirarDADO()
-	
+	tirar_dado()
 
-
-func moverPieza(pasos):
-	if posicionActualIndex + pasos < posicionValidaJ3.size():
-		for i in range(pasos):
-			posicionActualIndex += 1
-			var nuevaPos = (posicionValidaJ3[posicionActualIndex] * 15.9)
-			moverPosicion(nuevaPos)
+func mover_pieza(pasos):
+	var posiciones_validas = obtener_posiciones_validas(turnoActual)
+	if not piezasHanSalidoDeCasa[turnoActual - 1]:
+		if dado == 6:
+			piezasHanSalidoDeCasa[turnoActual - 1] = true
+			posicionActualIndex[turnoActual - 1] = 0
+			var nueva_pos = posicionInicio[turnoActual - 1] * 15.9 # Usa la posición de inicio correspondiente
+			mover_posicion(nueva_pos)
+			print("La pieza del Jugador ", turnoActual, " ha salido de casa.")
+		else:
+			print("Jugador ", turnoActual, " necesita un 6 para salir de casa.")
 	else:
-			print("Movimiento fuera del Tablero.")
+		if posicionActualIndex[turnoActual - 1] + pasos < posiciones_validas.size():
+			posicionActualIndex[turnoActual - 1] += pasos
+			var nueva_pos = posiciones_validas[posicionActualIndex[turnoActual - 1]] * 15.9
+			mover_posicion(nueva_pos)
+			print("Pieza del Jugador ", turnoActual, " se movió a la posición: ", posicionActualIndex[turnoActual - 1])
+			verificar_victoria(nueva_pos)
+		else:
+			print("Jugador ", turnoActual, " no puede moverse fuera del tablero.")
 
-func moverPosicion(nuevaPos):
-	piezaJugador.position = nuevaPos
-	print("Pieza movida a: ", nuevaPos)
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	cambiar_turno()
+
+func mover_posicion(nueva_pos):
+	piezaJugador.position = nueva_pos
+	print("Pieza movida a: ", nueva_pos)
+
+func cambiar_turno():
+	turnoActual += 1
+	if turnoActual > totalJugadores:
+		turnoActual = 1
+	print("Es el turno del Jugador ", turnoActual)
+	piezaJugador = get_pieza_jugador(turnoActual)
+
+func get_pieza_jugador(jugador):
+	match jugador:
+		1:
+			return $Cat
+		2:
+			return $Dog
+		3:
+			return $Turtle
+		4:
+			return $Monkey
+		_:
+			return $Cat
+
+func verificar_victoria(nueva_pos):
+	if nueva_pos == PosicionGanar:
+		print("¡Jugador ", turnoActual, " ha ganado!")

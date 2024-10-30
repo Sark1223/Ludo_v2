@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Ludo_v2"
-run/main_scene="res://Tableros/Escenas_tablero/mapa_1.tscn"
+run/main_scene="res://Interfaz/Interfaz_Escenas/multi_control.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameManager="*res://Interfaz/Interfaz_Codigo/GameManager.gd"
 
 [display]
 

@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=4 uid="uid://dlrgcayokl1rq"]
+[gd_scene load_steps=15 format=4 uid="uid://dlrgcayokl1rq"]
 
+[ext_resource type="Script" path="res://Tableros/Script_tablero/mapa2.gd" id="1_e27jp"]
 [ext_resource type="Texture2D" uid="uid://q05tv38sfwxp" path="res://tileset_diseño_general/Tiles_Menu_tableroWills.png" id="2_6hhmo"]
 [ext_resource type="Texture2D" uid="uid://dfi1t2d3t7chn" path="res://Personajes/Spritesheets_personajes/static_cat.png" id="3_41ro2"]
 [ext_resource type="Script" path="res://Tableros/Script_tablero/Mapa2.cs" id="3_jvxlr"]
@@ -1514,7 +1515,7 @@ grow_vertical = 2
 scale = Vector2(1, 1.00123)
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("3_jvxlr")
+script = ExtResource("1_e27jp")
 
 [node name="Base" type="TileMapLayer" parent="."]
 position = Vector2(-8.09, -4.31)

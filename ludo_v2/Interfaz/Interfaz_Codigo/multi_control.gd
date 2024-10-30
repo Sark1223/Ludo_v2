@@ -1,11 +1,10 @@
 extends Control
 
-
 @export var Address = "127.0.0.1"
 @export var port = 8910
 var peer
 
-var GameManager = preload("res://Interfaz/Interfaz_Codigo/GameManager.gd")
+# var GameManager = preload("res://Interfaz/Interfaz_Codigo/GameManager.gd")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,7 +30,7 @@ func peer_disconnected(id):
 # called only from clients
 func connected_to_server():
 	print("connected To Sever!")
-	SendPlayerInformation.rpc_id(1,$LineEdit.text, multiplayer.get_unique_id())
+	SendPlayerInformation.rpc_id(1,$txt_nombreUsuario.text, multiplayer.get_unique_id())
 
 @rpc("any_peer")
 func SendPlayerInformation(name, id):
@@ -52,7 +51,7 @@ func connection_failed():
 
 @rpc("any_peer","call_local")
 func StartGame():
-	var scene = load("res://Tablero.tscn").instantiate()
+	var scene = load("res://Tableros/Escenas_tablero/mapa_2.tscn").instantiate()
 	get_tree().root.add_child(scene)
 	self.hide()
 
@@ -67,7 +66,7 @@ func _on_host_button_down():
 	
 	multiplayer.set_multiplayer_peer(peer)
 	print("Esperando")
-	SendPlayerInformation($LineEdit.text, multiplayer.get_unique_id())
+	SendPlayerInformation($txt_nombreUsuario.text, multiplayer.get_unique_id())
 	
 	pass # Replace with function body.
 
