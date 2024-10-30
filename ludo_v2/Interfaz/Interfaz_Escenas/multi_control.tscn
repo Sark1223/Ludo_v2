@@ -1334,9 +1334,9 @@ placeholder_text = "ingresa un nombre de usuario"
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = 40.0
-offset_top = 121.0
+offset_top = 118.0
 offset_right = 191.0
-offset_bottom = 144.0
+offset_bottom = 141.0
 text = "Nombre de jugador"
 
 [connection signal="button_down" from="btn_Join" to="." method="_on_join_button_down"]

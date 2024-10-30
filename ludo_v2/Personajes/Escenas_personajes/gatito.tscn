@@ -571,5 +571,5 @@ animations = [{
 
 [node name="gatito" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_f8m0i")
-animation = &"gato_trasnportado_lado"
+animation = &"gato_transportado_frente"
 script = ExtResource("9_dmvpb")
