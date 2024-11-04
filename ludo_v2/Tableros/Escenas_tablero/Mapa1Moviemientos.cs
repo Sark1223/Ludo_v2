@@ -1,9 +1,10 @@
 using Godot;
 using System;
 
-public class YourClassName : Node2D
+public partial class mapa1 : Node2D
 {
-	private List<Vector2> posiciones = new List<Vector2>
+	//MAPA COMPLETO
+	private Vector2[]  posiciones_mapa =
 	{
 		// cuadrante 1 - horizontal_derecha
 		/*0*/new Vector2(-19, 0),/*1*/ new Vector2(-16, 0),/*2*/ new Vector2(-13, 0), /*3*/new Vector2(-10, 0), /*4*/new Vector2(-7, 0), /*5*/new Vector2(-4, 0),
@@ -30,7 +31,18 @@ public class YourClassName : Node2D
 		// cuadrante 4/1
 		/*47*/new Vector2(-19, 4)
 	};
-
+	
+	//GANAR JUGADOR 1
+	private Vector2[]  posiciones_ganador_1 =
+	{/*1*/new Vector2(-16, 3),/*2*/new Vector2(-13, 3),/*3*/new Vector2(-10, 3),/*4*/new Vector2(-7, 3),/*5*/new Vector2(-4, 3)};
+	//GANAR JUGADOR 2
+	//GANAR JUGADOR 3
+	//GANAR JUGADOR 4
+	
+	
+	//Posiciones validas de J1 
+		// [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 
+		// 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41,1 42, 43, 44, 45, 46, 47];
 	public override void _Ready()
 	{
 		// Código para inicializar si es necesario
