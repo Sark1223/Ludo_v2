@@ -2,10 +2,14 @@ extends Node
 
 var dado
 var turnoActual = 1
-var totalJugadores = 4
+var totalJugadores = 2
 var jugadores = {}
 var pieza_seleccionada = null
 var indice_pieza_seleccionada = null
+
+var ESTADO_ESPERANDO_DADO = 0
+var ESTADO_ESPERANDO_PIEZA = 1
+var estado_turno = ESTADO_ESPERANDO_DADO
 
 var posicionValidaJ1 = [
 	Vector2(1,23), Vector2(1,19), Vector2(5,19), Vector2(9,19), Vector2(13,19), Vector2(17,19),
@@ -69,6 +73,10 @@ func _ready():
 		jugadores[1]["posiciones"].append(-1)
 		jugadores[1]["han_salido"].append(false)
 		pieza.connect("piece_clicked", Callable(self, "_on_pieza_seleccionada"))
+		
+		#Asignar jugador_num e indice_pieza a la pieza
+		pieza.jugador_num = 1
+		pieza.indice_pieza = i - 1 # Los indices comienzan con 0
 
 	# Configurar piezas del Jugador 2 (sombrero)
 	for i in range(1, 5):
@@ -79,23 +87,49 @@ func _ready():
 		jugadores[2]["han_salido"].append(false)
 		pieza.connect("piece_clicked", Callable(self, "_on_pieza_seleccionada"))
 		
-	
+		#Asignar jugador_num e indice_pieza a la pieza
+		pieza.jugador_num = 2
+		pieza.indice_pieza = i - 1 # Los indices comienzan con 0
+
+# Funcion prueba
+func tiene_piezas_en_juego(jugador):
+	for ha_salido in jugadores[jugador]["han_salido"]:
+		if ha_salido == true:
+			return true
+	return false
 
 func _on_dice_button_pressed():
+	if estado_turno != ESTADO_ESPERANDO_DADO:
+		print("No es tu turno para tirar el dado.")
+		return
 	tirar_dado()
-	print("Selecciona una de tus piezas para mover.")
+	var jugador = turnoActual
+	print("Jugador ", jugador, " lanzó el dado: ", dado)
+	if dado == 6 or tiene_piezas_en_juego(jugador):
+		print("Selecciona una de tus piezas para mover.")
+		estado_turno = ESTADO_ESPERANDO_PIEZA
+	else:
+		print("No sacaste un 6 y no tienes piezas en juego. Turno pasa al siguiente jugador.")
+		cambiar_turno()
 
 func tirar_dado():
 	dado = randi() % 6 + 1
-	print("Jugador ", turnoActual, " lanzó el dado: ", dado)
+	#print("Jugador ", turnoActual, " lanzó el dado: ", dado)
 
 func _on_pieza_seleccionada(jugador_num, indice_pieza):
+	if estado_turno != ESTADO_ESPERANDO_PIEZA:
+		print("No puedes mover una pieza en este momento.")
+		return
 	print("Signal received: jugador_num=", jugador_num, ", indice_pieza=", indice_pieza)
 	if turnoActual == jugador_num:
-		pieza_seleccionada = jugadores[jugador_num]["piezas"][indice_pieza]
-		indice_pieza_seleccionada = indice_pieza
-		print("Pieza del Jugador %d, índice %d seleccionada." % [jugador_num, indice_pieza])
-		mover_pieza(dado)
+		var ha_salido = jugadores[jugador_num]["han_salido"][indice_pieza]
+		if dado == 6 or ha_salido:
+			pieza_seleccionada = jugadores[jugador_num]["piezas"][indice_pieza]
+			indice_pieza_seleccionada = indice_pieza
+			print("Pieza del Jugador %d, índice %d seleccionada." % [jugador_num, indice_pieza])
+			mover_pieza(dado)
+		else:
+			print("No puedes mover esta pieza porque no ha salido y no sacaste un 6.")
 	else:
 		print("No es tu turno. Es el turno del Jugador %d." % turnoActual)
 
@@ -111,16 +145,13 @@ func mover_pieza(pasos):
 	var ha_salido = jugadores[jugador]["han_salido"][indice_pieza]
 
 	if not ha_salido:
-		if dado == 6:
-			jugadores[jugador]["han_salido"][indice_pieza] = true
-			posicion_index = 0
-			jugadores[jugador]["posiciones"][indice_pieza] = posicion_index
-			var nueva_pos = posicionInicio[jugador - 1] * 15.9
-			mover_posicion(pieza_seleccionada, nueva_pos)
-			print("La pieza ha salido de casa.")
-		else:
-			print("Necesitas un 6 para sacar esta pieza.")
-			return
+		# Ya hemos verificado en _on_pieza_seleccionada que dado == 6 o ha_salido == true
+		jugadores[jugador]["han_salido"][indice_pieza] = true
+		posicion_index = 0
+		jugadores[jugador]["posiciones"][indice_pieza] = posicion_index
+		var nueva_pos = posicionInicio[jugador - 1] * 15.9
+		mover_posicion(pieza_seleccionada, nueva_pos)
+		print("La pieza ha salido de casa.")
 	else:
 		if posicion_index + pasos < posiciones_validas.size():
 			posicion_index += pasos
@@ -134,6 +165,7 @@ func mover_pieza(pasos):
 
 	pieza_seleccionada = null
 	indice_pieza_seleccionada = null
+	estado_turno = ESTADO_ESPERANDO_DADO  # Restablecer el estado para el siguiente turno
 	cambiar_turno()
 
 func obtener_posiciones_validas(jugador):
@@ -142,10 +174,6 @@ func obtener_posiciones_validas(jugador):
 			return posicionValidaJ1
 		2:
 			return posicionValidaJ2
-		3:
-			return posicionValidaJ3
-		4:
-			return posicionValidaJ4
 		_:
 			return []
 
@@ -160,6 +188,7 @@ func cambiar_turno():
 	turnoActual += 1
 	if turnoActual > totalJugadores:
 		turnoActual = 1
+	estado_turno = ESTADO_ESPERANDO_DADO
 	print("Es el turno del Jugador ", turnoActual)
 
 func verificar_victoria(pieza, nueva_pos):

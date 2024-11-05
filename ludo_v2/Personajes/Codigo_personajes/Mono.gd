@@ -1,6 +1,10 @@
 extends AnimatedSprite2D
 
-@export var ficha_id : int  # Variable exportada para identificar cada ficha de gato
+signal piece_clicked(jugador_num, indice_pieza)
+
+var ficha_id: int  # Identificador único de la ficha
+var jugador_num: int  # Número del jugador (1 o 2)
+var indice_pieza: int  # Índice de la pieza (0 a 3)
 
 func _input(event):
 	if event.is_action_pressed("toque"):
@@ -25,4 +29,6 @@ func _input(event):
 				var pixel_color = image.get_pixelv(texture_pos)
 
 				if pixel_color.a > 0.5:  # Verifica si el píxel es opaco
-					print("Se presionó la ficha de mono con ID: ", ficha_id)
+					print("Se presionó la ficha con ID: ", ficha_id)
+					# Emitir la señal con jugador_num y indice_pieza
+					emit_signal("piece_clicked", jugador_num, indice_pieza)

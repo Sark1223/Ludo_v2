@@ -1686,5 +1686,3 @@ position = Vector2(161, -164.234)
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-375, -343.034)
 anchor_mode = 0
-
-[connection signal="pressed" from="TirarDado" to="TirarDado" method="OnDiceButtonPressed"]

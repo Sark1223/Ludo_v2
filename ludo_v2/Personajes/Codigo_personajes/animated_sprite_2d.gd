@@ -2,9 +2,9 @@ extends AnimatedSprite2D
 
 signal piece_clicked(jugador_num, indice_pieza)
 
-@export var ficha_id: int  # Identificador único de la ficha
-@export var jugador_num: int  # Número del jugador (1 o 2)
-@export var indice_pieza: int  # Índice de la pieza (0 a 3)
+var ficha_id: int  # Identificador único de la ficha
+var jugador_num: int  # Número del jugador (1 o 2)
+var indice_pieza: int  # Índice de la pieza (0 a 3)
 
 func _input(event):
 	if event.is_action_pressed("toque"):
