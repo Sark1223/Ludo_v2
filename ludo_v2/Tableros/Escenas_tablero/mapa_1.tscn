@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://bmx70g6dqfsri"]
+[gd_scene load_steps=25 format=4 uid="uid://bmx70g6dqfsri"]
 
 [ext_resource type="Texture2D" uid="uid://dheqq47d6inc2" path="res://tileset_diseño_general/demonstration.png" id="1_26xk8"]
 [ext_resource type="Script" path="res://Tableros/Escenas_tablero/Mapa1Moviemientos.cs" id="1_l3vcm"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://crhe485bousbu" path="res://Tableros/Diseño_tablero/Cuadros_M1.png" id="4_0m07p"]
 [ext_resource type="Script" path="res://Tableros/Script_tablero/btn_dado.gd" id="5_q20fc"]
 [ext_resource type="PackedScene" uid="uid://chn7gbfoesw34" path="res://Tableros/Diseño_tablero/meta.tscn" id="7_sr7n6"]
+[ext_resource type="PackedScene" uid="uid://cg32rv4pu048g" path="res://Tableros/Escenas_tablero/dado.tscn" id="8_vcmtq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rpebs"]
 texture = ExtResource("1_26xk8")
@@ -8764,12 +8765,11 @@ tile_map_data = PackedByteArray("AAD0/wEACwABAAUAAAD3/wEACwABAAUAAAD4/wEACwACAAU
 tile_set = SubResource("TileSet_4y1cg")
 
 [node name="dado" type="RichTextLabel" parent="disenio_tablero/cuadros"]
-offset_left = 357.109
-offset_top = 241.912
-offset_right = 496.109
-offset_bottom = 281.912
-text = "SOY UN DADO
-"
+offset_left = 366.92
+offset_top = 253.599
+offset_right = 505.92
+offset_bottom = 293.599
+text = "SOY UN DADO"
 scroll_active = false
 metadata/_edit_use_anchors_ = true
 
@@ -8842,3 +8842,9 @@ position = Vector2(-2.04003, 23.9992)
 position = Vector2(7, 1)
 scale = Vector2(0.3, 0.3)
 frame_progress = 0.0886272
+
+[node name="dado" parent="." instance=ExtResource("8_vcmtq")]
+position = Vector2(419, 190)
+scale = Vector2(1.59375, 1.71875)
+animation = &"uno"
+frame_progress = 0.235211
