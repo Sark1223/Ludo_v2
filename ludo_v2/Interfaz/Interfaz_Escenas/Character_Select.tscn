@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmea0v0skljyf"]
+
+[ext_resource type="Script" path="res://Interfaz/Interfaz_Codigo/selector.gd" id="1_haj8y"]
+[ext_resource type="Texture2D" uid="uid://b3yj07hedo3aj" path="res://Interfaz/character selec.png" id="2_crjjn"]
+
+[node name="Node2D" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_haj8y")
+
+[node name="Character_Select" type="TextureRect" parent="."]
+offset_right = 1120.0
+offset_bottom = 645.0
+texture = ExtResource("2_crjjn")
+expand_mode = 3
+
+[node name="Turtle" type="TextureButton" parent="Character_Select"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 168.0
+offset_right = 269.0
+offset_bottom = 304.0
+mouse_default_cursor_shape = 2
+
+[node name="Monkey" type="TextureButton" parent="Character_Select"]
+layout_mode = 0
+offset_left = 339.0
+offset_top = 140.0
+offset_right = 515.0
+offset_bottom = 333.0
+mouse_default_cursor_shape = 2
+
+[node name="Cat" type="TextureButton" parent="Character_Select"]
+layout_mode = 0
+offset_left = 546.0
+offset_top = 174.0
+offset_right = 787.0
+offset_bottom = 302.0
+mouse_default_cursor_shape = 2
+
+[node name="Hat" type="TextureButton" parent="Character_Select"]
+layout_mode = 0
+offset_left = 826.0
+offset_top = 144.0
+offset_right = 1109.0
+offset_bottom = 335.0
+mouse_default_cursor_shape = 2
+
+[node name="Dog" type="TextureButton" parent="Character_Select"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 384.0
+offset_right = 275.0
+offset_bottom = 570.0
+mouse_default_cursor_shape = 2
+
+[connection signal="pressed" from="Character_Select/Turtle" to="." method="_on_turtle_pressed"]
+[connection signal="pressed" from="Character_Select/Monkey" to="." method="_on_monkey_pressed"]
+[connection signal="pressed" from="Character_Select/Cat" to="." method="_on_cat_pressed"]
+[connection signal="pressed" from="Character_Select/Hat" to="." method="_on_hat_pressed"]
+[connection signal="pressed" from="Character_Select/Dog" to="." method="_on_dog_pressed"]

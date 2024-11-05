@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://du1bivbmg6kqe"]
+
+[ext_resource type="Script" path="res://level_select.gd" id="1_si1jp"]
+[ext_resource type="Texture2D" uid="uid://cw6epvclqh6tu" path="res://Interfaz/stages.png" id="2_80bhg"]
+
+[node name="Level_Select" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_si1jp")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1119.0
+offset_bottom = 645.0
+texture = ExtResource("2_80bhg")
+expand_mode = 1
+
+[node name="Level_1" type="TextureButton" parent="TextureRect"]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 136.0
+offset_right = 490.0
+offset_bottom = 535.0
+
+[node name="Level_2" type="TextureButton" parent="TextureRect"]
+layout_mode = 0
+offset_left = 597.0
+offset_top = 133.0
+offset_right = 1050.0
+offset_bottom = 537.0
+
+[connection signal="pressed" from="TextureRect/Level_1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="TextureRect/Level_2" to="." method="_on_level_2_pressed"]
