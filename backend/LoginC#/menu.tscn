@@ -1,0 +1,139 @@
+[gd_scene load_steps=5 format=3 uid="uid://iqokibab8x72"]
+
+[ext_resource type="Texture2D" uid="uid://cb8lcn11a4vf4" path="res://ludo-logo.png" id="1_3egct"]
+[ext_resource type="Script" path="res://menu.gd" id="1_ms5i2"]
+
+[sub_resource type="SystemFont" id="SystemFont_g2v1q"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_tdtss"]
+font_names = PackedStringArray("Impact")
+subpixel_positioning = 0
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1298.0
+offset_top = -2423.0
+offset_right = -171.0
+offset_bottom = -121.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ms5i2")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1313.0
+offset_top = 2423.0
+offset_right = 176.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_3egct")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1298.0
+offset_top = 2425.0
+offset_right = 177.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="Separator" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Separator"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.484
+anchor_right = 0.484
+offset_left = -2568.86
+offset_top = -162.0
+offset_right = 2688.14
+offset_bottom = 279.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 12
+theme_override_constants/shadow_offset_y = 12
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = SubResource("SystemFont_g2v1q")
+theme_override_font_sizes/font_size = 140
+text = "PARCHIS GAME
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="Separator2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="StartGame" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/Separator2"]
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 0
+offset_left = 457.0
+offset_top = -99.0
+offset_right = 663.0
+offset_bottom = -43.0
+theme_override_fonts/font = SubResource("SystemFont_tdtss")
+theme_override_font_sizes/font_size = 24
+text = "START GAME	"
+
+[node name="Host" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/Separator2/StartGame"]
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 0
+offset_left = 2.0
+offset_top = 78.0
+offset_right = 208.0
+offset_bottom = 134.0
+theme_override_fonts/font = SubResource("SystemFont_tdtss")
+theme_override_font_sizes/font_size = 24
+text = "HOST
+"
+
+[node name="Join" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/Separator2/StartGame/Host"]
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+offset_left = 7.0
+offset_top = 77.0
+offset_right = 210.0
+offset_bottom = 132.0
+theme_override_fonts/font = SubResource("SystemFont_tdtss")
+theme_override_font_sizes/font_size = 24
+text = "JOIN"
+
+[node name="ExitGame" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/Separator2/StartGame/Host/Join"]
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+offset_left = 3.0
+offset_top = 68.0
+offset_right = 204.0
+offset_bottom = 121.0
+theme_override_fonts/font = SubResource("SystemFont_tdtss")
+theme_override_font_sizes/font_size = 24
+text = "EXIT GAME"
