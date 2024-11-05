@@ -34,15 +34,32 @@ public partial class mapa1 : Node2D
 	
 	//GANAR JUGADOR 1
 	private Vector2[]  posiciones_ganador_1 =
-	{/*1*/new Vector2(-16, 3),/*2*/new Vector2(-13, 3),/*3*/new Vector2(-10, 3),/*4*/new Vector2(-7, 3),/*5*/new Vector2(-4, 3)};
+	{/*1*/new Vector2(-16, 3),/*2*/new Vector2(-13, 3),/*3*/new Vector2(-10, 3),/*4*/new Vector2(-7, 3),/*5*/new Vector2(-4, 3),/*5*/new Vector2(-1, 3)};
 	//GANAR JUGADOR 2
+	private Vector2[]  posiciones_ganador_2 =
+	{/*1*/new Vector2(-1, -13),/*2*/new Vector2(-1, -10),/*3*/new Vector2(-1, -7),/*4*/new Vector2(-1, -4),/*5*/new Vector2(-1, -1)};
 	//GANAR JUGADOR 3
+	private Vector2[]  posiciones_ganador_3 =
+	{/*1*/new Vector2(16, 3),/*2*/new Vector2(13, 3),/*3*/new Vector2(10, 3),/*4*/new Vector2(7, 3),/*5*/new Vector2(4, 3)};
 	//GANAR JUGADOR 4
-	
+	private Vector2[]  posiciones_ganador_4 =
+	{/*1*/new Vector2(-1, 19),/*2*/new Vector2(-1, 16),/*3*/new Vector2(-1, 13),/*4*/new Vector2(-1, 10),/*5*/new Vector2(-1, 7)};
 	
 	//Posiciones validas de J1 
 		// [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 
 		// 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41,1 42, 43, 44, 45, 46, 47];
+		
+	//Posiciones validas de J2
+		// [13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 
+		// 42, 43, 44, 45, 46, 47, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+		
+	//Posiciones validas de J3
+		// [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 0, 1, 2, 3, 4, 5, 
+		// 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
+		
+	//Posiciones validas de J4
+		// [37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 
+		// 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35];
 	public override void _Ready()
 	{
 		// Código para inicializar si es necesario
