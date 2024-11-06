@@ -50,8 +50,8 @@ var posicionInicio = [
 var PosicionGanar = Vector2(1,1)
 
 func _ready():
-	var boton = $TirarDado
-	boton.connect("pressed", Callable(self, "_on_dice_button_pressed"))
+	#var boton = $TirarDado
+	#boton.connect("pressed", Callable(self, "_on_dice_button_pressed"))
 
 	# Inicializar jugadores y sus piezas
 	jugadores[1] = {
@@ -97,20 +97,6 @@ func tiene_piezas_en_juego(jugador):
 		if ha_salido == true:
 			return true
 	return false
-
-func _on_dice_button_pressed():
-	if estado_turno != ESTADO_ESPERANDO_DADO:
-		print("No es tu turno para tirar el dado.")
-		return
-	tirar_dado()
-	var jugador = turnoActual
-	print("Jugador ", jugador, " lanzó el dado: ", dado)
-	if dado == 6 or tiene_piezas_en_juego(jugador):
-		print("Selecciona una de tus piezas para mover.")
-		estado_turno = ESTADO_ESPERANDO_PIEZA
-	else:
-		print("No sacaste un 6 y no tienes piezas en juego. Turno pasa al siguiente jugador.")
-		cambiar_turno()
 
 func tirar_dado():
 	dado = randi() % 6 + 1
@@ -195,3 +181,17 @@ func verificar_victoria(pieza, nueva_pos):
 	if nueva_pos == PosicionGanar * 15.9:
 		print("¡Jugador ", turnoActual, " ha ganado con una de sus piezas!")
 		# Implementar lógica adicional si es necesario
+
+func _on_tirar_dado_pressed() -> void:
+	if estado_turno != ESTADO_ESPERANDO_DADO:
+		print("No es tu turno para tirar el dado.")
+		return
+	tirar_dado()
+	var jugador = turnoActual
+	print("Jugador ", jugador, " lanzó el dado: ", dado)
+	if dado == 6 or tiene_piezas_en_juego(jugador):
+		print("Selecciona una de tus piezas para mover.")
+		estado_turno = ESTADO_ESPERANDO_PIEZA
+	else:
+		print("No sacaste un 6 y no tienes piezas en juego. Turno pasa al siguiente jugador.")
+		cambiar_turno()

@@ -3436,9 +3436,6 @@ offset_bottom = 199.0
 text = "Nombre de jugador"
 label_settings = SubResource("LabelSettings_u03dp")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
-
 [connection signal="button_down" from="btn_Join" to="." method="_on_join_button_down"]
 [connection signal="button_down" from="btn_Join/btn_Host" to="." method="_on_host_button_down"]
 [connection signal="button_down" from="btn_empezar" to="." method="_on_empezar_button_down"]

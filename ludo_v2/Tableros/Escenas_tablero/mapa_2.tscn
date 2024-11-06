@@ -1509,7 +1509,8 @@ anchor_top = -0.149
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 377.0
-offset_top = 460.2
+offset_top = 436.2
+offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1, 1.00123)
@@ -1634,14 +1635,14 @@ texture = ExtResource("3_41ro2")
 [node name="TirarDado" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.532
-anchor_top = 0.521
-anchor_right = 0.688
-anchor_bottom = 0.6
-offset_left = -0.0759277
-offset_top = 0.256256
-offset_right = -0.408936
-offset_bottom = -0.0123596
+anchor_left = 0.56
+anchor_top = 0.922
+anchor_right = 0.716
+anchor_bottom = 1.035
+offset_left = -0.039978
+offset_top = 0.0620575
+offset_right = -0.372986
+offset_bottom = 0.0988159
 text = "Tirar Dado
 "
 script = ExtResource("3_jvxlr")
@@ -1683,6 +1684,4 @@ position = Vector2(207, -164.234)
 [node name="sombrero4" parent="." instance=ExtResource("5_4i7ov")]
 position = Vector2(161, -164.234)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-375, -343.034)
-anchor_mode = 0
+[connection signal="pressed" from="TirarDado" to="." method="_on_tirar_dado_pressed"]
