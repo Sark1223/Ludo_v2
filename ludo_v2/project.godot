@@ -22,7 +22,7 @@ GameManager="*res://Interfaz/Interfaz_Codigo/GameManager.gd"
 [display]
 
 window/size/viewport_width=1136
-window/size/viewport_height=639
+window/size/viewport_height=736
 window/size/resizable=false
 window/stretch/scale_mode="integer"
 

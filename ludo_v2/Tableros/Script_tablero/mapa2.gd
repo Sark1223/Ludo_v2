@@ -42,7 +42,8 @@ var posicionValidaJ4 = [
 	Vector2(20,17), Vector2(20,13), Vector2(20,9), Vector2(20,4), Vector2(20,1), Vector2(20,-3), Vector2(20,-7), Vector2(20,-11),Vector2(20,-15),
 	Vector2(17,-16), Vector2(13,-16),Vector2(9,-16), Vector2(5,-16), Vector2(1,-16), Vector2(-3,-16), Vector2(-7,-16), Vector2(-11,-16), Vector2(-15,-16),
 	Vector2(-18,-15), Vector2(-18,-11),Vector2(-18,-7),Vector2(-18,-3),Vector2(-18,1), Vector2(-14,1), Vector2(-10,1), Vector2(-6,1),	Vector2(1,1)
-]	
+]
+
 var posicionInicio = [
 	Vector2(1,23), Vector2(24,1), Vector2(1,-20), Vector2(-22,1)
 ]
@@ -50,21 +51,19 @@ var posicionInicio = [
 var PosicionGanar = Vector2(1,1)
 
 func _ready():
-	#var boton = $TirarDado
-	#boton.connect("pressed", Callable(self, "_on_dice_button_pressed"))
-
 	# Inicializar jugadores y sus piezas
 	jugadores[1] = {
 		"piezas": [],
 		"posiciones": [],
-		"han_salido": []
+		"han_salido": [],
+		"posiciones_iniciales": []
 	}
 	jugadores[2] = {
 		"piezas": [],
 		"posiciones": [],
-		"han_salido": []
+		"han_salido": [],
+		"posiciones_iniciales": []
 	}
-
 	# Configurar piezas del Jugador 1 (gatito)
 	for i in range(1, 5):
 		var pieza_nombre = "gatito" + (str(i) if i > 1 else "")
@@ -72,12 +71,12 @@ func _ready():
 		jugadores[1]["piezas"].append(pieza)
 		jugadores[1]["posiciones"].append(-1)
 		jugadores[1]["han_salido"].append(false)
+		jugadores[1]["posiciones_iniciales"].append(pieza.position)
 		pieza.connect("piece_clicked", Callable(self, "_on_pieza_seleccionada"))
 		
 		#Asignar jugador_num e indice_pieza a la pieza
 		pieza.jugador_num = 1
 		pieza.indice_pieza = i - 1 # Los indices comienzan con 0
-
 	# Configurar piezas del Jugador 2 (sombrero)
 	for i in range(1, 5):
 		var pieza_nombre = "sombrero" + (str(i) if i > 1 else "")
@@ -85,8 +84,9 @@ func _ready():
 		jugadores[2]["piezas"].append(pieza)
 		jugadores[2]["posiciones"].append(-1)
 		jugadores[2]["han_salido"].append(false)
+		jugadores[2]["posiciones_iniciales"].append(pieza.position)
 		pieza.connect("piece_clicked", Callable(self, "_on_pieza_seleccionada"))
-		
+
 		#Asignar jugador_num e indice_pieza a la pieza
 		pieza.jugador_num = 2
 		pieza.indice_pieza = i - 1 # Los indices comienzan con 0
@@ -100,7 +100,6 @@ func tiene_piezas_en_juego(jugador):
 
 func tirar_dado():
 	dado = randi() % 6 + 1
-	#print("Jugador ", turnoActual, " lanzó el dado: ", dado)
 
 func _on_pieza_seleccionada(jugador_num, indice_pieza):
 	if estado_turno != ESTADO_ESPERANDO_PIEZA:
@@ -146,6 +145,8 @@ func mover_pieza(pasos):
 			mover_posicion(pieza_seleccionada, nueva_pos)
 			print("Pieza movida a la posición: ", posicion_index)
 			verificar_victoria(pieza_seleccionada, nueva_pos)
+			# Verificar colisiones con otras piezas
+			verificar_colision_con_otras_piezas(jugador, posicion_index)
 		else:
 			print("No puedes moverte fuera del tablero.")
 
@@ -195,3 +196,59 @@ func _on_tirar_dado_pressed() -> void:
 	else:
 		print("No sacaste un 6 y no tienes piezas en juego. Turno pasa al siguiente jugador.")
 		cambiar_turno()
+
+func verificar_colision_con_otras_piezas(jugador_actual, posicion_index):
+	var posiciones_validas_actual = obtener_posiciones_validas(jugador_actual)
+	var nueva_pos = posiciones_validas_actual[posicion_index] * 15.9  # Escalar la posición
+	
+	for jugador_num in jugadores.keys():
+		if jugador_num != jugador_actual:
+			var posiciones_validas_oponente = obtener_posiciones_validas(jugador_num)
+			for i in range(jugadores[jugador_num]["piezas"].size()):
+				var ha_salido_oponente = jugadores[jugador_num]["han_salido"][i]
+				if ha_salido_oponente:
+					var posicion_index_oponente = jugadores[jugador_num]["posiciones"][i]
+					var pos_oponente = posiciones_validas_oponente[posicion_index_oponente] * 15.9  # Escalar la posición
+					if nueva_pos == pos_oponente:
+						if not es_posicion_segura(nueva_pos):
+							# Se encontró una colisión y la posición no es segura
+							print("La pieza del Jugador %d ha comido la pieza del Jugador %d." % [jugador_actual, jugador_num])
+							enviar_pieza_a_casa(jugador_num, i)
+						else:
+							print("No se puede comer en una posición segura.")
+
+func enviar_pieza_a_casa(jugador_num, indice_pieza):
+	jugadores[jugador_num]["han_salido"][indice_pieza] = false
+	jugadores[jugador_num]["posiciones"][indice_pieza] = -1  # Indica que está en casa
+	var pieza = jugadores[jugador_num]["piezas"][indice_pieza]
+	var posicion_inicial = jugadores[jugador_num]["posiciones_iniciales"][indice_pieza]
+	mover_posicion(pieza, posicion_inicial)
+	print("La pieza del Jugador %d, índice %d ha sido enviada a casa." % [jugador_num, indice_pieza])
+
+#func get_posicion_inicial_pieza(jugador_num, indice_pieza):
+	#var posiciones_iniciales = []  # Declarar la variable aquí
+	#match jugador_num:
+		#1:
+			#posiciones_iniciales = [Vector2(1,26), Vector2(4,26), Vector2(1,29), Vector2(4,29)]
+		#2:
+			#posiciones_iniciales = [Vector2(23,1), Vector2(26,1), Vector2(23,4), Vector2(26,4)]
+		## Agrega más jugadores si es necesario
+		#_:
+			#posiciones_iniciales = []
+	#
+	#if indice_pieza >= 0 and indice_pieza < posiciones_iniciales.size():
+		#return posiciones_iniciales[indice_pieza] * 15.9  # Ajusta el factor de escala si es necesario
+	#else:
+		#return Vector2(0, 0)  # Posición por defecto
+
+func es_posicion_segura(posicion):
+	var posiciones_seguras = [
+		# Posiciones seguras aquí
+		Vector2(1,23) * 15.9,
+		Vector2(20,-15) * 15.9,
+		Vector2(-18,17) * 15.9,
+		Vector2(17,19) * 15.9,
+		Vector2(1,1) * 15.9
+		# Agrega más posiciones según tu juego
+	]
+	return posicion in posiciones_seguras

@@ -1505,12 +1505,11 @@ sources/0 = SubResource("TileSetAtlasSource_elwo4")
 
 [node name="Control" type="Control"]
 layout_mode = 3
-anchor_top = -0.149
+anchor_top = -0.024
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 377.0
-offset_top = 436.2
-offset_bottom = -24.0
+offset_top = 360.2
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1, 1.00123)
@@ -1536,118 +1535,23 @@ tile_set = SubResource("TileSet_ddc1q")
 tile_map_data = PackedByteArray("AAD+//7/AAAHAAMAAAD+////AAAHAAQAAAAEAAMAAAAIAAMAAAD+/wMAAAAGAAAAAAACAAIAAAACAAIAAAACAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAIAAAAAAAEAAAAAAAEAAAACAAEAAAACAAEAAAD2/wQAAAAGAAYAAAADAAgAAAAGAAcAAAAFAAcAAAAGAAcAAAD7/wMAAAAGAAcAAAAEAP//AAAJAAMAAAD+/wAAAAAJAAQAAAAKAAoAAAALAAUAAAAMAAoAAAAMAAUAAAALAAsAAAAKAAUAAAAKAAkAAAALAAIAAAAKAAgAAAALAAEAAAALAAgAAAALAAEAAAALAAkAAAALAAIAAAAMAAkAAAALAAIAAAAMAAgAAAALAAEAAAAJAAgAAAAKAAIAAAANAAgAAAAMAAEAAAANAAkAAAAMAAIAAAAJAAcAAAAKAAAAAAAKAAcAAAALAAAAAAALAAcAAAAMAAAAAAAMAAcAAAAKAAAAAAANAAcAAAALAAAAAAAJAAkAAAAKAAIAAAANAAsAAAAGAAUAAAAJAAsAAAAGAAUAAAAMAAwAAAAFAAsAAAAJAAwAAAAFAAoAAAAIAAYAAAAJAAoAAAAIAAcAAAAJAAsAAAAOAAYAAAAJAAoAAAAOAAcAAAAJAAsAAAAOAPb/AAAFAAoAAAAQAPj/AAAFAAgAAAAHAPj/AAAFAAgAAAAMAPT/AAAFAAgAAAD3//n/AAABAAcAAAD1//X/AAAAAAkAAAD1//b/AAAAAAoAAAD1//f/AAAAAAoAAAD1//j/AAAAAAsAAAD2//j/AAAFAAsAAAD3//j/AAAEAAsAAAD4//j/AAACAAsAAAD4//f/AAACAAoAAAD2//X/AAABAAkAAAD3//X/AAABAAkAAAD6//j/AAAHAAkAAAD2//f/AAAUAAgAAAD2//b/AAAGAAkAAAD3//b/AAAGAAgAAAD0/wsAAAARAAwAAAD1/wwAAAATAAMAAAD1/w0AAAATAAQAAAD2/w0AAAAUAAQAAAD2/wwAAAAUAAMAAAA=")
 tile_set = SubResource("TileSet_w5451")
 
-[node name="J1P1" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(51, 377.724)
-scale = Vector2(1, 0.999996)
-texture = ExtResource("3_41ro2")
-
-[node name="J1P2" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(55, 347.292)
-scale = Vector2(1, 1.00322)
-texture = ExtResource("3_41ro2")
-
-[node name="J1P3" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(90, 347.292)
-scale = Vector2(1, 1.00968)
-texture = ExtResource("3_41ro2")
-
-[node name="J1P4" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(88, 378.254)
-scale = Vector2(1, 1.02275)
-texture = ExtResource("3_41ro2")
-
-[node name="J2P1" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(368, -58.5729)
-scale = Vector2(1, 1.0494)
-texture = ExtResource("3_41ro2")
-
-[node name="J2P2" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(407, -57.5741)
-scale = Vector2(1, 1.10479)
-texture = ExtResource("3_41ro2")
-
-[node name="J2P3" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(366, -20.6195)
-scale = Vector2(1, 1.00277)
-texture = ExtResource("3_41ro2")
-
-[node name="J2P4" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(407, -18.622)
-scale = Vector2(1, 1.00277)
-texture = ExtResource("3_41ro2")
-
-[node name="J3P1" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(52, -320.57)
-scale = Vector2(1, 1.00277)
-texture = ExtResource("3_41ro2")
-
-[node name="J3P2" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(92, -316.575)
-scale = Vector2(1, 1.00277)
-texture = ExtResource("3_41ro2")
-
-[node name="J3P3" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(51, -289.608)
-scale = Vector2(1, 1.00277)
-texture = ExtResource("3_41ro2")
-
-[node name="J3P4" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(90, -287.61)
-scale = Vector2(1, 1.00277)
-texture = ExtResource("3_41ro2")
-
-[node name="J4P1" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(-336, -37.346)
-scale = Vector2(1, 1.00277)
-texture = ExtResource("3_41ro2")
-
-[node name="J4P2" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(-293, -32.3521)
-scale = Vector2(1, 1.00277)
-texture = ExtResource("3_41ro2")
-
-[node name="J4P3" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(-340, -3.38774)
-scale = Vector2(1, 1.00277)
-texture = ExtResource("3_41ro2")
-
-[node name="J4P4" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(-298, -2.38899)
-scale = Vector2(1, 1.00879)
-texture = ExtResource("3_41ro2")
-
 [node name="TirarDado" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.56
-anchor_top = 0.922
-anchor_right = 0.716
-anchor_bottom = 1.035
-offset_left = -0.039978
-offset_top = 0.0620575
-offset_right = -0.372986
-offset_bottom = 0.0988159
+anchor_left = 0.568
+anchor_top = 0.609
+anchor_right = 0.723
+anchor_bottom = 0.722
+offset_left = -0.111969
+offset_top = 0.125031
+offset_right = 0.314026
+offset_bottom = 0.161774
 text = "Tirar Dado
 "
 script = ExtResource("3_jvxlr")
 
 [node name="TextureButton" type="TextureButton" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.549
@@ -1683,5 +1587,103 @@ position = Vector2(207, -164.234)
 
 [node name="sombrero4" parent="." instance=ExtResource("5_4i7ov")]
 position = Vector2(161, -164.234)
+
+[node name="Node" type="Node" parent="."]
+
+[node name="J1P1" type="Sprite2D" parent="Node"]
+visible = false
+position = Vector2(428, 719.189)
+scale = Vector2(1, 1.00123)
+texture = ExtResource("3_41ro2")
+
+[node name="J1P2" type="Sprite2D" parent="Node"]
+visible = false
+position = Vector2(432, 688.719)
+scale = Vector2(1, 1.00445)
+texture = ExtResource("3_41ro2")
+
+[node name="J1P3" type="Sprite2D" parent="Node"]
+visible = false
+position = Vector2(467, 688.719)
+scale = Vector2(1, 1.01092)
+texture = ExtResource("3_41ro2")
+
+[node name="J1P4" type="Sprite2D" parent="Node"]
+visible = false
+position = Vector2(465, 719.719)
+scale = Vector2(1, 1.02401)
+texture = ExtResource("3_41ro2")
+
+[node name="J2P1" type="Sprite2D" parent="Node"]
+visible = false
+position = Vector2(745, 282.355)
+scale = Vector2(1, 1.05069)
+texture = ExtResource("3_41ro2")
+
+[node name="J2P2" type="Sprite2D" parent="Node"]
+visible = false
+position = Vector2(784, 283.355)
+scale = Vector2(1, 1.10615)
+texture = ExtResource("3_41ro2")
+
+[node name="J2P3" type="Sprite2D" parent="Node"]
+visible = false
+position = Vector2(743, 320.355)
+scale = Vector2(1, 1.004)
+texture = ExtResource("3_41ro2")
+
+[node name="J2P4" type="Sprite2D" parent="Node"]
+visible = false
+position = Vector2(784, 322.355)
+scale = Vector2(1, 1.004)
+texture = ExtResource("3_41ro2")
+
+[node name="J3P1" type="Sprite2D" parent="Node"]
+visible = false
+position = Vector2(429, 20.0357)
+scale = Vector2(1, 1.004)
+texture = ExtResource("3_41ro2")
+
+[node name="J3P2" type="Sprite2D" parent="Node"]
+visible = false
+position = Vector2(469, 24.0356)
+scale = Vector2(1, 1.004)
+texture = ExtResource("3_41ro2")
+
+[node name="J3P3" type="Sprite2D" parent="Node"]
+visible = false
+position = Vector2(428, 51.0357)
+scale = Vector2(1, 1.004)
+texture = ExtResource("3_41ro2")
+
+[node name="J3P4" type="Sprite2D" parent="Node"]
+visible = false
+position = Vector2(467, 53.0362)
+scale = Vector2(1, 1.004)
+texture = ExtResource("3_41ro2")
+
+[node name="J4P1" type="Sprite2D" parent="Node"]
+visible = false
+position = Vector2(41, 303.608)
+scale = Vector2(1, 1.004)
+texture = ExtResource("3_41ro2")
+
+[node name="J4P2" type="Sprite2D" parent="Node"]
+visible = false
+position = Vector2(84, 308.608)
+scale = Vector2(1, 1.004)
+texture = ExtResource("3_41ro2")
+
+[node name="J4P3" type="Sprite2D" parent="Node"]
+visible = false
+position = Vector2(37, 337.608)
+scale = Vector2(1, 1.004)
+texture = ExtResource("3_41ro2")
+
+[node name="J4P4" type="Sprite2D" parent="Node"]
+visible = false
+position = Vector2(79, 338.608)
+scale = Vector2(1, 1.01003)
+texture = ExtResource("3_41ro2")
 
 [connection signal="pressed" from="TirarDado" to="." method="_on_tirar_dado_pressed"]
