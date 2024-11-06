@@ -9,6 +9,7 @@ anchors_preset = 0
 script = ExtResource("1_haj8y")
 
 [node name="Character_Select" type="TextureRect" parent="."]
+layout_mode = 0
 offset_right = 1120.0
 offset_bottom = 645.0
 texture = ExtResource("2_crjjn")

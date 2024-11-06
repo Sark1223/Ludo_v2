@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://ccpnh6x4ilpq2"]
+[gd_scene load_steps=41 format=4 uid="uid://ccpnh6x4ilpq2"]
 
 [ext_resource type="Script" path="res://Interfaz/Interfaz_Codigo/multi_control.gd" id="1_7labk"]
 [ext_resource type="Texture2D" uid="uid://cipo1o4dmfckg" path="res://Interfaz/interfaz_diseño/Grass.png" id="2_5ck5p"]
@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://c48nhxac7vkkp" path="res://Personajes/Escenas_personajes/gatito.tscn" id="13_7aljf"]
 [ext_resource type="PackedScene" uid="uid://0jsekysatrqe" path="res://Personajes/Escenas_personajes/sombrero.tscn" id="14_e2f0o"]
 [ext_resource type="PackedScene" uid="uid://cxxvmy3ca5tm0" path="res://Personajes/Escenas_personajes/mono.tscn" id="15_ogpuc"]
+[ext_resource type="Texture2D" uid="uid://dagjvdtjkmli8" path="res://Interfaz/docks.png" id="17_k7nre"]
+[ext_resource type="Texture2D" uid="uid://c52fuadqkswjx" path="res://Interfaz/fields.png" id="18_01qfs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1xm8i"]
 texture = ExtResource("2_7op0g")
@@ -3363,6 +3365,18 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
+[node name="Titulo" type="Label" parent="fondo_realxd/fondo/Titulo"]
+offset_left = 300.751
+offset_top = 313.0
+offset_right = 655.751
+offset_bottom = 352.0
+theme_override_font_sizes/font_size = 24
+text = "Elige un escenario"
+label_settings = SubResource("LabelSettings_pgmvp")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
 [node name="select_jugador" type="TileMapLayer" parent="fondo_realxd"]
 position = Vector2(14, 27)
 tile_map_data = PackedByteArray("AAAxAAQAAAABAAEAAAAyAAMAAAABAAAAAAAyAAQAAAABAAEAAAAzAAMAAAABAAAAAAAzAAQAAAABAAEAAAA0AAMAAAABAAAAAAA0AAQAAAABAAEAAAA1AAMAAAABAAAAAAA1AAQAAAABAAEAAAA2AAMAAAABAAAAAAA2AAQAAAABAAEAAAA3AAMAAAABAAAAAAA3AAQAAAABAAEAAAA4AAMAAAABAAAAAAA4AAQAAAABAAEAAAA5AAMAAAABAAAAAAA5AAQAAAABAAEAAAA6AAMAAAABAAAAAAA6AAQAAAABAAEAAAA7AAMAAAABAAAAAAA7AAQAAAABAAEAAAA8AAMAAAABAAAAAAA8AAQAAAABAAEAAAA9AAMAAAABAAAAAAA9AAQAAAABAAEAAAA+AAMAAAABAAAAAAA+AAQAAAABAAEAAAA/AAMAAAABAAAAAAA/AAQAAAABAAEAAABAAAMAAAABAAAAAABAAAQAAAABAAEAAABBAAMAAAABAAAAAABBAAQAAAABAAEAAABCAAMAAAABAAAAAABCAAQAAAABAAEAAABDAAMAAAACAAIAAABDAAQAAAACAAIAAAAtAAMAAAAAAAIAAAAtAAQAAAAAAAIAAAAuAAMAAAABAAAAAAAuAAQAAAABAAEAAAAxAAMAAAABAAAAAAAvAAMAAAABAAAAAAAvAAQAAAABAAEAAAAwAAMAAAABAAAAAAAwAAQAAAABAAEAAAAtAAYAAAAAAAIAAAAtAAcAAAAAAAIAAAAuAAYAAAABAAEAAAAuAAcAAAABAAIAAAAvAAYAAAABAAEAAAAvAAcAAAABAAIAAAAwAAYAAAABAAEAAAAwAAcAAAABAAIAAAAxAAYAAAABAAEAAAAxAAcAAAABAAIAAAAyAAYAAAABAAEAAAAyAAcAAAABAAIAAAAzAAYAAAABAAEAAAAzAAcAAAABAAIAAAA0AAYAAAABAAEAAAA0AAcAAAABAAIAAAA1AAYAAAABAAEAAAA1AAcAAAABAAIAAAA2AAYAAAABAAEAAAA2AAcAAAABAAIAAAA3AAYAAAABAAEAAAA3AAcAAAABAAIAAAA4AAYAAAABAAEAAAA4AAcAAAABAAIAAAA5AAYAAAABAAEAAAA5AAcAAAABAAIAAAA6AAYAAAABAAEAAAA6AAcAAAABAAIAAAA7AAYAAAABAAEAAAA7AAcAAAABAAIAAAA8AAYAAAABAAEAAAA8AAcAAAABAAIAAAA9AAYAAAABAAEAAAA9AAcAAAABAAIAAAA+AAYAAAABAAEAAAA+AAcAAAABAAIAAAA/AAYAAAABAAEAAAA/AAcAAAABAAIAAABAAAYAAAABAAEAAABAAAcAAAABAAIAAABBAAYAAAABAAEAAABBAAcAAAABAAIAAABCAAYAAAABAAEAAABCAAcAAAABAAIAAABDAAYAAAACAAIAAABDAAcAAAACAAIAAAAtAAUAAAAAAAIAAAAuAAUAAAABAAEAAAAvAAUAAAABAAEAAAAwAAUAAAABAAEAAAAxAAUAAAABAAEAAAAyAAUAAAABAAEAAAAzAAUAAAABAAEAAAA0AAUAAAABAAEAAAA1AAUAAAABAAEAAAA2AAUAAAABAAEAAAA3AAUAAAABAAEAAAA4AAUAAAABAAEAAAA5AAUAAAABAAEAAAA6AAUAAAABAAEAAAA7AAUAAAABAAEAAAA8AAUAAAABAAEAAAA9AAUAAAABAAEAAAA+AAUAAAABAAEAAAA/AAUAAAABAAEAAABAAAUAAAABAAEAAABBAAUAAAABAAEAAABCAAUAAAABAAEAAABDAAUAAAACAAIAAAA=")
@@ -3372,6 +3386,12 @@ tile_set = SubResource("TileSet_sqhbn")
 position = Vector2(822, 152)
 scale = Vector2(2.46875, 2.6875)
 animation = &"gato_default_lado"
+
+[node name="btn_gato" type="TextureButton" parent="fondo_realxd/select_jugador/gatito"]
+offset_left = -17.0
+offset_top = -4.0
+offset_right = 15.0
+offset_bottom = 18.0
 
 [node name="Label" type="Label" parent="fondo_realxd/select_jugador"]
 offset_left = 737.0
@@ -3387,10 +3407,22 @@ vertical_alignment = 1
 position = Vector2(997.25, 164.75)
 scale = Vector2(1.98437, 1.98437)
 
+[node name="btn_sombrero" type="TextureButton" parent="fondo_realxd/select_jugador/sombrero"]
+offset_left = -17.0
+offset_top = -12.0
+offset_right = 19.0
+offset_bottom = 18.0
+
 [node name="Mono" parent="fondo_realxd/select_jugador" instance=ExtResource("15_ogpuc")]
 position = Vector2(825, 257)
 scale = Vector2(1.23214, 1.23214)
 frame_progress = 0.10549
+
+[node name="btn_chango" type="TextureButton" parent="fondo_realxd/select_jugador/Mono"]
+offset_left = -33.0
+offset_top = -25.0
+offset_right = 23.0
+offset_bottom = 27.0
 
 [node name="btn_Join" type="Button" parent="."]
 layout_mode = 0
@@ -3436,6 +3468,42 @@ offset_bottom = 199.0
 text = "Nombre de jugador"
 label_settings = SubResource("LabelSettings_u03dp")
 
+[node name="Escenario_puerto" type="TextureRect" parent="."]
+offset_left = 570.0
+offset_top = 448.0
+offset_right = 779.406
+offset_bottom = 644.0
+texture = ExtResource("17_k7nre")
+expand_mode = 3
+
+[node name="puerto" type="TextureButton" parent="Escenario_puerto"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 210.0
+offset_bottom = 192.0
+
+[node name="Escenario_campo" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 337.0
+offset_top = 450.0
+offset_right = 528.442
+offset_bottom = 646.0
+texture = ExtResource("18_01qfs")
+expand_mode = 3
+
+[node name="campos" type="TextureButton" parent="Escenario_campo"]
+offset_left = 3.0
+offset_top = 1.0
+offset_right = 190.0
+offset_bottom = 193.0
+
+[connection signal="pressed" from="fondo_realxd/select_jugador/gatito/btn_gato" to="." method="_on_btn_gato_pressed"]
+[connection signal="pressed" from="fondo_realxd/select_jugador/sombrero/btn_sombrero" to="." method="_on_btn_sombrero_pressed"]
+[connection signal="pressed" from="fondo_realxd/select_jugador/Mono/btn_chango" to="." method="_on_btn_chango_pressed"]
 [connection signal="button_down" from="btn_Join" to="." method="_on_join_button_down"]
 [connection signal="button_down" from="btn_Join/btn_Host" to="." method="_on_host_button_down"]
 [connection signal="button_down" from="btn_empezar" to="." method="_on_empezar_button_down"]
+[connection signal="pressed" from="Escenario_puerto/puerto" to="." method="_on_puerto_pressed"]
+[connection signal="pressed" from="Escenario_campo/campos" to="." method="_on_campos_pressed"]
+[connection signal="pressed" from="Escenario_campo/campos" to="." method="_on_texture_button_pressed"]
