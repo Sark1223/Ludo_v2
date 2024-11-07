@@ -318,7 +318,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_keemv")
 }],
 "loop": true,
-"name": &"gato_default_atras",
+"name": &"default_atras",
 "speed": 4.0
 }, {
 "frames": [{
@@ -359,7 +359,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_v011b")
 }],
 "loop": true,
-"name": &"gato_default_frente",
+"name": &"default_frente",
 "speed": 3.0
 }, {
 "frames": [{
@@ -376,7 +376,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_qbo16")
 }],
 "loop": true,
-"name": &"gato_default_lado",
+"name": &"default_lado",
 "speed": 5.0
 }, {
 "frames": [{
@@ -414,7 +414,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_pnoo7")
 }],
 "loop": true,
-"name": &"gato_salto_atras",
+"name": &"salto_atras",
 "speed": 5.0
 }, {
 "frames": [{
@@ -458,7 +458,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_gsobm")
 }],
 "loop": true,
-"name": &"gato_salto_frentre",
+"name": &"salto_frentre",
 "speed": 5.0
 }, {
 "frames": [{
@@ -493,7 +493,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_mqqi0")
 }],
 "loop": true,
-"name": &"gato_salto_lado",
+"name": &"salto_lado",
 "speed": 5.0
 }, {
 "frames": [{
@@ -528,12 +528,12 @@ animations = [{
 "texture": SubResource("AtlasTexture_y6s2y")
 }],
 "loop": true,
-"name": &"gato_transportado_frente",
+"name": &"transportado_frente",
 "speed": 5.0
 }, {
 "frames": [],
 "loop": true,
-"name": &"gato_trasnportado_atras",
+"name": &"trasnportado_atras",
 "speed": 5.0
 }, {
 "frames": [{
@@ -565,12 +565,12 @@ animations = [{
 "texture": SubResource("AtlasTexture_5euuj")
 }],
 "loop": true,
-"name": &"gato_trasnportado_lado",
+"name": &"trasnportado_lado",
 "speed": 5.0
 }]
 
 [node name="gatito" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_f8m0i")
-animation = &"gato_default_frente"
-autoplay = "gato_default_frente"
+animation = &"default_frente"
+autoplay = "default_frente"
 script = ExtResource("9_dmvpb")

@@ -370,7 +370,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_dfk00")
 }],
 "loop": true,
-"name": &"sombrero_default_atras",
+"name": &"default_atras",
 "speed": 4.0
 }, {
 "frames": [{
@@ -402,7 +402,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_jgb7g")
 }],
 "loop": true,
-"name": &"sombrero_default_frente",
+"name": &"default_frente",
 "speed": 3.0
 }, {
 "frames": [{
@@ -428,7 +428,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_gy2tk")
 }],
 "loop": true,
-"name": &"sombrero_default_lado",
+"name": &"default_lado",
 "speed": 3.0
 }, {
 "frames": [{
@@ -475,7 +475,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_rs828")
 }],
 "loop": false,
-"name": &"sombrero_salto_atras",
+"name": &"salto_atras",
 "speed": 6.0
 }, {
 "frames": [{
@@ -513,7 +513,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_k5jnq")
 }],
 "loop": true,
-"name": &"sombrero_salto_frente",
+"name": &"salto_frente",
 "speed": 7.0
 }, {
 "frames": [{
@@ -551,7 +551,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_i800o")
 }],
 "loop": true,
-"name": &"sombrero_salto_lado",
+"name": &"salto_lado",
 "speed": 11.0
 }, {
 "frames": [{
@@ -586,7 +586,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_7hm6g")
 }],
 "loop": true,
-"name": &"sombrero_trasnsportar_atras",
+"name": &"trasnsportar_atras",
 "speed": 5.0
 }, {
 "frames": [{
@@ -621,7 +621,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_u8wip")
 }],
 "loop": true,
-"name": &"sombrero_trasnsportar_frente",
+"name": &"trasnsportar_frente",
 "speed": 5.0
 }, {
 "frames": [{
@@ -656,6 +656,6 @@ animations = [{
 "texture": SubResource("AtlasTexture_pmuic")
 }],
 "loop": true,
-"name": &"sombrero_trasnsportar_lado",
+"name": &"trasnsportar_lado",
 "speed": 5.0
 }]

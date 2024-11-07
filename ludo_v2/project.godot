@@ -24,8 +24,13 @@ global_var="*res://Interfaz/Interfaz_Codigo/global_var.gd"
 
 window/size/viewport_width=1136
 window/size/viewport_height=736
-window/size/resizable=false
-window/stretch/scale_mode="integer"
+window/size/transparent=true
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+mouse_cursor/stretch/mode="viewport"
+mouse_cursor/stretch/aspect="keep"
+mouse_cursor/stretch/scale_mode="integer"
+mouse_cursor/handheld/orientation=1
 
 [dotnet]
 

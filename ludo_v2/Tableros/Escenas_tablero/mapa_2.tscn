@@ -1505,11 +1505,13 @@ sources/0 = SubResource("TileSetAtlasSource_elwo4")
 
 [node name="Control" type="Control"]
 layout_mode = 3
-anchor_top = -0.024
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 377.0
-offset_top = 360.2
+offset_left = 561.0
+offset_top = 340.0
+offset_right = 561.0
+offset_bottom = 340.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1, 1.00123)
@@ -1535,17 +1537,16 @@ tile_set = SubResource("TileSet_ddc1q")
 tile_map_data = PackedByteArray("AAD+//7/AAAHAAMAAAD+////AAAHAAQAAAAEAAMAAAAIAAMAAAD+/wMAAAAGAAAAAAACAAIAAAACAAIAAAACAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAIAAAAAAAEAAAAAAAEAAAACAAEAAAACAAEAAAD2/wQAAAAGAAYAAAADAAgAAAAGAAcAAAAFAAcAAAAGAAcAAAD7/wMAAAAGAAcAAAAEAP//AAAJAAMAAAD+/wAAAAAJAAQAAAAKAAoAAAALAAUAAAAMAAoAAAAMAAUAAAALAAsAAAAKAAUAAAAKAAkAAAALAAIAAAAKAAgAAAALAAEAAAALAAgAAAALAAEAAAALAAkAAAALAAIAAAAMAAkAAAALAAIAAAAMAAgAAAALAAEAAAAJAAgAAAAKAAIAAAANAAgAAAAMAAEAAAANAAkAAAAMAAIAAAAJAAcAAAAKAAAAAAAKAAcAAAALAAAAAAALAAcAAAAMAAAAAAAMAAcAAAAKAAAAAAANAAcAAAALAAAAAAAJAAkAAAAKAAIAAAANAAsAAAAGAAUAAAAJAAsAAAAGAAUAAAAMAAwAAAAFAAsAAAAJAAwAAAAFAAoAAAAIAAYAAAAJAAoAAAAIAAcAAAAJAAsAAAAOAAYAAAAJAAoAAAAOAAcAAAAJAAsAAAAOAPb/AAAFAAoAAAAQAPj/AAAFAAgAAAAHAPj/AAAFAAgAAAAMAPT/AAAFAAgAAAD3//n/AAABAAcAAAD1//X/AAAAAAkAAAD1//b/AAAAAAoAAAD1//f/AAAAAAoAAAD1//j/AAAAAAsAAAD2//j/AAAFAAsAAAD3//j/AAAEAAsAAAD4//j/AAACAAsAAAD4//f/AAACAAoAAAD2//X/AAABAAkAAAD3//X/AAABAAkAAAD6//j/AAAHAAkAAAD2//f/AAAUAAgAAAD2//b/AAAGAAkAAAD3//b/AAAGAAgAAAD0/wsAAAARAAwAAAD1/wwAAAATAAMAAAD1/w0AAAATAAQAAAD2/w0AAAAUAAQAAAD2/wwAAAAUAAMAAAA=")
 tile_set = SubResource("TileSet_w5451")
 
-[node name="TirarDado" type="Button" parent="."]
-layout_mode = 1
+[node name="TirarDado" type="Button" parent="Base/Adornos/Estructuras/Ad Estructura"]
 anchors_preset = -1
 anchor_left = 0.568
 anchor_top = 0.609
 anchor_right = 0.723
 anchor_bottom = 0.722
-offset_left = -0.111969
-offset_top = 0.125031
-offset_right = 0.314026
-offset_bottom = 0.161774
+offset_left = 437.777
+offset_top = 274.442
+offset_right = 553.777
+offset_bottom = 328.442
 text = "Tirar Dado
 "
 script = ExtResource("3_jvxlr")
@@ -1686,4 +1687,4 @@ position = Vector2(79, 338.608)
 scale = Vector2(1, 1.01003)
 texture = ExtResource("3_41ro2")
 
-[connection signal="pressed" from="TirarDado" to="." method="_on_tirar_dado_pressed"]
+[connection signal="pressed" from="Base/Adornos/Estructuras/Ad Estructura/TirarDado" to="." method="_on_tirar_dado_pressed"]

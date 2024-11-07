@@ -4336,7 +4336,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 1.0
-offset_bottom = 1.0
+offset_bottom = -80.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7labk")
@@ -4386,7 +4386,7 @@ tile_set = SubResource("TileSet_sqhbn")
 [node name="gatito" parent="fondo_realxd/select_jugador" instance=ExtResource("13_7aljf")]
 position = Vector2(822, 152)
 scale = Vector2(2.46875, 2.6875)
-animation = &"gato_default_lado"
+animation = &"salto_lado"
 
 [node name="btn_gato" type="TextureButton" parent="fondo_realxd/select_jugador/gatito"]
 offset_left = -17.0
@@ -4508,6 +4508,6 @@ text = "Crear
 [connection signal="button_down" from="btn_Join" to="." method="_on_join_button_down"]
 [connection signal="button_down" from="empezar" to="." method="_on_empezar_button_down"]
 [connection signal="pressed" from="Escenario_puerto/puerto" to="." method="_on_puerto_pressed"]
-[connection signal="pressed" from="Escenario_campo/campos" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="Escenario_campo/campos" to="." method="_on_campos_pressed"]
+[connection signal="pressed" from="Escenario_campo/campos" to="." method="_on_texture_button_pressed"]
 [connection signal="button_down" from="host" to="." method="_on_host_button_down"]
