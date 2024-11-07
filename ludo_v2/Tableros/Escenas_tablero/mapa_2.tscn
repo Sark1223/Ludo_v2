@@ -1565,35 +1565,27 @@ offset_bottom = 13.6983
 texture_normal = ExtResource("3_41ro2")
 
 [node name="gatito" parent="." instance=ExtResource("4_cc1gf")]
-visible = false
 position = Vector2(-113, 145.395)
 
 [node name="gatito2" parent="." instance=ExtResource("4_cc1gf")]
-visible = false
 position = Vector2(-168, 144.396)
 
 [node name="gatito3" parent="." instance=ExtResource("4_cc1gf")]
-visible = false
 position = Vector2(-117, 193.336)
 
 [node name="gatito4" parent="." instance=ExtResource("4_cc1gf")]
-visible = false
 position = Vector2(-168, 192.337)
 
 [node name="sombrero" parent="." instance=ExtResource("5_4i7ov")]
-visible = false
 position = Vector2(210, -120.288)
 
 [node name="sombrero2" parent="." instance=ExtResource("5_4i7ov")]
-visible = false
 position = Vector2(158, -120.288)
 
 [node name="sombrero3" parent="." instance=ExtResource("5_4i7ov")]
-visible = false
 position = Vector2(207, -164.234)
 
 [node name="sombrero4" parent="." instance=ExtResource("5_4i7ov")]
-visible = false
 position = Vector2(161, -164.234)
 
 [node name="Node" type="Node" parent="."]

@@ -50,12 +50,15 @@ func SendPlayerInformation(name, id):
 func connection_failed():
 	print("Couldnt Connect")
 
-@rpc("any_peer","call_local")
+
 
 func change_scene():
 	get_tree().change_scene_to_file(global_var.sceneSelect)
 	
+@rpc("any_peer","call_local")	
 func StartGame():
+	#var scene = load("res://Tableros/Escenas_tablero/mapa_2.tscn").instantiate()
+	#get_tree().root.add_child(scene)
 	change_scene()
 	self.hide()
 
@@ -82,6 +85,7 @@ func _on_join_button_down() -> void:
 
 func _on_empezar_button_down() -> void:
 	StartGame.rpc()
+	pass
 
 func _on_campos_pressed() -> void:
 	global_var.sceneSelect = level_1
