@@ -1,0 +1,6 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1730952824
+icon.svg::CompressedTexture2D::250927085513795242::1730777363::1730952827::1::::<><>::
+ludo-logo.png::CompressedTexture2D::4911826859567400003::1730777363::1730952830::1::::<><>::
+menu.gd::GDScript::-1::1730777363::0::1::::MainMenu<>Control<>::
+menu.tscn::PackedScene::595409110741261583::1730777363::0::1::::<><>::uid://cb8lcn11a4vf4::::res://ludo-logo.png<>res://menu.gd
