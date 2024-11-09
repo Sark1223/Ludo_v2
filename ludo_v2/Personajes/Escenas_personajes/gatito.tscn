@@ -458,7 +458,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_gsobm")
 }],
 "loop": true,
-"name": &"salto_frentre",
+"name": &"salto_frente",
 "speed": 5.0
 }, {
 "frames": [{
@@ -571,6 +571,6 @@ animations = [{
 
 [node name="gatito" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_f8m0i")
-animation = &"default_frente"
+animation = &"trasnportado_lado"
 autoplay = "default_frente"
 script = ExtResource("9_dmvpb")

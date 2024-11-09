@@ -7,10 +7,11 @@ var totalJugadores = 2
 var jugadores = {}
 var pieza_seleccionada = null
 var indice_pieza_seleccionada = null
-
+var pieza_en_movimiento = false
 var ESTADO_ESPERANDO_DADO = 0
 var ESTADO_ESPERANDO_PIEZA = 1
 var estado_turno = ESTADO_ESPERANDO_DADO
+var movimientos_pendientes = 0  # Nuevo contador de movimientos
 
 var posicionValidaJ1 = [
 	Vector2(1,23), Vector2(1,19), Vector2(5,19), Vector2(9,19), Vector2(13,19), Vector2(17,19),
@@ -117,8 +118,6 @@ func _on_pieza_seleccionada(jugador_num, indice_pieza):
 			indice_pieza_seleccionada = indice_pieza
 			print("Pieza del Jugador %d, índice %d seleccionada." % [jugador_num, indice_pieza])
 			mover_pieza(dado)
-			#terminar_turno()
-			#tirar_dado()
 		else:
 			print("No puedes mover esta pieza porque no ha salido y no sacaste un 6.")
 	else:
@@ -128,8 +127,6 @@ func mover_pieza(pasos):
 	if pieza_seleccionada == null:
 		print("Debes seleccionar una pieza para mover.")
 		return
-	if pieza_en_movimiento:
-		return
 
 	var jugador = turnoActual
 	var indice_pieza = indice_pieza_seleccionada
@@ -138,7 +135,6 @@ func mover_pieza(pasos):
 	var ha_salido = jugadores[jugador]["han_salido"][indice_pieza]
 
 	if not ha_salido:
-		# Ya hemos verificado en _on_pieza_seleccionada que dado == 6 o ha_salido == true
 		jugadores[jugador]["han_salido"][indice_pieza] = true
 		posicion_index = 0
 		jugadores[jugador]["posiciones"][indice_pieza] = posicion_index
@@ -153,22 +149,9 @@ func mover_pieza(pasos):
 			mover_posicion(pieza_seleccionada, nueva_pos)
 			print("Pieza movida a la posición: ", posicion_index)
 			verificar_victoria(pieza_seleccionada, nueva_pos)
-			# Verificar colisiones con otras piezas
 			verificar_colision_con_otras_piezas(jugador, posicion_index)
-			#terminar_turno()
 		else:
 			print("No puedes moverte fuera del tablero.")
-			#terminar_turno()
-			
-func terminar_turno():
-	pieza_seleccionada = null
-	indice_pieza_seleccionada = null
-	estado_turno = ESTADO_ESPERANDO_DADO  # Restablecer el estado para el siguiente turno
-	if dado != 6 or veces_dado_igual_seis == 3:
-		cambiar_turno()
-		veces_dado_igual_seis = 0;
-	
-signal movimiento_completado
 
 
 func obtener_posiciones_validas(jugador):
@@ -199,63 +182,41 @@ func obtener_posiciones_validas_entre(pos_inicial, pos_final):
 			posiciones_validas.append((posiciones_validas_jugador[i] * 15.9))
 			if posiciones_validas_jugador[i] * 15.9 == pos_final:
 				break
-	
-	
-var pieza_en_movimiento = false
+
 
 func mover_posicion(pieza, nueva_pos):
 	if pieza != null:
-		
-		#Si la pieza ya esta en movimiento, no modificar xd
-		if pieza_en_movimiento:
-			return
-		pieza_en_movimiento = true
-		
-		#guardar la posicion inicial
+		movimientos_pendientes += 1  # Incrementar al iniciar el movimiento
+
 		var pos_inicial = pieza.position
-		#determinar la direccion
 		var direccion = nueva_pos - pos_inicial
-		
-		#reproducir animacion segun ubicacion
+
+		# Reproducir animación según dirección
 		if abs(direccion.y) > abs(direccion.x):
-			if direccion.y >0:
+			if direccion.y > 0:
 				pieza.play("salto_frente")
 			else:
 				pieza.play("salto_atras")
 		else:
-			if direccion.x > 0:
-				pieza.play("salto_lado")
-			else:
-				pieza.play("salto_lado")
+			pieza.play("salto_lado")
 		
-		#obtener posiciones validas entre pA y Pb
-		#var posiciones_validas = obtener_posiciones_validas_entre(pos_inicial, nueva_pos)
-		
-		#Crear una secuencia de tweens para movimiento suave
 		var tween = create_tween()
-		#for pos in posiciones_validas:
-		#	tween.tween_property(pieza, "position", pos, 0.5)
 		tween.tween_property(pieza, "position", nueva_pos, 2)
 		
-		#conectar la señal de finalizacion
 		tween.finished.connect(func():
-			pieza_en_movimiento = false
-			#reproducir animacion segun ubicacion
+			# Reproducir animación default
 			if abs(direccion.y) > abs(direccion.x):
-				if direccion.y >0:
+				if direccion.y > 0:
 					pieza.play("default_frente")
 				else:
 					pieza.play("default_atras")
 			else:
-					if direccion.x > 0:
-						pieza.play("default_lado")
-					else:
-						pieza.play("default_lado")
+				pieza.play("default_lado")
 			print("Pieza movida a: ", nueva_pos)
-			# Aquí puedes emitir una señal o llamar a una función
-			# para indicar que el movimiento ha terminado
-			)
-		terminar_turno()
+			movimientos_pendientes -= 1  # Decrementar al terminar el movimiento
+			if movimientos_pendientes == 0:
+				terminar_turno()
+		)
 	else:
 		print("Error: La pieza es null.")
 
@@ -265,6 +226,14 @@ func cambiar_turno():
 		turnoActual = 1
 	estado_turno = ESTADO_ESPERANDO_DADO
 	print("Es el turno del Jugador ", turnoActual)
+
+func terminar_turno():
+	pieza_seleccionada = null
+	indice_pieza_seleccionada = null
+	estado_turno = ESTADO_ESPERANDO_DADO  # Restablecer el estado para el siguiente turno
+	if dado != 6 or veces_dado_igual_seis == 3:
+		cambiar_turno()
+		veces_dado_igual_seis = 0
 
 func verificar_victoria(pieza, nueva_pos):
 	if nueva_pos == PosicionGanar * 15.9:
