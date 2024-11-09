@@ -11,7 +11,7 @@ var pieza_en_movimiento = false
 var ESTADO_ESPERANDO_DADO = 0
 var ESTADO_ESPERANDO_PIEZA = 1
 var estado_turno = ESTADO_ESPERANDO_DADO
-var movimientos_pendientes = 0  # Nuevo contador de movimientos
+var movimientos_pendientes = 0
 
 var posicionValidaJ1 = [
 	Vector2(1,23), Vector2(1,19), Vector2(5,19), Vector2(9,19), Vector2(13,19), Vector2(17,19),
@@ -133,26 +133,30 @@ func mover_pieza(pasos):
 	var posiciones_validas = obtener_posiciones_validas(jugador)
 	var posicion_index = jugadores[jugador]["posiciones"][indice_pieza]
 	var ha_salido = jugadores[jugador]["han_salido"][indice_pieza]
+	var old_posicion_index = posicion_index  # Guardar la posición anterior
 
 	if not ha_salido:
 		jugadores[jugador]["han_salido"][indice_pieza] = true
 		posicion_index = 0
 		jugadores[jugador]["posiciones"][indice_pieza] = posicion_index
+		# Ajustar las posiciones en casa antes de que la pieza salga
+		#ajustar_posiciones_piezas_en_posicion(jugador, -1)
 		var nueva_pos = posicionInicio[jugador - 1] * 15.9
-		mover_posicion(pieza_seleccionada, nueva_pos)
+		mover_posicion(pieza_seleccionada, nueva_pos, jugador, posicion_index)
 		print("La pieza ha salido de casa.")
 	else:
 		if posicion_index + pasos < posiciones_validas.size():
 			posicion_index += pasos
+			# Ajustar las posiciones en la posición antigua antes de mover la pieza
+			ajustar_posiciones_piezas_en_posicion(jugador, old_posicion_index)
 			jugadores[jugador]["posiciones"][indice_pieza] = posicion_index
 			var nueva_pos = posiciones_validas[posicion_index] * 15.9
-			mover_posicion(pieza_seleccionada, nueva_pos)
+			mover_posicion(pieza_seleccionada, nueva_pos, jugador, posicion_index)
 			print("Pieza movida a la posición: ", posicion_index)
 			verificar_victoria(pieza_seleccionada, nueva_pos)
 			verificar_colision_con_otras_piezas(jugador, posicion_index)
 		else:
 			print("No puedes moverte fuera del tablero.")
-
 
 func obtener_posiciones_validas(jugador):
 	match jugador:
@@ -163,8 +167,7 @@ func obtener_posiciones_validas(jugador):
 		_:
 			return []
 
-
-##AUN NO FUNCIONAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+##AUN NO FUNCIONA
 func obtener_posiciones_validas_entre(pos_inicial, pos_final):
 	var posiciones_validas = []
 	var jugador = turnoActual
@@ -183,8 +186,7 @@ func obtener_posiciones_validas_entre(pos_inicial, pos_final):
 			if posiciones_validas_jugador[i] * 15.9 == pos_final:
 				break
 
-
-func mover_posicion(pieza, nueva_pos):
+func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 	if pieza != null:
 		movimientos_pendientes += 1  # Incrementar al iniciar el movimiento
 
@@ -214,73 +216,13 @@ func mover_posicion(pieza, nueva_pos):
 				pieza.play("default_lado")
 			print("Pieza movida a: ", nueva_pos)
 			movimientos_pendientes -= 1  # Decrementar al terminar el movimiento
+			ajustar_posiciones_piezas_en_posicion(jugador, posicion_index)
 			if movimientos_pendientes == 0:
 				terminar_turno()
 		)
 	else:
 		print("Error: La pieza es null.")
 
-##NO FUNCIONAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-func mover_posicion_1x1(pieza, nueva_pos):
-	if pieza != null:
-		
-		#Si la pieza ya esta en movimiento, no modificar xd
-		if pieza_en_movimiento:
-			return
-		pieza_en_movimiento = true
-		
-		#guardar la posicion inicial
-		var pos_inicial = pieza.position
-		#determinar la direccion
-		var direccion = nueva_pos - pos_inicial
-		
-		#reproducir animacion segun ubicacion
-		if abs(direccion.y) > abs(direccion.x):
-			if direccion.y >0:
-				pieza.play("salto_frente")
-			else:
-				pieza.play("salto_atras")
-		else:
-			if direccion.x > 0:
-				pieza.play("salto_lado")
-			else:
-				pieza.play("salto_lado")
-				
-		#Crear una secuencia de tweens para movimiento suave
-		var tween = create_tween()
-		if pieza.position == posicionInicio[0] or pieza.position == posicionInicio[1] or pieza.position == posicionInicio[2] or pieza.position == posicionInicio[3]:
-			
-			tween.tween_property(pieza, "position", nueva_pos, 1)
-		else:
-			#obtener posiciones validas entre pA y Pb
-			var posiciones_validas = obtener_posiciones_validas_entre(pos_inicial, nueva_pos)
-			for pos in posiciones_validas:
-				tween.tween_property(pieza, "position", pos, 0.5)
-		#tween.tween_property(pieza, "position", nueva_pos, 2)
-		
-		#conectar la señal de finalizacion
-		tween.finished.connect(func():
-			pieza_en_movimiento = false
-			#reproducir animacion segun ubicacion
-			if abs(direccion.y) > abs(direccion.x):
-				if direccion.y >0:
-					pieza.play("default_frente")
-				else:
-					pieza.play("default_atras")
-			else:
-					if direccion.x > 0:
-						pieza.play("default_lado")
-					else:
-						pieza.play("default_lado")
-			print("Pieza movida a: ", nueva_pos)
-			# Aquí puedes emitir una señal o llamar a una función
-			# para indicar que el movimiento ha terminado
-			)
-		terminar_turno()
-	else:
-		print("Error: La pieza es null.")
-		
-		
 func cambiar_turno():
 	turnoActual += 1
 	if turnoActual > totalJugadores:
@@ -291,10 +233,9 @@ func cambiar_turno():
 func terminar_turno():
 	pieza_seleccionada = null
 	indice_pieza_seleccionada = null
-	estado_turno = ESTADO_ESPERANDO_DADO  # Restablecer el estado para el siguiente turno
-	if dado != 6 or veces_dado_igual_seis == 3:
-		cambiar_turno()
-		veces_dado_igual_seis = 0
+	estado_turno = ESTADO_ESPERANDO_DADO
+	cambiar_turno()
+	veces_dado_igual_seis = 0
 
 func verificar_victoria(pieza, nueva_pos):
 	if nueva_pos == PosicionGanar * 15.9:
@@ -336,12 +277,17 @@ func verificar_colision_con_otras_piezas(jugador_actual, posicion_index):
 							print("No se puede comer en una posición segura.")
 
 func enviar_pieza_a_casa(jugador_num, indice_pieza):
+	var old_posicion_index = jugadores[jugador_num]["posiciones"][indice_pieza]
 	jugadores[jugador_num]["han_salido"][indice_pieza] = false
 	jugadores[jugador_num]["posiciones"][indice_pieza] = -1  # Indica que está en casa
 	var pieza = jugadores[jugador_num]["piezas"][indice_pieza]
+	# Ajustar las posiciones en la posición antigua antes de mover la pieza
+	ajustar_posiciones_piezas_en_posicion(jugador_num, old_posicion_index)
 	var posicion_inicial = jugadores[jugador_num]["posiciones_iniciales"][indice_pieza]
-	mover_posicion(pieza, posicion_inicial)
+	mover_posicion(pieza, posicion_inicial, jugador_num, -1)  # -1 indica que la pieza está en casa
 	print("La pieza del Jugador %d, índice %d ha sido enviada a casa." % [jugador_num, indice_pieza])
+	# Ajustar las posiciones en casa después de que la pieza llegue
+	ajustar_posiciones_piezas_en_posicion(jugador_num, -1)
 
 #func get_posicion_inicial_pieza(jugador_num, indice_pieza):
 	#var posiciones_iniciales = []  # Declarar la variable aquí
@@ -370,3 +316,62 @@ func es_posicion_segura(posicion):
 		# Agrega más posiciones según tu juego
 	]
 	return posicion in posiciones_seguras
+
+func ajustar_posiciones_piezas_en_posicion(jugador_num, posicion_index):
+	if posicion_index == -1:
+		# Ajustar las posiciones de las piezas en casa
+		var piezas_en_casa = []
+		for i in range(jugadores[jugador_num]["piezas"].size()):
+			if jugadores[jugador_num]["posiciones"][i] == -1:
+				piezas_en_casa.append(jugadores[jugador_num]["piezas"][i])
+		if piezas_en_casa.size() == 0:
+			return
+		var base_positions = []
+		for pieza in piezas_en_casa:
+			var indice_pieza = jugadores[jugador_num]["piezas"].find(pieza)
+			var base_pos = jugadores[jugador_num]["posiciones_iniciales"][indice_pieza]
+			base_positions.append(base_pos)
+		# Ajustar las posiciones ligeramente alrededor de sus posiciones base
+		var num_piezas = piezas_en_casa.size()
+		
+		if num_piezas == 1:
+			# Solo una pieza, mover a la posición base sin desplazamiento
+			var target_position = base_positions[0]
+			var tween = create_tween()
+			tween.tween_property(piezas_en_casa[0], "position", target_position, 0.5)
+		else:
+			# Ajustar las posiciones ligeramente alrededor de sus posiciones base
+			var angle_step = 2 * PI / num_piezas
+			var radius = 16  # Ajusta el radio según sea necesario
+			for idx in range(num_piezas):
+				var angle = idx * angle_step
+				var offset = Vector2(radius * cos(angle), radius * sin(angle))
+				var target_position = base_positions[idx] + offset
+				var tween = create_tween()
+				tween.tween_property(piezas_en_casa[idx], "position", target_position, 0.5)
+	else:
+		var piezas_en_posicion = []
+		for i in range(jugadores[jugador_num]["piezas"].size()):
+			if jugadores[jugador_num]["posiciones"][i] == posicion_index:
+				piezas_en_posicion.append(jugadores[jugador_num]["piezas"][i])
+		if piezas_en_posicion.size() == 0:
+			return
+		var posiciones_validas = obtener_posiciones_validas(jugador_num)
+		var base_pos = posiciones_validas[posicion_index] * 15.9
+		var num_piezas = piezas_en_posicion.size()
+		
+		if num_piezas == 1:
+			# Solo una pieza, mover a la posición base sin desplazamiento
+			var target_position = base_pos
+			var tween = create_tween()
+			tween.tween_property(piezas_en_posicion[0], "position", target_position, 0.5)
+		else:
+			# Ajustar las posiciones en el tablero cuando hay múltiples piezas
+			var angle_step = 2 * PI / num_piezas
+			var radius = 16  # Ajusta el radio según sea necesario
+			for idx in range(num_piezas):
+				var angle = idx * angle_step
+				var offset = Vector2(radius * cos(angle), radius * sin(angle))
+				var target_position = base_pos + offset
+				var tween = create_tween()
+				tween.tween_property(piezas_en_posicion[idx], "position", target_position, 0.5)
