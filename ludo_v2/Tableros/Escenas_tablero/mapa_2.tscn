@@ -1687,4 +1687,9 @@ position = Vector2(79, 338.608)
 scale = Vector2(1, 1.01003)
 texture = ExtResource("3_41ro2")
 
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 1.5
+one_shot = true
+
 [connection signal="pressed" from="Base/Adornos/Estructuras/Ad Estructura/TirarDado" to="." method="_on_tirar_dado_pressed"]

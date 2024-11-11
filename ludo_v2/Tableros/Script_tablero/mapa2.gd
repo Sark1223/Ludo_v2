@@ -92,7 +92,6 @@ func _ready():
 		#Asignar jugador_num e indice_pieza a la pieza
 		pieza.jugador_num = 2
 		pieza.indice_pieza = i - 1 # Los indices comienzan con 0
-		#movimiento_completado.connect(terminar_turno)
 
 # Funcion prueba
 func tiene_piezas_en_juego(jugador):
@@ -276,44 +275,53 @@ func verificar_colision_con_otras_piezas(jugador_actual, posicion_index):
 						else:
 							print("No se puede comer en una posición segura.")
 
+# Modificación aquí: Reemplazar mover_posicion por transportar_pieza_a_casa
 func enviar_pieza_a_casa(jugador_num, indice_pieza):
 	var old_posicion_index = jugadores[jugador_num]["posiciones"][indice_pieza]
 	jugadores[jugador_num]["han_salido"][indice_pieza] = false
 	jugadores[jugador_num]["posiciones"][indice_pieza] = -1  # Indica que está en casa
 	var pieza = jugadores[jugador_num]["piezas"][indice_pieza]
 	# Ajustar las posiciones en la posición antigua antes de mover la pieza
-	ajustar_posiciones_piezas_en_posicion(jugador_num, old_posicion_index)
+	#ajustar_posiciones_piezas_en_posicion(jugador_num, old_posicion_index)
 	var posicion_inicial = jugadores[jugador_num]["posiciones_iniciales"][indice_pieza]
-	mover_posicion(pieza, posicion_inicial, jugador_num, -1)  # -1 indica que la pieza está en casa
+	# Llamar a la nueva función en lugar de mover_posicion
+	transportar_pieza_a_casa(pieza, posicion_inicial, jugador_num, old_posicion_index)
+	$Timer.start()
+	await $Timer.timeout
 	print("La pieza del Jugador %d, índice %d ha sido enviada a casa." % [jugador_num, indice_pieza])
 	# Ajustar las posiciones en casa después de que la pieza llegue
 	ajustar_posiciones_piezas_en_posicion(jugador_num, -1)
 
-#func get_posicion_inicial_pieza(jugador_num, indice_pieza):
-	#var posiciones_iniciales = []  # Declarar la variable aquí
-	#match jugador_num:
-		#1:
-			#posiciones_iniciales = [Vector2(1,26), Vector2(4,26), Vector2(1,29), Vector2(4,29)]
-		#2:
-			#posiciones_iniciales = [Vector2(23,1), Vector2(26,1), Vector2(23,4), Vector2(26,4)]
-		## Agrega más jugadores si es necesario
-		#_:
-			#posiciones_iniciales = []
-	#
-	#if indice_pieza >= 0 and indice_pieza < posiciones_iniciales.size():
-		#return posiciones_iniciales[indice_pieza] * 15.9  # Ajusta el factor de escala si es necesario
-	#else:
-		#return Vector2(0, 0)  # Posición por defecto
+# Nueva función: transportar_pieza_a_casa
+func transportar_pieza_a_casa(pieza, posicion_inicial, jugador_num, old_posicion_index):
+	if pieza != null:
+		movimientos_pendientes += 1
+		pieza.play("transportar_frente")
+		# Wait for the animation to finish
+		$Timer.start()
+		await $Timer.timeout
+		# Step 2: Move the piece to its initial position (home)
+		pieza.position = posicion_inicial
+		#$Timer.start()
+		#await $Timer.timeout
+		# Play "default_frente" animation after moving
+		pieza.play("transportar_frente_r")
+		movimientos_pendientes -= 1  # Decrement after finishing
+		# Now adjust positions at the old position
+		ajustar_posiciones_piezas_en_posicion(jugador_num, old_posicion_index)
+		if movimientos_pendientes == 0:
+			terminar_turno()
+	else:
+		print("Error: La pieza es null.")
 
 func es_posicion_segura(posicion):
 	var posiciones_seguras = [
 		# Posiciones seguras aquí
-		Vector2(1,23) * 15.9,
-		Vector2(20,-15) * 15.9,
-		Vector2(-18,17) * 15.9,
-		Vector2(17,19) * 15.9,
+		#Vector2(1,23) * 15.9,
+		#Vector2(20,-15) * 15.9,
+		#Vector2(-18,17) * 15.9,
+		#Vector2(17,19) * 15.9,
 		Vector2(1,1) * 15.9
-		# Agrega más posiciones según tu juego
 	]
 	return posicion in posiciones_seguras
 
@@ -375,3 +383,6 @@ func ajustar_posiciones_piezas_en_posicion(jugador_num, posicion_index):
 				var target_position = base_pos + offset
 				var tween = create_tween()
 				tween.tween_property(piezas_en_posicion[idx], "position", target_position, 0.5)
+
+func _on_timer_timeout() -> void:
+	print("Termino")
