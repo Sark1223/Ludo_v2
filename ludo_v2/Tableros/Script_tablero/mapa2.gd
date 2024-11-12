@@ -199,7 +199,10 @@ func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 			else:
 				pieza.play("salto_atras")
 		else:
-			pieza.play("salto_lado")
+			if direccion.x > 0:
+				pieza.play("salto_lado")
+			else:
+				pieza.play("salto_lado_izq")
 		
 		var tween = create_tween()
 		tween.tween_property(pieza, "position", nueva_pos, 2)
@@ -212,7 +215,11 @@ func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 				else:
 					pieza.play("default_atras")
 			else:
-				pieza.play("default_lado")
+				if direccion.x > 0:
+					pieza.play("default_lado")
+				else:
+					pieza.play("default_lado_izq")
+					
 			print("Pieza movida a: ", nueva_pos)
 			movimientos_pendientes -= 1  # Decrementar al terminar el movimiento
 			ajustar_posiciones_piezas_en_posicion(jugador, posicion_index)

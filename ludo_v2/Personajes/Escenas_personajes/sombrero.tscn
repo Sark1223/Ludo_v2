@@ -7,6 +7,6 @@
 texture_filter = 1
 position = Vector2(0, -16)
 sprite_frames = ExtResource("1_8ksny")
-animation = &"transportar_frente_r"
+animation = &"default_lado_izq"
 autoplay = "default_frente"
 script = ExtResource("2_waj0j")
