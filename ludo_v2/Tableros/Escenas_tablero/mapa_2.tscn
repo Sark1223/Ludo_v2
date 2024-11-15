@@ -1566,15 +1566,20 @@ offset_bottom = 13.6983
 texture_normal = ExtResource("3_41ro2")
 
 [node name="gatito" parent="." instance=ExtResource("4_cc1gf")]
+texture_filter = 1
 position = Vector2(-113, 145.395)
+animation = &"default_lado_izq"
 
 [node name="gatito2" parent="." instance=ExtResource("4_cc1gf")]
+texture_filter = 1
 position = Vector2(-168, 144.396)
 
 [node name="gatito3" parent="." instance=ExtResource("4_cc1gf")]
+texture_filter = 1
 position = Vector2(-117, 193.336)
 
 [node name="gatito4" parent="." instance=ExtResource("4_cc1gf")]
+texture_filter = 1
 position = Vector2(-168, 192.337)
 
 [node name="sombrero" parent="." instance=ExtResource("5_4i7ov")]

@@ -4389,6 +4389,7 @@ scale = Vector2(2.46875, 2.6875)
 animation = &"salto_lado"
 
 [node name="btn_gato" type="TextureButton" parent="fondo_realxd/select_jugador/gatito"]
+texture_filter = 1
 offset_left = -17.0
 offset_top = -4.0
 offset_right = 15.0
@@ -4409,6 +4410,7 @@ position = Vector2(997.25, 164.75)
 scale = Vector2(1.98437, 1.98437)
 
 [node name="btn_sombrero" type="TextureButton" parent="fondo_realxd/select_jugador/sombrero"]
+texture_filter = 1
 offset_left = -17.0
 offset_top = -12.0
 offset_right = 19.0
@@ -4420,6 +4422,7 @@ scale = Vector2(1.23214, 1.23214)
 frame_progress = 0.10549
 
 [node name="btn_chango" type="TextureButton" parent="fondo_realxd/select_jugador/Mono"]
+texture_filter = 1
 offset_left = -33.0
 offset_top = -25.0
 offset_right = 23.0

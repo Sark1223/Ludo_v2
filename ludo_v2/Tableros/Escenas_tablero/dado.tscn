@@ -79,7 +79,7 @@ region = Rect2(32, 0, 32, 32)
 [sub_resource type="SpriteFrames" id="SpriteFrames_0t5he"]
 animations = [{
 "frames": [{
-"duration": 2.5,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_x11tx")
 }, {
 "duration": 1.0,
@@ -118,9 +118,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_k1ds3")
 }],
-"loop": true,
+"loop": false,
 "name": &"cinco",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -162,9 +162,9 @@ animations = [{
 "duration": 2.5,
 "texture": SubResource("AtlasTexture_g4406")
 }],
-"loop": true,
+"loop": false,
 "name": &"cuatro",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -206,9 +206,32 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_eiu4y")
 }],
-"loop": true,
+"loop": false,
 "name": &"dos",
-"speed": 5.0
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fc2jx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_slc1t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_111sq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x11tx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_orc7g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pkgcg")
+}],
+"loop": true,
+"name": &"roll",
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -250,9 +273,9 @@ animations = [{
 "duration": 2.5,
 "texture": SubResource("AtlasTexture_o3ge2")
 }],
-"loop": true,
+"loop": false,
 "name": &"seis",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -294,12 +317,12 @@ animations = [{
 "duration": 2.5,
 "texture": SubResource("AtlasTexture_llejn")
 }],
-"loop": true,
+"loop": false,
 "name": &"tres",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
-"duration": 2.5,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_x11tx")
 }, {
 "duration": 1.0,
@@ -338,13 +361,13 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fndnw")
 }],
-"loop": true,
+"loop": false,
 "name": &"uno",
-"speed": 5.0
+"speed": 6.0
 }]
 
 [node name="dado" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_0t5he")
-animation = &"tres"
-frame = 10
-frame_progress = 0.498481
+animation = &"cinco"
+frame = 12
+frame_progress = 1.0
