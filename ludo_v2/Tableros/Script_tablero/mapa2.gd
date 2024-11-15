@@ -12,6 +12,8 @@ var ESTADO_ESPERANDO_DADO = 0
 var ESTADO_ESPERANDO_PIEZA = 1
 var estado_turno = ESTADO_ESPERANDO_DADO
 var movimientos_pendientes = 0
+var dado_sprite
+var lbl_turno
 
 var posicionValidaJ1 = [
 	Vector2(1,23), Vector2(1,19), Vector2(5,19), Vector2(9,19), Vector2(13,19), Vector2(17,19),
@@ -28,7 +30,7 @@ var posicionValidaJ2 = [
 	Vector2(-15,19), Vector2(-11,19),Vector2(-7,19),Vector2(-3,19), Vector2(1,19), Vector2(5,19), Vector2(9,19), Vector2(13,19), Vector2(17,19),
 	Vector2(20,17), Vector2(20,13), Vector2(20,9), Vector2(20,4), Vector2(20,1), Vector2(16,1), Vector2(12,1), Vector2(8,1), 	Vector2(1,1)
 	]
-	
+
 var posicionValidaJ3 = [
 	Vector2(1,-20), Vector2(1,-16), Vector2(-3,-16), Vector2(-7,-16), Vector2(-11,-16), Vector2(-15,-16),
 	Vector2(-18,-15), Vector2(-18,-11),Vector2(-18,-7),Vector2(-18,-3),Vector2(-18,1),Vector2(-18,5),Vector2(-18,9),Vector2(-18,13),Vector2(-18,17),
@@ -93,6 +95,14 @@ func _ready():
 		pieza.jugador_num = 2
 		pieza.indice_pieza = i - 1 # Los indices comienzan con 0
 
+	dado_sprite = get_node("dado")
+	
+	# Obtener el nodo lbl_turno (ajusta la ruta si es necesario)
+	lbl_turno = get_node("lbl_turno")
+	
+	# Actualizar el label al iniciar el juego
+	actualizar_lbl_turno()
+
 # Funcion prueba
 func tiene_piezas_en_juego(jugador):
 	for ha_salido in jugadores[jugador]["han_salido"]:
@@ -103,7 +113,7 @@ func tiene_piezas_en_juego(jugador):
 func tirar_dado():
 	dado = randi() % 6 + 1
 	if dado == 6:
-		veces_dado_igual_seis = veces_dado_igual_seis + 1;
+		veces_dado_igual_seis += 1
 
 func _on_pieza_seleccionada(jugador_num, indice_pieza):
 	if estado_turno != ESTADO_ESPERANDO_PIEZA:
@@ -117,6 +127,7 @@ func _on_pieza_seleccionada(jugador_num, indice_pieza):
 			indice_pieza_seleccionada = indice_pieza
 			print("Pieza del Jugador %d, índice %d seleccionada." % [jugador_num, indice_pieza])
 			mover_pieza(dado)
+			actualizar_lbl_turno()  # Actualizar el label si es necesario
 		else:
 			print("No puedes mover esta pieza porque no ha salido y no sacaste un 6.")
 	else:
@@ -138,8 +149,6 @@ func mover_pieza(pasos):
 		jugadores[jugador]["han_salido"][indice_pieza] = true
 		posicion_index = 0
 		jugadores[jugador]["posiciones"][indice_pieza] = posicion_index
-		# Ajustar las posiciones en casa antes de que la pieza salga
-		#ajustar_posiciones_piezas_en_posicion(jugador, -1)
 		var nueva_pos = posicionInicio[jugador - 1] * 15.9
 		mover_posicion(pieza_seleccionada, nueva_pos, jugador, posicion_index)
 		print("La pieza ha salido de casa.")
@@ -178,7 +187,7 @@ func obtener_posiciones_validas_entre(pos_inicial, pos_final):
 		if posiciones_validas_jugador[i] * 15.9 == pos_inicial:
 			indice_inicial = i
 			break
-		
+
 	if indice_inicial != -1:
 		for i in range(indice_inicial, len(posiciones_validas_jugador)):
 			posiciones_validas.append((posiciones_validas_jugador[i] * 15.9))
@@ -203,10 +212,10 @@ func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 				pieza.play("salto_lado")
 			else:
 				pieza.play("salto_lado_izq")
-		
+
 		var tween = create_tween()
 		tween.tween_property(pieza, "position", nueva_pos, 2)
-		
+
 		tween.finished.connect(func():
 			# Reproducir animación default
 			if abs(direccion.y) > abs(direccion.x):
@@ -219,7 +228,7 @@ func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 					pieza.play("default_lado")
 				else:
 					pieza.play("default_lado_izq")
-					
+
 			print("Pieza movida a: ", nueva_pos)
 			movimientos_pendientes -= 1  # Decrementar al terminar el movimiento
 			ajustar_posiciones_piezas_en_posicion(jugador, posicion_index)
@@ -235,6 +244,7 @@ func cambiar_turno():
 		turnoActual = 1
 	estado_turno = ESTADO_ESPERANDO_DADO
 	print("Es el turno del Jugador ", turnoActual)
+	actualizar_lbl_turno()
 
 func terminar_turno():
 	pieza_seleccionada = null
@@ -242,17 +252,46 @@ func terminar_turno():
 	estado_turno = ESTADO_ESPERANDO_DADO
 	cambiar_turno()
 	veces_dado_igual_seis = 0
+	actualizar_lbl_turno()
 
 func verificar_victoria(pieza, nueva_pos):
 	if nueva_pos == PosicionGanar * 15.9:
 		print("¡Jugador ", turnoActual, " ha ganado con una de sus piezas!")
-		# Implementar lógica adicional si es necesario
 
 func _on_tirar_dado_pressed() -> void:
 	if estado_turno != ESTADO_ESPERANDO_DADO:
 		print("No es tu turno para tirar el dado.")
 		return
+	# Generar el número aleatorio
 	tirar_dado()
+	# Determinar la animación correspondiente
+	var animacion_numero = ""
+	match dado:
+		1:
+			animacion_numero = "uno"
+		2:
+			animacion_numero = "dos"
+		3:
+			animacion_numero = "tres"
+		4:
+			animacion_numero = "cuatro"
+		5:
+			animacion_numero = "cinco"
+		6:
+			animacion_numero = "seis"
+		_:
+			print("Error: Número de dado inválido.")
+
+	# Reproducir la animación correspondiente
+	if animacion_numero != "":
+		dado_sprite.play(animacion_numero)
+	else:
+		print("Error al reproducir la animación del dado.")
+
+	# Opción 1: Continuar la lógica inmediatamente
+	continuar_logica_del_juego()
+
+func continuar_logica_del_juego():
 	var jugador = turnoActual
 	print("Jugador ", jugador, " lanzó el dado: ", dado)
 	if dado == 6 or tiene_piezas_en_juego(jugador):
@@ -261,6 +300,7 @@ func _on_tirar_dado_pressed() -> void:
 	else:
 		print("No sacaste un 6 y no tienes piezas en juego. Turno pasa al siguiente jugador.")
 		terminar_turno()
+	actualizar_lbl_turno()
 
 func verificar_colision_con_otras_piezas(jugador_actual, posicion_index):
 	var posiciones_validas_actual = obtener_posiciones_validas(jugador_actual)
@@ -288,8 +328,6 @@ func enviar_pieza_a_casa(jugador_num, indice_pieza):
 	jugadores[jugador_num]["han_salido"][indice_pieza] = false
 	jugadores[jugador_num]["posiciones"][indice_pieza] = -1  # Indica que está en casa
 	var pieza = jugadores[jugador_num]["piezas"][indice_pieza]
-	# Ajustar las posiciones en la posición antigua antes de mover la pieza
-	#ajustar_posiciones_piezas_en_posicion(jugador_num, old_posicion_index)
 	var posicion_inicial = jugadores[jugador_num]["posiciones_iniciales"][indice_pieza]
 	# Llamar a la nueva función en lugar de mover_posicion
 	transportar_pieza_a_casa(pieza, posicion_inicial, jugador_num, old_posicion_index)
@@ -307,10 +345,7 @@ func transportar_pieza_a_casa(pieza, posicion_inicial, jugador_num, old_posicion
 		# Wait for the animation to finish
 		$Timer.start()
 		await $Timer.timeout
-		# Step 2: Move the piece to its initial position (home)
 		pieza.position = posicion_inicial
-		#$Timer.start()
-		#await $Timer.timeout
 		# Play "default_frente" animation after moving
 		pieza.play("transportar_frente_r")
 		movimientos_pendientes -= 1  # Decrement after finishing
@@ -393,3 +428,11 @@ func ajustar_posiciones_piezas_en_posicion(jugador_num, posicion_index):
 
 func _on_timer_timeout() -> void:
 	print("Termino")
+
+func actualizar_lbl_turno():
+	var texto = "Turno del Jugador " + str(turnoActual) + ": "
+	if estado_turno == ESTADO_ESPERANDO_DADO:
+		texto += "Tira el dado."
+	elif estado_turno == ESTADO_ESPERANDO_PIEZA:
+		texto += "Selecciona una pieza para mover."
+	lbl_turno.text = texto

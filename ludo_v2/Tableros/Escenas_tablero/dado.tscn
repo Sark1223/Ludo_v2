@@ -120,7 +120,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"cinco",
-"speed": 6.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -164,7 +164,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"cuatro",
-"speed": 6.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -208,30 +208,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"dos",
-"speed": 6.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fc2jx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_slc1t")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_111sq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x11tx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_orc7g")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pkgcg")
-}],
-"loop": true,
-"name": &"roll",
-"speed": 6.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -275,7 +252,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"seis",
-"speed": 6.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -319,7 +296,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"tres",
-"speed": 6.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -363,11 +340,9 @@ animations = [{
 }],
 "loop": false,
 "name": &"uno",
-"speed": 6.0
+"speed": 12.0
 }]
 
 [node name="dado" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_0t5he")
 animation = &"cinco"
-frame = 12
-frame_progress = 1.0
