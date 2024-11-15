@@ -90,16 +90,13 @@ func _ready():
 		jugadores[2]["han_salido"].append(false)
 		jugadores[2]["posiciones_iniciales"].append(pieza.position)
 		pieza.connect("piece_clicked", Callable(self, "_on_pieza_seleccionada"))
-
 		#Asignar jugador_num e indice_pieza a la pieza
 		pieza.jugador_num = 2
 		pieza.indice_pieza = i - 1 # Los indices comienzan con 0
 
 	dado_sprite = get_node("dado")
-	
 	# Obtener el nodo lbl_turno (ajusta la ruta si es necesario)
 	lbl_turno = get_node("lbl_turno")
-	
 	# Actualizar el label al iniciar el juego
 	actualizar_lbl_turno()
 
@@ -285,6 +282,9 @@ func _on_tirar_dado_pressed() -> void:
 	# Reproducir la animación correspondiente
 	if animacion_numero != "":
 		dado_sprite.play(animacion_numero)
+		$Timer.wait_time = 1.06
+		$Timer.start()
+		await $Timer.timeout
 	else:
 		print("Error al reproducir la animación del dado.")
 
@@ -331,6 +331,7 @@ func enviar_pieza_a_casa(jugador_num, indice_pieza):
 	var posicion_inicial = jugadores[jugador_num]["posiciones_iniciales"][indice_pieza]
 	# Llamar a la nueva función en lugar de mover_posicion
 	transportar_pieza_a_casa(pieza, posicion_inicial, jugador_num, old_posicion_index)
+	$Timer.wait_time = 1.5
 	$Timer.start()
 	await $Timer.timeout
 	print("La pieza del Jugador %d, índice %d ha sido enviada a casa." % [jugador_num, indice_pieza])
@@ -343,6 +344,7 @@ func transportar_pieza_a_casa(pieza, posicion_inicial, jugador_num, old_posicion
 		movimientos_pendientes += 1
 		pieza.play("transportar_frente")
 		# Wait for the animation to finish
+		$Timer.wait_time = 1.5
 		$Timer.start()
 		await $Timer.timeout
 		pieza.position = posicion_inicial

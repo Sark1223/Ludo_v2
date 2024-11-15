@@ -8846,5 +8846,3 @@ frame_progress = 0.0886272
 [node name="dado" parent="." instance=ExtResource("8_vcmtq")]
 position = Vector2(419, 190)
 scale = Vector2(1.59375, 1.71875)
-frame = 0
-frame_progress = 0.0

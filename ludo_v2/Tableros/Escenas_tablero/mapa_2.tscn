@@ -1704,9 +1704,9 @@ scale = Vector2(2.40625, 2.31027)
 
 [node name="lbl_turno" type="Label" parent="."]
 layout_mode = 0
-offset_left = 68.0
-offset_top = -329.595
-offset_right = 386.0
-offset_bottom = -294.595
+offset_left = 72.0
+offset_top = -327.597
+offset_right = 390.0
+offset_bottom = -292.597
 
 [connection signal="pressed" from="Base/Adornos/Estructuras/Ad Estructura/TirarDado" to="." method="_on_tirar_dado_pressed"]
