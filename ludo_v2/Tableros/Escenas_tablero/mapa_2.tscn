@@ -7,12 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://c48nhxac7vkkp" path="res://Personajes/Escenas_personajes/gatito.tscn" id="4_cc1gf"]
 [ext_resource type="PackedScene" uid="uid://0jsekysatrqe" path="res://Personajes/Escenas_personajes/sombrero.tscn" id="5_4i7ov"]
 [ext_resource type="PackedScene" uid="uid://cg32rv4pu048g" path="res://Tableros/Escenas_tablero/dado.tscn" id="7_g004j"]
-[ext_resource type="PackedScene" uid="uid://cxxvmy3ca5tm0" path="res://Personajes/Escenas_personajes/mono.tscn" id="7_kdq2r"]
 [ext_resource type="AudioStream" uid="uid://52pnktvq2pyv" path="res://Sonido/Pop (Minecraft Sound) - Sound Effect for editing.MP3" id="9_3il6m"]
 [ext_resource type="AudioStream" uid="uid://bolbp63nq1hri" path="res://Sonido/Rolling Dice - Sound Effect (HD).MP3" id="9_fbo0l"]
 [ext_resource type="AudioStream" uid="uid://cs3v2cndhie2f" path="res://Sonido/3DS System Music - Theme Shop.MP3" id="9_kx0m0"]
 [ext_resource type="AudioStream" uid="uid://dfkyewwxi8xt0" path="res://Sonido/sonic warp sound   Sound Effect.MP3" id="9_vudgq"]
 [ext_resource type="AudioStream" uid="uid://cw4acgxihfx84" path="res://Sonido/Jump Sound Effect.MP3" id="13_ud5kk"]
+[ext_resource type="PackedScene" uid="uid://do7hk21ws8xtw" path="res://Personajes/Escenas_personajes/Dino.tscn" id="14_k83tv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cqdkd"]
 texture = ExtResource("2_6hhmo")
@@ -1601,17 +1601,17 @@ position = Vector2(206, 141.855)
 [node name="sombrero4" parent="." instance=ExtResource("5_4i7ov")]
 position = Vector2(160, 141.855)
 
-[node name="Mono" parent="." instance=ExtResource("7_kdq2r")]
-position = Vector2(212, -153.811)
+[node name="dino" parent="." instance=ExtResource("14_k83tv")]
+position = Vector2(209, -168.792)
 
-[node name="Mono2" parent="." instance=ExtResource("7_kdq2r")]
-position = Vector2(149, -127.843)
+[node name="dino2" parent="." instance=ExtResource("14_k83tv")]
+position = Vector2(216, -128.842)
 
-[node name="Mono3" parent="." instance=ExtResource("7_kdq2r")]
-position = Vector2(182, -104.871)
+[node name="dino3" parent="." instance=ExtResource("14_k83tv")]
+position = Vector2(148, -170.79)
 
-[node name="Mono4" parent="." instance=ExtResource("7_kdq2r")]
-position = Vector2(224, -120.851)
+[node name="dino4" parent="." instance=ExtResource("14_k83tv")]
+position = Vector2(149, -126.844)
 
 [node name="Node" type="Node" parent="."]
 

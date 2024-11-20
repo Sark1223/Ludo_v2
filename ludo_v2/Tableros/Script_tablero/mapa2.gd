@@ -109,7 +109,7 @@ func _ready():
 
 	# Configurar piezas del Jugador 3 (mono)
 	for i in range(1, 5):
-		var pieza_nombre = "Mono" + (str(i) if i > 1 else "")
+		var pieza_nombre = "dino" + (str(i) if i > 1 else "")
 		var pieza = get_node("%s" % pieza_nombre)
 		jugadores[3]["piezas"].append(pieza)
 		jugadores[3]["posiciones"].append(-1)
