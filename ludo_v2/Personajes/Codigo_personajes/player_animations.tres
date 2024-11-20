@@ -574,7 +574,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rs828")
 }],
-"loop": false,
+"loop": true,
 "name": &"salto_atras",
 "speed": 6.0
 }, {

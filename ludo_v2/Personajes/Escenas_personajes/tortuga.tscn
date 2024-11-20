@@ -73,7 +73,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("1_s5n2n")
 }],
-"loop": true,
+"loop": false,
 "name": &"transportar_atras",
 "speed": 5.0
 }, {
@@ -81,7 +81,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("1_s5n2n")
 }],
-"loop": true,
+"loop": false,
 "name": &"transportar_frente",
 "speed": 5.0
 }, {
@@ -89,7 +89,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("1_s5n2n")
 }],
-"loop": true,
+"loop": false,
 "name": &"transportar_frente_r",
 "speed": 5.0
 }, {
@@ -97,7 +97,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("1_s5n2n")
 }],
-"loop": true,
+"loop": false,
 "name": &"transportar_lado",
 "speed": 5.0
 }]
@@ -106,6 +106,6 @@ animations = [{
 texture_filter = 1
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_xv4wh")
-animation = &"default_frente"
+animation = &"transportar_lado"
 autoplay = "default_frente"
 script = ExtResource("2_vi7c3")
