@@ -1718,6 +1718,7 @@ one_shot = true
 [node name="dado" parent="." instance=ExtResource("7_g004j")]
 position = Vector2(490, 237.708)
 scale = Vector2(2.40625, 2.31027)
+frame = 11
 
 [node name="lbl_turno" type="Label" parent="."]
 layout_mode = 0
@@ -1733,7 +1734,7 @@ volume_db = -5.0
 [node name="sfx_dado" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_fbo0l")
 volume_db = -5.0
-pitch_scale = 0.7
+pitch_scale = 0.6
 
 [node name="sfx_fondo_jugar" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_kx0m0")
