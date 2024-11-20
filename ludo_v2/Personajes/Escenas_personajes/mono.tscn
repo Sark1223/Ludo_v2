@@ -231,6 +231,6 @@ texture_filter = 1
 position = Vector2(1, -14)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_g4t8g")
-animation = &"transportar_lado"
+animation = &"default_frente"
 autoplay = "default_frente"
 script = ExtResource("2_m7ctx")

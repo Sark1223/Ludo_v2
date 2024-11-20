@@ -1585,28 +1585,28 @@ texture_filter = 1
 position = Vector2(-168, 192.337)
 
 [node name="sombrero" parent="." instance=ExtResource("5_4i7ov")]
-position = Vector2(210, -120.288)
+position = Vector2(209, 185.801)
 
 [node name="sombrero2" parent="." instance=ExtResource("5_4i7ov")]
-position = Vector2(158, -120.288)
+position = Vector2(157, 185.801)
 
 [node name="sombrero3" parent="." instance=ExtResource("5_4i7ov")]
-position = Vector2(207, -164.234)
+position = Vector2(206, 141.855)
 
 [node name="sombrero4" parent="." instance=ExtResource("5_4i7ov")]
-position = Vector2(161, -164.234)
+position = Vector2(160, 141.855)
 
 [node name="Mono" parent="." instance=ExtResource("7_kdq2r")]
-position = Vector2(-140, -149.816)
+position = Vector2(212, -153.811)
 
 [node name="Mono2" parent="." instance=ExtResource("7_kdq2r")]
-position = Vector2(-175, -114.859)
+position = Vector2(149, -127.843)
 
 [node name="Mono3" parent="." instance=ExtResource("7_kdq2r")]
-position = Vector2(-132, -68.9152)
+position = Vector2(182, -104.871)
 
 [node name="Mono4" parent="." instance=ExtResource("7_kdq2r")]
-position = Vector2(-80, -83.8968)
+position = Vector2(224, -120.851)
 
 [node name="Node" type="Node" parent="."]
 

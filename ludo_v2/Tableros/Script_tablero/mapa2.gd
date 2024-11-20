@@ -60,19 +60,22 @@ func _ready():
 		"piezas": [],
 		"posiciones": [],
 		"han_salido": [],
-		"posiciones_iniciales": []
+		"posiciones_iniciales": [],
+		"piezas_en_meta": []
 	}
 	jugadores[2] = {
 		"piezas": [],
 		"posiciones": [],
 		"han_salido": [],
-		"posiciones_iniciales": []
+		"posiciones_iniciales": [],
+		"piezas_en_meta": []
 	}
 	jugadores[3] = {
 		"piezas": [],
 		"posiciones": [],
 		"han_salido": [],
-		"posiciones_iniciales": []
+		"posiciones_iniciales": [],
+		"piezas_en_meta": []
 	}
 	# Configurar piezas del Jugador 1 (gatito)
 	for i in range(1, 5):
@@ -134,8 +137,11 @@ func _on_pieza_seleccionada(jugador_num, indice_pieza):
 	if estado_turno != ESTADO_ESPERANDO_PIEZA:
 		print("No puedes mover una pieza en este momento.")
 		return
-	print("Signal received: jugador_num=", jugador_num, ", indice_pieza=", indice_pieza)
 	if turnoActual == jugador_num:
+		# Verificar si la pieza ya ha llegado a la meta
+		if jugadores[jugador_num]["posiciones"][indice_pieza] == -2:
+			print("Esta pieza ya ha llegado a la meta.")
+			return
 		var ha_salido = jugadores[jugador_num]["han_salido"][indice_pieza]
 		if dado == 6 or ha_salido:
 			pieza_seleccionada = jugadores[jugador_num]["piezas"][indice_pieza]
@@ -155,6 +161,12 @@ func mover_pieza(pasos):
 
 	var jugador = turnoActual
 	var indice_pieza = indice_pieza_seleccionada
+
+	# Verificar si la pieza ya ha llegado a la meta
+	if jugadores[jugador]["posiciones"][indice_pieza] == -2:
+		print("Esta pieza ya ha llegado a la meta.")
+		return
+
 	var posiciones_validas = obtener_posiciones_validas(jugador)
 	var posicion_index = jugadores[jugador]["posiciones"][indice_pieza]
 	var ha_salido = jugadores[jugador]["han_salido"][indice_pieza]
@@ -273,7 +285,38 @@ func terminar_turno():
 
 func verificar_victoria(pieza, nueva_pos):
 	if nueva_pos == PosicionGanar * 15.9:
-		print("¡Jugador ", turnoActual, " ha ganado con una de sus piezas!")
+		print("¡Jugador ", turnoActual, " ha llevado una pieza a la meta!")
+		# Reproducir la animación transportar_frente
+		pieza.play("transportar_frente")
+		# Esperar un tiempo fijo (por ejemplo, 1.06 segundos)
+		$Timer.wait_time = 1.5
+		$Timer.start()
+		await $Timer.timeout
+		# Hacer que la pieza desaparezca
+		pieza.hide()
+		# Marcar la pieza como ganadora
+		var jugador = turnoActual
+		var indice_pieza = indice_pieza_seleccionada
+		jugadores[jugador]["piezas_en_meta"].append(pieza)
+		# Actualizar el estado de la pieza
+		jugadores[jugador]["han_salido"][indice_pieza] = false
+		jugadores[jugador]["posiciones"][indice_pieza] = -2  # Indica que está en la meta
+		# Verificar si el jugador ha ganado el juego
+		if jugadores[jugador]["piezas_en_meta"].size() >= 4:
+			print("¡El Jugador %d ha ganado el juego!" % jugador)
+			mostrar_mensaje_ganador(jugador)
+			# Implementar lógica para finalizar el juego, por ejemplo, detener la entrada
+			set_process(false)
+
+func mostrar_mensaje_ganador(jugador):
+	var mensaje = "¡El Jugador " + str(jugador) + " ha ganado la partida!"
+	print(mensaje)
+	# Crear un Label para mostrar el mensaje
+	var label_ganador = Label.new()
+	label_ganador.text = mensaje
+	label_ganador.set_position(Vector2(200, 200))  # Ajusta la posición según sea necesario
+	label_ganador.set_scale(Vector2(2, 2))  # Ajusta el tamaño del texto
+	add_child(label_ganador)
 
 func _on_tirar_dado_pressed() -> void:
 	if estado_turno != ESTADO_ESPERANDO_DADO:
@@ -314,13 +357,14 @@ func _on_tirar_dado_pressed() -> void:
 func continuar_logica_del_juego():
 	var jugador = turnoActual
 	print("Jugador ", jugador, " lanzó el dado: ", dado)
-	if dado == 6 or tiene_piezas_en_juego(jugador):
+	if tiene_movimientos_validos(jugador, dado):
 		print("Selecciona una de tus piezas para mover.")
 		estado_turno = ESTADO_ESPERANDO_PIEZA
 	else:
-		print("No sacaste un 6 y no tienes piezas en juego. Turno pasa al siguiente jugador.")
+		print("No tienes movimientos válidos. Turno pasa al siguiente jugador.")
 		terminar_turno()
 	actualizar_lbl_turno()
+
 
 func verificar_colision_con_otras_piezas(jugador_actual, posicion_index):
 	var posiciones_validas_actual = obtener_posiciones_validas(jugador_actual)
@@ -458,3 +502,21 @@ func actualizar_lbl_turno():
 	elif estado_turno == ESTADO_ESPERANDO_PIEZA:
 		texto += "Selecciona una pieza para mover."
 	lbl_turno.text = texto
+
+func tiene_movimientos_validos(jugador, dado):
+	for i in range(jugadores[jugador]["piezas"].size()):
+		var ha_salido = jugadores[jugador]["han_salido"][i]
+		var posicion_index = jugadores[jugador]["posiciones"][i]
+		var posiciones_validas = obtener_posiciones_validas(jugador)
+		if ha_salido:
+			# La pieza está en juego
+			if posicion_index + dado < posiciones_validas.size():
+				# La pieza puede moverse dentro del tablero
+				return true
+		else:
+			# La pieza está en casa
+			if dado == 6:
+				# Puede salir de casa
+				return true
+	# Si ninguna pieza puede moverse, retorna false
+	return false

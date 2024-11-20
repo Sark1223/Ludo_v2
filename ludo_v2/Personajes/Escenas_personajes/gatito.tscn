@@ -606,7 +606,37 @@ animations = [{
 "name": &"salto_lado_izq",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1y3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r38tv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2t60b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppmiq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yi346")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sw0th")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gc7ye")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1tc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lj7k0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6s2y")
+}],
 "loop": false,
 "name": &"transportar_atras",
 "speed": 5.0
@@ -716,6 +746,6 @@ animations = [{
 
 [node name="gatito" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_f8m0i")
-animation = &"salto_lado_izq"
+animation = &"default_frente"
 autoplay = "default_frente"
 script = ExtResource("9_dmvpb")
