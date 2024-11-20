@@ -59,6 +59,13 @@ var posicionInicio = [
 
 var PosicionGanar = Vector2(1,1)
 
+var nombres_jugadores = {
+	1: "Gato",
+	2: "Sombrero",
+	3: "Mono"
+}
+
+
 func _ready():
 	# Inicializar jugadores y sus piezas
 	jugadores[1] = {
@@ -151,13 +158,15 @@ func _on_pieza_seleccionada(jugador_num, indice_pieza):
 		if dado == 6 or ha_salido:
 			pieza_seleccionada = jugadores[jugador_num]["piezas"][indice_pieza]
 			indice_pieza_seleccionada = indice_pieza
-			print("Pieza del Jugador %d, índice %d seleccionada." % [jugador_num, indice_pieza])
+			var nombre_jugador = nombres_jugadores[jugador_num]
+			print("Pieza del " + nombre_jugador + ", índice %d seleccionada." % indice_pieza)
 			mover_pieza(dado)
 			actualizar_lbl_turno()  # Actualizar el label si es necesario
 		else:
 			print("No puedes mover esta pieza porque no ha salido y no sacaste un 6.")
 	else:
-		print("No es tu turno. Es el turno del Jugador %d." % turnoActual)
+		var nombre_jugador_actual = nombres_jugadores[turnoActual]
+		print("No es tu turno. Es el turno del " + nombre_jugador_actual + ".")
 
 func mover_pieza(pasos):
 	if pieza_seleccionada == null:
@@ -279,7 +288,8 @@ func cambiar_turno():
 		turnoActual = 1
 	estado_turno = ESTADO_ESPERANDO_DADO
 	sfx_plop.play()
-	print("Es el turno del Jugador ", turnoActual)
+	var nombre_jugador = nombres_jugadores[turnoActual]
+	print("Es el turno del " + nombre_jugador)
 	actualizar_lbl_turno()
 
 func terminar_turno():
@@ -292,7 +302,8 @@ func terminar_turno():
 
 func verificar_victoria(pieza, nueva_pos):
 	if nueva_pos == PosicionGanar * 15.9:
-		print("¡Jugador ", turnoActual, " ha llevado una pieza a la meta!")
+		var nombre_jugador = nombres_jugadores[turnoActual]
+		print("¡El " + nombre_jugador + " ha llevado una pieza a la meta!")
 		# Reproducir la animación transportar_frente
 		pieza.play("transportar_frente")
 		sfx_wrap.play()
@@ -311,19 +322,20 @@ func verificar_victoria(pieza, nueva_pos):
 		jugadores[jugador]["posiciones"][indice_pieza] = -2  # Indica que está en la meta
 		# Verificar si el jugador ha ganado el juego
 		if jugadores[jugador]["piezas_en_meta"].size() >= 4:
-			print("¡El Jugador %d ha ganado el juego!" % jugador)
+			print("¡El " + nombre_jugador + " ha ganado el juego!")
 			mostrar_mensaje_ganador(jugador)
 			# Implementar lógica para finalizar el juego, por ejemplo, detener la entrada
 			set_process(false)
 
 func mostrar_mensaje_ganador(jugador):
-	var mensaje = "¡El Jugador " + str(jugador) + " ha ganado la partida!"
+	var nombre_jugador = nombres_jugadores[jugador]
+	var mensaje = "¡El " + nombre_jugador + " ha ganado la partida!"
 	print(mensaje)
 	# Crear un Label para mostrar el mensaje
 	var label_ganador = Label.new()
 	label_ganador.text = mensaje
-	label_ganador.set_position(Vector2(200, 200))  # Ajusta la posición según sea necesario
-	label_ganador.set_scale(Vector2(2, 2))  # Ajusta el tamaño del texto
+	label_ganador.set_position(Vector2(-100, 0))  # Ajusta la posición según sea necesario
+	label_ganador.set_scale(Vector2(1, 1))  # Ajusta el tamaño del texto
 	add_child(label_ganador)
 
 func _on_tirar_dado_pressed() -> void:
@@ -374,11 +386,9 @@ func continuar_logica_del_juego():
 		terminar_turno()
 	actualizar_lbl_turno()
 
-
 func verificar_colision_con_otras_piezas(jugador_actual, posicion_index):
 	var posiciones_validas_actual = obtener_posiciones_validas(jugador_actual)
-	var nueva_pos = posiciones_validas_actual[posicion_index] * 15.9  # Escalar la posición
-	
+	var nueva_pos = posiciones_validas_actual[posicion_index] * 15.9
 	for jugador_num in jugadores.keys():
 		if jugador_num != jugador_actual:
 			var posiciones_validas_oponente = obtener_posiciones_validas(jugador_num)
@@ -386,11 +396,12 @@ func verificar_colision_con_otras_piezas(jugador_actual, posicion_index):
 				var ha_salido_oponente = jugadores[jugador_num]["han_salido"][i]
 				if ha_salido_oponente:
 					var posicion_index_oponente = jugadores[jugador_num]["posiciones"][i]
-					var pos_oponente = posiciones_validas_oponente[posicion_index_oponente] * 15.9  # Escalar la posición
+					var pos_oponente = posiciones_validas_oponente[posicion_index_oponente] * 15.9
 					if nueva_pos == pos_oponente:
 						if not es_posicion_segura(nueva_pos):
-							# Se encontró una colisión y la posición no es segura
-							print("La pieza del Jugador %d ha comido la pieza del Jugador %d." % [jugador_actual, jugador_num])
+							var nombre_jugador_actual = nombres_jugadores[jugador_actual]
+							var nombre_oponente = nombres_jugadores[jugador_num]
+							print("La pieza del " + nombre_jugador_actual + " ha comido la pieza del " + nombre_oponente + ".")
 							enviar_pieza_a_casa(jugador_num, i)
 						else:
 							print("No se puede comer en una posición segura.")
@@ -507,7 +518,9 @@ func _on_timer_timeout() -> void:
 	print("Termino")
 
 func actualizar_lbl_turno():
-	var texto = "Turno del Jugador " + str(turnoActual) + ": "
+	var nombre_jugador = nombres_jugadores[turnoActual]
+	var texto = "Turno del " + nombre_jugador + ": "
+	#mostrar_mensaje_ganador(turnoActual)
 	if estado_turno == ESTADO_ESPERANDO_DADO:
 		texto += "Tira el dado."
 	elif estado_turno == ESTADO_ESPERANDO_PIEZA:
