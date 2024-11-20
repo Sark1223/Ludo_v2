@@ -14,7 +14,9 @@ var estado_turno = ESTADO_ESPERANDO_DADO
 var movimientos_pendientes = 0
 var dado_sprite
 var lbl_turno
+
 @onready var sfx_wrap: AudioStreamPlayer = $sfx_wrap
+@onready var sfx_dado: AudioStreamPlayer = $sfx_dado
 
 var posicionValidaJ1 = [
 	Vector2(1,23), Vector2(1,19), Vector2(5,19), Vector2(9,19), Vector2(13,19), Vector2(17,19),
@@ -350,6 +352,7 @@ func _on_tirar_dado_pressed() -> void:
 		$Timer.wait_time = 1.06
 		$Timer.start()
 		await $Timer.timeout
+		sfx_dado.play()
 	else:
 		print("Error al reproducir la animación del dado.")
 
