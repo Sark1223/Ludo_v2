@@ -62,7 +62,7 @@ var PosicionGanar = Vector2(1,1)
 var nombres_jugadores = {
 	1: "Gato",
 	2: "Sombrero",
-	3: "Mono"
+	3: "Dinosaurio"
 }
 
 
@@ -114,7 +114,7 @@ func _ready():
 		pieza.jugador_num = 2
 		pieza.indice_pieza = i - 1 # Los indices comienzan con 0
 
-	# Configurar piezas del Jugador 3 (mono)
+	# Configurar piezas del Jugador 3 (dino)
 	for i in range(1, 5):
 		var pieza_nombre = "dino" + (str(i) if i > 1 else "")
 		var pieza = get_node("%s" % pieza_nombre)

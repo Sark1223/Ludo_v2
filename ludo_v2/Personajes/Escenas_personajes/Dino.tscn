@@ -669,6 +669,6 @@ animations = [{
 position = Vector2(25.5, 10.6293)
 scale = Vector2(1.34375, 1.32058)
 sprite_frames = SubResource("SpriteFrames_7ksmg")
-animation = &"default_frente"
+animation = &"transportar_lado_izq"
 autoplay = "default_frente"
 script = ExtResource("13_q5rnw")
