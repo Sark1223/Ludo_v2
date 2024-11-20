@@ -716,6 +716,6 @@ animations = [{
 
 [node name="gatito" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_f8m0i")
-animation = &"salto_lado_izq"
+animation = &"default_frente"
 autoplay = "default_frente"
 script = ExtResource("9_dmvpb")

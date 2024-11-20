@@ -1,9 +1,9 @@
 extends Node
 
 var dado
-var veces_dado_igual_seis = 0 
+var veces_dado_igual_seis = 0
 var turnoActual = 1
-var totalJugadores = 2
+var totalJugadores = 3
 var jugadores = {}
 var pieza_seleccionada = null
 var indice_pieza_seleccionada = null
@@ -68,6 +68,12 @@ func _ready():
 		"han_salido": [],
 		"posiciones_iniciales": []
 	}
+	jugadores[3] = {
+		"piezas": [],
+		"posiciones": [],
+		"han_salido": [],
+		"posiciones_iniciales": []
+	}
 	# Configurar piezas del Jugador 1 (gatito)
 	for i in range(1, 5):
 		var pieza_nombre = "gatito" + (str(i) if i > 1 else "")
@@ -77,7 +83,6 @@ func _ready():
 		jugadores[1]["han_salido"].append(false)
 		jugadores[1]["posiciones_iniciales"].append(pieza.position)
 		pieza.connect("piece_clicked", Callable(self, "_on_pieza_seleccionada"))
-		
 		#Asignar jugador_num e indice_pieza a la pieza
 		pieza.jugador_num = 1
 		pieza.indice_pieza = i - 1 # Los indices comienzan con 0
@@ -92,6 +97,19 @@ func _ready():
 		pieza.connect("piece_clicked", Callable(self, "_on_pieza_seleccionada"))
 		#Asignar jugador_num e indice_pieza a la pieza
 		pieza.jugador_num = 2
+		pieza.indice_pieza = i - 1 # Los indices comienzan con 0
+
+	# Configurar piezas del Jugador 3 (mono)
+	for i in range(1, 5):
+		var pieza_nombre = "Mono" + (str(i) if i > 1 else "")
+		var pieza = get_node("%s" % pieza_nombre)
+		jugadores[3]["piezas"].append(pieza)
+		jugadores[3]["posiciones"].append(-1)
+		jugadores[3]["han_salido"].append(false)
+		jugadores[3]["posiciones_iniciales"].append(pieza.position)
+		pieza.connect("piece_clicked", Callable(self, "_on_pieza_seleccionada"))
+		#Asignar jugador_num e indice_pieza a la pieza
+		pieza.jugador_num = 3
 		pieza.indice_pieza = i - 1 # Los indices comienzan con 0
 
 	dado_sprite = get_node("dado")
@@ -169,6 +187,8 @@ func obtener_posiciones_validas(jugador):
 			return posicionValidaJ1
 		2:
 			return posicionValidaJ2
+		3:
+			return posicionValidaJ3
 		_:
 			return []
 

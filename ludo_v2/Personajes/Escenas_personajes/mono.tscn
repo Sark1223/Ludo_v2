@@ -35,14 +35,202 @@ animations = [{
 "texture": SubResource("AtlasTexture_nqbhd")
 }],
 "loop": true,
-"name": &"default",
-"speed": 4.0
+"name": &"default_atras",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00ocj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7eba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fk3qo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqbhd")
+}],
+"loop": true,
+"name": &"default_frente",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00ocj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7eba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fk3qo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqbhd")
+}],
+"loop": true,
+"name": &"default_lado",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00ocj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7eba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fk3qo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqbhd")
+}],
+"loop": true,
+"name": &"default_lado_izq",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00ocj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7eba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fk3qo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqbhd")
+}],
+"loop": true,
+"name": &"salto_atras",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00ocj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7eba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fk3qo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqbhd")
+}],
+"loop": true,
+"name": &"salto_frente",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00ocj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7eba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fk3qo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqbhd")
+}],
+"loop": true,
+"name": &"salto_lado",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00ocj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7eba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fk3qo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqbhd")
+}],
+"loop": true,
+"name": &"salto_lado_izq",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00ocj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7eba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fk3qo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqbhd")
+}],
+"loop": true,
+"name": &"transportar_atras",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00ocj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7eba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fk3qo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqbhd")
+}],
+"loop": true,
+"name": &"transportar_frente",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00ocj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7eba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fk3qo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqbhd")
+}],
+"loop": true,
+"name": &"transportar_frente_r",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00ocj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7eba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fk3qo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqbhd")
+}],
+"loop": true,
+"name": &"transportar_lado",
+"speed": 5.0
 }]
 
 [node name="Mono" type="AnimatedSprite2D"]
 texture_filter = 1
-position = Vector2(6, -27)
+position = Vector2(1, -14)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_g4t8g")
-autoplay = "default"
+animation = &"default_atras"
+autoplay = "default_frente"
 script = ExtResource("2_m7ctx")

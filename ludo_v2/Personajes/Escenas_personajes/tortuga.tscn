@@ -1,0 +1,111 @@
+[gd_scene load_steps=4 format=3 uid="uid://o8ax0wn8qe3n"]
+
+[ext_resource type="Texture2D" uid="uid://dnkdkfujiaicy" path="res://Personajes/Spritesheets_personajes/tortuga.png" id="1_s5n2n"]
+[ext_resource type="Script" path="res://Personajes/Codigo_personajes/tortuga.gd" id="2_vi7c3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xv4wh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s5n2n")
+}],
+"loop": true,
+"name": &"default_atras",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s5n2n")
+}],
+"loop": false,
+"name": &"default_frente",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s5n2n")
+}],
+"loop": true,
+"name": &"default_lado",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s5n2n")
+}],
+"loop": true,
+"name": &"default_lado_izq",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s5n2n")
+}],
+"loop": true,
+"name": &"salto_atras",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s5n2n")
+}],
+"loop": true,
+"name": &"salto_frente",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s5n2n")
+}],
+"loop": true,
+"name": &"salto_lado",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s5n2n")
+}],
+"loop": true,
+"name": &"salto_lado_izq",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s5n2n")
+}],
+"loop": true,
+"name": &"transportar_atras",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s5n2n")
+}],
+"loop": true,
+"name": &"transportar_frente",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s5n2n")
+}],
+"loop": true,
+"name": &"transportar_frente_r",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s5n2n")
+}],
+"loop": true,
+"name": &"transportar_lado",
+"speed": 5.0
+}]
+
+[node name="Tortuga" type="AnimatedSprite2D"]
+texture_filter = 1
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_xv4wh")
+animation = &"default_frente"
+autoplay = "default_frente"
+script = ExtResource("2_vi7c3")

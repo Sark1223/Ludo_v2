@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://dlrgcayokl1rq"]
+[gd_scene load_steps=17 format=4 uid="uid://dlrgcayokl1rq"]
 
 [ext_resource type="Script" path="res://Tableros/Script_tablero/mapa2.gd" id="1_e27jp"]
 [ext_resource type="Texture2D" uid="uid://q05tv38sfwxp" path="res://tileset_diseño_general/Tiles_Menu_tableroWills.png" id="2_6hhmo"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c48nhxac7vkkp" path="res://Personajes/Escenas_personajes/gatito.tscn" id="4_cc1gf"]
 [ext_resource type="PackedScene" uid="uid://0jsekysatrqe" path="res://Personajes/Escenas_personajes/sombrero.tscn" id="5_4i7ov"]
 [ext_resource type="PackedScene" uid="uid://cg32rv4pu048g" path="res://Tableros/Escenas_tablero/dado.tscn" id="7_g004j"]
+[ext_resource type="PackedScene" uid="uid://cxxvmy3ca5tm0" path="res://Personajes/Escenas_personajes/mono.tscn" id="7_kdq2r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cqdkd"]
 texture = ExtResource("2_6hhmo")
@@ -1594,6 +1595,18 @@ position = Vector2(207, -164.234)
 
 [node name="sombrero4" parent="." instance=ExtResource("5_4i7ov")]
 position = Vector2(161, -164.234)
+
+[node name="Mono" parent="." instance=ExtResource("7_kdq2r")]
+position = Vector2(-140, -149.816)
+
+[node name="Mono2" parent="." instance=ExtResource("7_kdq2r")]
+position = Vector2(-175, -114.859)
+
+[node name="Mono3" parent="." instance=ExtResource("7_kdq2r")]
+position = Vector2(-132, -68.9152)
+
+[node name="Mono4" parent="." instance=ExtResource("7_kdq2r")]
+position = Vector2(-80, -83.8968)
 
 [node name="Node" type="Node" parent="."]
 
