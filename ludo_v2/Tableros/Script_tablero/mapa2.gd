@@ -15,6 +15,7 @@ var movimientos_pendientes = 0
 var dado_sprite
 var lbl_turno
 
+@onready var sfx_jump: AudioStreamPlayer = $sfx_jump
 @onready var sfx_plop: AudioStreamPlayer = $sfx_plop
 @onready var sfx_wrap: AudioStreamPlayer = $sfx_wrap
 @onready var sfx_dado: AudioStreamPlayer = $sfx_dado
@@ -248,6 +249,7 @@ func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 
 		var tween = create_tween()
 		tween.tween_property(pieza, "position", nueva_pos, 2)
+		sfx_jump.play()
 
 		tween.finished.connect(func():
 			# Reproducir animación default

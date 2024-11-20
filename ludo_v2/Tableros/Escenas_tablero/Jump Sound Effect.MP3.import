@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ctbm2oldtuanx"
+path="res://.godot/imported/Jump Sound Effect.MP3-101d9ed04baf83b3125cb8511cc2060f.mp3str"
+
+[deps]
+
+source_file="res://Tableros/Escenas_tablero/Jump Sound Effect.MP3"
+dest_files=["res://.godot/imported/Jump Sound Effect.MP3-101d9ed04baf83b3125cb8511cc2060f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
