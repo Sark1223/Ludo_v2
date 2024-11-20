@@ -15,6 +15,7 @@ var movimientos_pendientes = 0
 var dado_sprite
 var lbl_turno
 
+@onready var sfx_plop: AudioStreamPlayer = $sfx_plop
 @onready var sfx_wrap: AudioStreamPlayer = $sfx_wrap
 @onready var sfx_dado: AudioStreamPlayer = $sfx_dado
 
@@ -275,6 +276,7 @@ func cambiar_turno():
 	if turnoActual > totalJugadores:
 		turnoActual = 1
 	estado_turno = ESTADO_ESPERANDO_DADO
+	sfx_plop.play()
 	print("Es el turno del Jugador ", turnoActual)
 	actualizar_lbl_turno()
 
@@ -349,10 +351,10 @@ func _on_tirar_dado_pressed() -> void:
 	# Reproducir la animación correspondiente
 	if animacion_numero != "":
 		dado_sprite.play(animacion_numero)
+		sfx_dado.play()
 		$Timer.wait_time = 1.06
 		$Timer.start()
 		await $Timer.timeout
-		sfx_dado.play()
 	else:
 		print("Error al reproducir la animación del dado.")
 

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://52pnktvq2pyv"
+path="res://.godot/imported/Pop (Minecraft Sound) - Sound Effect for editing.MP3-606506f501d5c137ab47ae14c7136aee.mp3str"
+
+[deps]
+
+source_file="res://Sonido/Pop (Minecraft Sound) - Sound Effect for editing.MP3"
+dest_files=["res://.godot/imported/Pop (Minecraft Sound) - Sound Effect for editing.MP3-606506f501d5c137ab47ae14c7136aee.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

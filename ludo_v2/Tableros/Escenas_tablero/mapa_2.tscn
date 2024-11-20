@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://dlrgcayokl1rq"]
+[gd_scene load_steps=21 format=4 uid="uid://dlrgcayokl1rq"]
 
 [ext_resource type="Script" path="res://Tableros/Script_tablero/mapa2.gd" id="1_e27jp"]
 [ext_resource type="Texture2D" uid="uid://q05tv38sfwxp" path="res://tileset_diseño_general/Tiles_Menu_tableroWills.png" id="2_6hhmo"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://0jsekysatrqe" path="res://Personajes/Escenas_personajes/sombrero.tscn" id="5_4i7ov"]
 [ext_resource type="PackedScene" uid="uid://cg32rv4pu048g" path="res://Tableros/Escenas_tablero/dado.tscn" id="7_g004j"]
 [ext_resource type="PackedScene" uid="uid://cxxvmy3ca5tm0" path="res://Personajes/Escenas_personajes/mono.tscn" id="7_kdq2r"]
+[ext_resource type="AudioStream" uid="uid://52pnktvq2pyv" path="res://Sonido/Pop (Minecraft Sound) - Sound Effect for editing.MP3" id="9_3il6m"]
 [ext_resource type="AudioStream" uid="uid://bolbp63nq1hri" path="res://Sonido/Rolling Dice - Sound Effect (HD).MP3" id="9_fbo0l"]
 [ext_resource type="AudioStream" uid="uid://cs3v2cndhie2f" path="res://Sonido/3DS System Music - Theme Shop.MP3" id="9_kx0m0"]
 [ext_resource type="AudioStream" uid="uid://dfkyewwxi8xt0" path="res://Sonido/sonic warp sound   Sound Effect.MP3" id="9_vudgq"]
@@ -1725,9 +1726,14 @@ offset_top = -327.597
 offset_right = 390.0
 offset_bottom = -292.597
 
+[node name="sfx_plop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_3il6m")
+volume_db = -5.0
+
 [node name="sfx_dado" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_fbo0l")
 volume_db = -5.0
+pitch_scale = 0.7
 
 [node name="sfx_fondo_jugar" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_kx0m0")
