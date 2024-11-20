@@ -14,6 +14,7 @@ var estado_turno = ESTADO_ESPERANDO_DADO
 var movimientos_pendientes = 0
 var dado_sprite
 var lbl_turno
+@onready var sfx_wrap: AudioStreamPlayer = $sfx_wrap
 
 var posicionValidaJ1 = [
 	Vector2(1,23), Vector2(1,19), Vector2(5,19), Vector2(9,19), Vector2(13,19), Vector2(17,19),
@@ -288,6 +289,7 @@ func verificar_victoria(pieza, nueva_pos):
 		print("¡Jugador ", turnoActual, " ha llevado una pieza a la meta!")
 		# Reproducir la animación transportar_frente
 		pieza.play("transportar_frente")
+		sfx_wrap.play()
 		# Esperar un tiempo fijo (por ejemplo, 1.06 segundos)
 		$Timer.wait_time = 1.5
 		$Timer.start()
@@ -407,6 +409,7 @@ func transportar_pieza_a_casa(pieza, posicion_inicial, jugador_num, old_posicion
 	if pieza != null:
 		movimientos_pendientes += 1
 		pieza.play("transportar_frente")
+		sfx_wrap.play()
 		# Wait for the animation to finish
 		$Timer.wait_time = 1.5
 		$Timer.start()
@@ -414,6 +417,7 @@ func transportar_pieza_a_casa(pieza, posicion_inicial, jugador_num, old_posicion
 		pieza.position = posicion_inicial
 		# Play "default_frente" animation after moving
 		pieza.play("transportar_frente_r")
+		sfx_wrap.play()
 		movimientos_pendientes -= 1  # Decrement after finishing
 		# Now adjust positions at the old position
 		ajustar_posiciones_piezas_en_posicion(jugador_num, old_posicion_index)
