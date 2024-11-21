@@ -555,7 +555,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_s081q")
 }],
-"loop": true,
+"loop": false,
 "name": &"transportar_atras",
 "speed": 7.0
 }, {
@@ -590,7 +590,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7863o")
 }],
-"loop": true,
+"loop": false,
 "name": &"transportar_frente",
 "speed": 6.0
 }, {
@@ -625,7 +625,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_40oeh")
 }],
-"loop": true,
+"loop": false,
 "name": &"transportar_lado",
 "speed": 5.0
 }, {
@@ -660,7 +660,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ygkgh")
 }],
-"loop": true,
+"loop": false,
 "name": &"transportar_lado_izq",
 "speed": 5.0
 }]
@@ -669,6 +669,6 @@ animations = [{
 position = Vector2(25.5, 10.6293)
 scale = Vector2(1.34375, 1.32058)
 sprite_frames = SubResource("SpriteFrames_7ksmg")
-animation = &"transportar_lado_izq"
+animation = &"salto_lado"
 autoplay = "default_frente"
 script = ExtResource("13_q5rnw")
