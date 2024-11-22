@@ -237,58 +237,6 @@ func obtener_posiciones_validas_entre(pos_inicial, pos_final):
 			if posiciones_validas_jugador[i] * 15.9 == pos_final:
 				break
 
-func mover_posicion_cubo_cubo(pieza, nueva_pos, jugador, posicion_index):
-	if pieza != null:
-		movimientos_pendientes += 1  # Incrementar al iniciar el movimiento
-
-		var pos_inicial = pieza.position
-		var direccion = nueva_pos - pos_inicial
-
-		# Reproducir animación según dirección
-		if abs(direccion.y) > abs(direccion.x):
-			if direccion.y > 0:
-				pieza.play("salto_frente")
-			else:
-				pieza.play("salto_atras")
-		else:
-			if direccion.x > 0:
-				pieza.play("salto_lado")
-			else:
-				pieza.play("salto_lado_izq")
-
-		var tween = create_tween()
-		# Obtener las posiciones válidas entre la posición actual y la nueva
-		if  jugadores[turnoActual]["han_salido"][indice_pieza_seleccionada] == true &&( (pos_inicial != posicionInicio[0]*15.9) ||  (pos_inicial != posicionInicio[1]*15.9) ||  (pos_inicial != posicionInicio[2]*15.9) ||  (pos_inicial != posicionInicio[3]*15.9)):
-			var posiciones_validas = obtener_posiciones_validas_entre(pos_inicial, nueva_pos)
-			# Crear una secuencia de tweens para mover la pieza por cada posición válida
-			for pos in posiciones_validas:
-				tween.tween_property(pieza, "position", pos, 0.5)
-		else:
-			tween.tween_property(pieza, "position", nueva_pos, 2)
-			sfx_jump.play()
-			
-		tween.finished.connect(func():
-			# Reproducir animación default
-			if abs(direccion.y) > abs(direccion.x):
-				if direccion.y > 0:
-					pieza.play("default_frente")
-				else:
-					pieza.play("default_atras")
-			else:
-				if direccion.x > 0:
-					pieza.play("default_lado")
-				else:
-					pieza.play("default_lado_izq")
-
-			print("Pieza movida a: ", nueva_pos)
-			movimientos_pendientes -= 1  # Decrementar al terminar el movimiento
-			ajustar_posiciones_piezas_en_posicion(jugador, posicion_index)
-			if movimientos_pendientes == 0:
-				terminar_turno()
-		)
-	else:
-		print("Error: La pieza es null.")
-		
 func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 	if pieza != null:
 		movimientos_pendientes += 1  # Incrementar al iniciar el movimiento
@@ -309,7 +257,9 @@ func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 				pieza.play("salto_lado_izq")
 
 		var tween = create_tween()
-		6
+		tween.tween_property(pieza, "position", nueva_pos, 2)
+		sfx_jump.play()
+
 		tween.finished.connect(func():
 			# Reproducir animación default
 			if abs(direccion.y) > abs(direccion.x):
@@ -497,10 +447,10 @@ func transportar_pieza_a_casa(pieza, posicion_inicial, jugador_num, old_posicion
 func es_posicion_segura(posicion):
 	var posiciones_seguras = [
 		# Posiciones seguras aquí
-		Vector2(1,23) * 15.9,
-		Vector2(20,-15) * 15.9,
-		Vector2(-18,17) * 15.9,
-		Vector2(17,19) * 15.9,
+		#Vector2(1,23) * 15.9,
+		#Vector2(20,-15) * 15.9,
+		#Vector2(-18,17) * 15.9,
+		#Vector2(17,19) * 15.9,
 		Vector2(1,1) * 15.9
 	]
 	return posicion in posiciones_seguras
