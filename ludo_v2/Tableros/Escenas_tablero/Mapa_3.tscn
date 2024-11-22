@@ -1891,6 +1891,6 @@ tile_map_data = PackedByteArray("AAAhABMAAAAZAAoAAAAhABQAAAAZAAsAAAAiABMAAAAaAAo
 tile_set = SubResource("TileSet_im7yd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(111, 193)
+position = Vector2(753, 580)
 scale = Vector2(0.195313, 0.195313)
 texture = ExtResource("2_6ofo5")
