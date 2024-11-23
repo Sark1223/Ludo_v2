@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 
 var dado
@@ -22,44 +22,81 @@ var lbl_turno
 @onready var sfx_wrap: AudioStreamPlayer = $sfx_wrap
 @onready var sfx_dado: AudioStreamPlayer = $sfx_dado
 
+#var posiciones = [
+	##cuadrante 1 - horizontal_derecha
+	#Vector2(-19,0), Vector2(-16,0), Vector2(-13, 0), Vector2(-10, 0), Vector2(-07, 0), Vector2(-04, 0),
+	##   0				1				2				3					4					5 
+	##cuadrante 1 - vertical_arriba
+	#Vector2(-03, -02), Vector2(-3, -5), Vector2(-03,-8), Vector2(-03,-11), Vector2(-03, -15),  
+	##   6					7				8					9					10			
+	##cuadrante 1/2 - horizontal_derecha
+	#Vector2(-1, -15), Vector2(2, -15), 
+	##	11					12
+	###cuadrante 2 - vertical_abajo
+	#Vector2(3, -13),Vector2(3,-10), Vector2(3,-7), Vector2(3, -4),Vector2(3, -1),
+	##	13				14				15				16				17
+	###cuadrante 2 - horizontal_derecha
+	#Vector2(5, 0), Vector2(8, 0),Vector2(11, 0), Vector2(14, 0), Vector2(17, 0), 
+	##	18				19			20				21					22
+	##cuadrante 2/3 - vertical_abajo
+	#Vector2(18, 2), Vector2(18, 5), 
+	##	23				24
+	##cuadrante 3 - horizontal_izquierda
+	#Vector2(16, 6), Vector2(13, 6),Vector2(10, 6), Vector2(7, 6), Vector2(4,6),
+	##	25				26				27				28				29
+	##cuadrante 3 - vertical_abajo
+	#Vector2(3, 8), Vector2(3, 11),Vector2(3, 14),Vector2(3, 17),Vector2(3, 20),
+	##	30				31				32			33				34
+	##cuadrante 3/4
+	#Vector2(1, 21),Vector2(-2, 21),
+	##	35				36
+	##cuadrante 4 - vertical_arriba
+	#Vector2(-3, 19),Vector2(-3, 16), Vector2(-3, 13), Vector2(-3, 10), Vector2(-2, 6), 
+	##	37				38				39					40				41
+	##cuadrante 4 - horizontal_izquierda
+	#Vector2(-5, 6), Vector2(-8, 6), Vector2(-11, 4), Vector2(-14,6),	Vector2(-18,6),
+	##	42				43				44				45					46
+	##cuadrante 4/1
+	#Vector2(-18, 4)]
+	##	47
 var posiciones = [
 	#cuadrante 1 - horizontal_derecha
-	Vector2(-19,0), Vector2(-16,0), Vector2(-13, 0), Vector2(-10, 0), Vector2(-07, 0), Vector2(-04,0),
+	Vector2(7.5,-300), Vector2(-16,0), Vector2(-13, 0), Vector2(-10, 0), Vector2(-07, 0), Vector2(-04, 0),
 	#   0				1				2				3					4					5 
 	#cuadrante 1 - vertical_arriba
-	Vector2(-04, -02), Vector2(-4, -5), Vector2(-04,-08), Vector2(-04,-011), Vector2(-04, -14),  
+	Vector2(-03, -02), Vector2(-3, -5), Vector2(-03,-8), Vector2(-03,-11), Vector2(-03, -15),  
 	#   6					7				8					9					10			
 	#cuadrante 1/2 - horizontal_derecha
-	Vector2(-1, -14), Vector2(2, -14), 
+	Vector2(-1, -15), Vector2(2, -15), 
 	#	11					12
 	##cuadrante 2 - vertical_abajo
-	Vector2(2, -13),Vector2(2,-10), Vector2(2,-7), Vector2(2, -4),Vector2(2, -1),
+	Vector2(3, -13),Vector2(3,-10), Vector2(3,-7), Vector2(3, -4),Vector2(3, -1),
 	#	13				14				15				16				17
 	##cuadrante 2 - horizontal_derecha
 	Vector2(5, 0), Vector2(8, 0),Vector2(11, 0), Vector2(14, 0), Vector2(17, 0), 
 	#	18				19			20				21					22
 	#cuadrante 2/3 - vertical_abajo
-	Vector2(17, 2), Vector2(17, 5), 
+	Vector2(18, 2), Vector2(18, 5), 
 	#	23				24
 	#cuadrante 3 - horizontal_izquierda
 	Vector2(16, 6), Vector2(13, 6),Vector2(10, 6), Vector2(7, 6), Vector2(4,6),
 	#	25				26				27				28				29
 	#cuadrante 3 - vertical_abajo
-	Vector2(2, 8), Vector2(2, 11),Vector2(2, 14),Vector2(2, 17),Vector2(2, 20),
+	Vector2(3, 8), Vector2(3, 11),Vector2(3, 14),Vector2(3, 17),Vector2(3, 20),
 	#	30				31				32			33				34
 	#cuadrante 3/4
 	Vector2(1, 21),Vector2(-2, 21),
 	#	35				36
 	#cuadrante 4 - vertical_arriba
-	Vector2(-4, 19),Vector2(-4, 16), Vector2(-4, 13), Vector2(-4, 10), Vector2(-4, 7), 
+	Vector2(-3, 19),Vector2(-3, 16), Vector2(-3, 13), Vector2(-3, 10), Vector2(-2, 6), 
 	#	37				38				39					40				41
 	#cuadrante 4 - horizontal_izquierda
-	Vector2(-5, 6), Vector2(-8, 6), Vector2(-11, 4), Vector2(-14,6),	Vector2(-17,6),
+	Vector2(-5, 6), Vector2(-8, 6), Vector2(-11, 4), Vector2(-14,6),	Vector2(-18,6),
 	#	42				43				44				45					46
 	#cuadrante 4/1
-	Vector2(-19, 4)]
+	Vector2(-18, 4)]
 	#	47
-
+#var posicionesInicio = [Vector2(-51,306), Vector2(260,108), Vector2(46,-199), Vector2(11,-251)]
 var posicionesInicio = [Vector2(-4,19), Vector2(16,6), Vector2(2,-13), Vector2(-16,0)]
 var posicionesGanar = [Vector2(0, 4), Vector2(1, 1), Vector2(0, 2), Vector2(-1,2)]
 	
@@ -255,16 +292,18 @@ func mover_pieza(pasos):
 		jugadores[jugador]["han_salido"][indice_pieza] = true
 		posicion_index = 0
 		jugadores[jugador]["posiciones"][indice_pieza] = posicion_index
-		var nueva_pos = posicionesInicio[jugador - 1] * 15.9
+		#var nueva_pos = Vector2(7.5,-300)
+		var nueva_pos = posicionesInicio[jugador - 1] *15.9
 		mover_posicion(pieza_seleccionada, nueva_pos, jugador, posicion_index)
-		print("La pieza ha salido de casa.")
+		print("La pieza ha salido de casa. " ,posicionesInicio[jugador - 1] ," " , posicionesInicio[jugador - 1] * 15.9)
 	else:
 		if posicion_index + pasos < posiciones_validas.size():
 			posicion_index += pasos
 			# Ajustar las posiciones en la posición antigua antes de mover la pieza
 			ajustar_posiciones_piezas_en_posicion(jugador, old_posicion_index)
 			jugadores[jugador]["posiciones"][indice_pieza] = posicion_index
-			var nueva_pos = posiciones_validas[posicion_index] * 15.9
+			#var nueva_pos = Vector2(7.5,-300)
+			var nueva_pos = posiciones_validas[posicion_index] *15.9
 			mover_posicion(pieza_seleccionada, nueva_pos, jugador, posicion_index)
 			print("Pieza movida a la posición: ", posicion_index)
 			verificar_victoria(pieza_seleccionada, nueva_pos)
@@ -308,9 +347,15 @@ func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 				else:
 					pieza.play("default_lado_izq")
 
-			print("Pieza movida a: ", nueva_pos)
+			print("Pieza movida a: ", nueva_pos," ", pieza.position)
 			movimientos_pendientes -= 1  # Decrementar al terminar el movimiento
-			ajustar_posiciones_piezas_en_posicion(jugador, posicion_index)
+			
+			for jugador_num in jugadores.keys():
+				var piezas = jugadores[jugador_num]["piezas"]
+				for pieza_actual in piezas:
+					if pieza_actual.position == nueva_pos && pieza_actual != pieza  :
+						print(pieza.name, ": ", pieza_actual.position, pieza_actual, pieza )
+						ajustar_posiciones_piezas_en_posicion(jugador, posicion_index)
 			if movimientos_pendientes == 0:
 				terminar_turno()
 		)
@@ -569,3 +614,6 @@ func tiene_movimientos_validos(jugador, dado):
 				return true
 	# Si ninguna pieza puede moverse, retorna false
 	return false
+	
+func _on_timer_timeout() -> void:
+	print("Termino")

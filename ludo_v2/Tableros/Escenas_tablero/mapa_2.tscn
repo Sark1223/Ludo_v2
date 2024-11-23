@@ -1720,6 +1720,7 @@ one_shot = true
 position = Vector2(486, 234.712)
 scale = Vector2(2.40625, 2.31027)
 frame = 11
+frame_progress = 0.0
 
 [node name="lbl_turno" type="Label" parent="."]
 layout_mode = 0

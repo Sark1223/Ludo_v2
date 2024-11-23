@@ -346,3 +346,5 @@ animations = [{
 [node name="dado" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_0t5he")
 animation = &"cinco"
+frame = 12
+frame_progress = 1.0

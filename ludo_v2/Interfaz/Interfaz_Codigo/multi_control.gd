@@ -7,7 +7,7 @@ var peer
 var monkey: String = "res://Personajes/Escenas_personajes/mono.tscn"
 var cat: String = "res://Personajes/Escenas_personajes/gatito.tscn"
 var hat: String = "res://Personajes/Escenas_personajes/sombrero.tscn"
-var level_1: String = "res://Tableros/Escenas_tablero/mapa_1.tscn"
+var level_1: String = "res://Tableros/Escenas_tablero/mapa_1_1.tscn"
 var level_2: String = "res://Tableros/Escenas_tablero/mapa_2.tscn"
 var sceneSelect: String = ""
 
