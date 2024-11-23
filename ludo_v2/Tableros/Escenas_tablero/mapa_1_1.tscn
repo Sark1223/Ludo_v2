@@ -8869,22 +8869,22 @@ frame_progress = 0.0
 
 [node name="lbl_turno" type="Label" parent="."]
 layout_mode = 0
-offset_left = 245.0
-offset_top = 97.0
-offset_right = 563.0
-offset_bottom = 132.0
+offset_left = 243.0
+offset_top = 130.0
+offset_right = 561.0
+offset_bottom = 165.0
 
 [node name="gatito" parent="." instance=ExtResource("8_ssgx7")]
-position = Vector2(-139, 311.5)
+position = Vector2(-140, 277)
 
 [node name="gatito2" parent="." instance=ExtResource("8_ssgx7")]
-position = Vector2(-235, 277)
+position = Vector2(-237, 277)
 
 [node name="gatito3" parent="." instance=ExtResource("8_ssgx7")]
-position = Vector2(-234, 197)
+position = Vector2(-236, 197)
 
 [node name="gatito4" parent="." instance=ExtResource("8_ssgx7")]
-position = Vector2(-138, 196)
+position = Vector2(-140, 196)
 
 [node name="sombrero" parent="." instance=ExtResource("9_w5ewx")]
 position = Vector2(150, 279)

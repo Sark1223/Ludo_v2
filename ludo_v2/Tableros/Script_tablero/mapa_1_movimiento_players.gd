@@ -61,48 +61,49 @@ var lbl_turno
 	##	47
 var posiciones = [
 	#cuadrante 1 - horizontal_derecha
-	Vector2(7.5,-300), Vector2(-16,0), Vector2(-13, 0), Vector2(-10, 0), Vector2(-07, 0), Vector2(-04, 0),
+	Vector2(-289.8,0), Vector2(-241.5,0), Vector2(-193.2, 0), Vector2(-144.9, 0), Vector2(-96.6, 0), Vector2(-48.3, 0),
 	#   0				1				2				3					4					5 
 	#cuadrante 1 - vertical_arriba
-	Vector2(-03, -02), Vector2(-3, -5), Vector2(-03,-8), Vector2(-03,-11), Vector2(-03, -15),  
+	Vector2(-48.3, -48.3), Vector2(-48.3, -96.6), Vector2(-48.3,-144.9), Vector2(-48.3,-193.2), Vector2(-48.3, -241.5),  
 	#   6					7				8					9					10			
 	#cuadrante 1/2 - horizontal_derecha
-	Vector2(-1, -15), Vector2(2, -15), 
+	Vector2(0, -241.5), Vector2(48.3, -241.5), 
 	#	11					12
 	##cuadrante 2 - vertical_abajo
-	Vector2(3, -13),Vector2(3,-10), Vector2(3,-7), Vector2(3, -4),Vector2(3, -1),
+	Vector2(48.3, -193.2),Vector2(48.3,-144.9), Vector2(48.3,-96.6), Vector2(48.3, -48.3),Vector2(48.3, 0),
 	#	13				14				15				16				17
 	##cuadrante 2 - horizontal_derecha
-	Vector2(5, 0), Vector2(8, 0),Vector2(11, 0), Vector2(14, 0), Vector2(17, 0), 
+	Vector2(96.6, 0), Vector2(144.9, 0),Vector2(193.2, 0), Vector2(241.6, 0), Vector2(289.8, 0), 
 	#	18				19			20				21					22
 	#cuadrante 2/3 - vertical_abajo
-	Vector2(18, 2), Vector2(18, 5), 
+	Vector2(289.8, 48.3), Vector2(289.8, 96.6), 
 	#	23				24
 	#cuadrante 3 - horizontal_izquierda
-	Vector2(16, 6), Vector2(13, 6),Vector2(10, 6), Vector2(7, 6), Vector2(4,6),
+	Vector2(241.5, 96.6), Vector2(193.2, 96.6),Vector2(144.9, 96.6), Vector2(96.2, 96.2), Vector2(48.3,96.6),
 	#	25				26				27				28				29
 	#cuadrante 3 - vertical_abajo
-	Vector2(3, 8), Vector2(3, 11),Vector2(3, 14),Vector2(3, 17),Vector2(3, 20),
+	Vector2(48.3, 144.9), Vector2(48.3, 193.2),Vector2(48.3, 241.5),Vector2(48.3, 289.8),Vector2(48.3, 338.1),
 	#	30				31				32			33				34
 	#cuadrante 3/4
-	Vector2(1, 21),Vector2(-2, 21),
+	Vector2(0, 338.1),Vector2(-48.3, 338.1),
 	#	35				36
-	#cuadrante 4 - vertical_arriba
-	Vector2(-3, 19),Vector2(-3, 16), Vector2(-3, 13), Vector2(-3, 10), Vector2(-2, 6), 
+	#cuadrante 4 - vertical_arriba 14.3 16.1
+	Vector2(-48.3, 289.8),Vector2(-48.3, 241.5), Vector2(-48.3, 193.2), Vector2(-48.3, 144.9), Vector2(-32.2, 96.6), 
 	#	37				38				39					40				41
 	#cuadrante 4 - horizontal_izquierda
-	Vector2(-5, 6), Vector2(-8, 6), Vector2(-11, 4), Vector2(-14,6),	Vector2(-18,6),
+	Vector2(-96.2, 96.2), Vector2(-144.9, 96.6), Vector2(-193.2, 64.4), Vector2(-241.5,96.6),	Vector2(-289.8,96.6),
 	#	42				43				44				45					46
 	#cuadrante 4/1
-	Vector2(-18, 4)]
+	Vector2(-289.8, 48.3)]
 	#	47
 #var posicionesInicio = [Vector2(-51,306), Vector2(260,108), Vector2(46,-199), Vector2(11,-251)]
-var posicionesInicio = [Vector2(-4,19), Vector2(16,6), Vector2(2,-13), Vector2(-16,0)]
+var posicionesInicio = [Vector2(-43, 292.5), Vector2(250, 95), Vector2(55, -191), Vector2(-16,0)]
+#var posicionesInicio = [Vector2(-3,18), Vector2(14,6), Vector2(3,-12), Vector2(-16,0)]
 var posicionesGanar = [Vector2(0, 4), Vector2(1, 1), Vector2(0, 2), Vector2(-1,2)]
 	
 	#empieza en el 37
 var posicionesValidasP1 =[
-	posiciones[38], posiciones[39], posiciones[40], posiciones[41],posiciones[42], posiciones[43], posiciones[44], posiciones[45], posiciones[46], posiciones[47],
+	Vector2(-43, 292.5), posiciones[38], posiciones[39], posiciones[40], posiciones[41],posiciones[42], posiciones[43], posiciones[44], posiciones[45], posiciones[46], posiciones[47],
 	posiciones[0], posiciones[1], posiciones[2], posiciones[3], posiciones[4], posiciones[5], posiciones[6], posiciones[7], posiciones[8], posiciones[9],
 	posiciones[10], posiciones[11],	posiciones[12],posiciones[13],posiciones[14],posiciones[15],posiciones[16],posiciones[17],posiciones[18],posiciones[19], 
 	posiciones[20], posiciones[21],	posiciones[22],posiciones[23],posiciones[24],posiciones[25],posiciones[26],posiciones[27],posiciones[28],posiciones[29],
@@ -111,7 +112,7 @@ var posicionesValidasP1 =[
 
 	#empieza en el 25
 var posicionesValidasP2 =[
-	posiciones[26],posiciones[27],posiciones[28],posiciones[29],posiciones[30],	posiciones[31],posiciones[32],posiciones[33],posiciones[34],posiciones[35],
+	Vector2(250, 95),posiciones[26],posiciones[27],posiciones[28],posiciones[29],posiciones[30],	posiciones[31],posiciones[32],posiciones[33],posiciones[34],posiciones[35],
 	posiciones[36],posiciones[37], posiciones[38], posiciones[39], posiciones[40], posiciones[41],posiciones[42], posiciones[43],posiciones[44], posiciones[45],
 	posiciones[46], posiciones[47],	posiciones[0], posiciones[1], posiciones[2], posiciones[3], posiciones[4], posiciones[5], posiciones[6], posiciones[7], 
 	posiciones[8], posiciones[9],	posiciones[10], posiciones[11],posiciones[12],posiciones[13],posiciones[14],posiciones[15],posiciones[16],posiciones[17],
@@ -120,7 +121,7 @@ var posicionesValidasP2 =[
 
 	#empieza en el 15
 var posicionesValidasP3 =[
-	posiciones[14],posiciones[15],posiciones[16],posiciones[17],posiciones[18],posiciones[19], posiciones[20], posiciones[21],posiciones[22],posiciones[23],
+	Vector2(55, -191),posiciones[14],posiciones[15],posiciones[16],posiciones[17],posiciones[18],posiciones[19], posiciones[20], posiciones[21],posiciones[22],posiciones[23],
 	posiciones[24],posiciones[25],posiciones[26],posiciones[27],posiciones[28],posiciones[29],posiciones[30],	posiciones[31],posiciones[32],posiciones[33],
 	posiciones[34],posiciones[35],posiciones[36],posiciones[37], posiciones[38], posiciones[39], posiciones[40], posiciones[41],posiciones[42], posiciones[43],
 	posiciones[44], posiciones[45], posiciones[46], posiciones[47],	posiciones[0], posiciones[1], posiciones[2], posiciones[3], posiciones[4], posiciones[5], 
@@ -293,9 +294,9 @@ func mover_pieza(pasos):
 		posicion_index = 0
 		jugadores[jugador]["posiciones"][indice_pieza] = posicion_index
 		#var nueva_pos = Vector2(7.5,-300)
-		var nueva_pos = posicionesInicio[jugador - 1] *15.9
+		var nueva_pos = posicionesInicio[jugador - 1] 
 		mover_posicion(pieza_seleccionada, nueva_pos, jugador, posicion_index)
-		print("La pieza ha salido de casa. " ,posicionesInicio[jugador - 1] ," " , posicionesInicio[jugador - 1] * 15.9)
+		print("La pieza ha salido de casa. " ,posicionesInicio[jugador - 1] ," " , posicionesInicio[jugador - 1])
 	else:
 		if posicion_index + pasos < posiciones_validas.size():
 			posicion_index += pasos
@@ -303,7 +304,7 @@ func mover_pieza(pasos):
 			ajustar_posiciones_piezas_en_posicion(jugador, old_posicion_index)
 			jugadores[jugador]["posiciones"][indice_pieza] = posicion_index
 			#var nueva_pos = Vector2(7.5,-300)
-			var nueva_pos = posiciones_validas[posicion_index] *15.9
+			var nueva_pos = posiciones_validas[posicion_index] 
 			mover_posicion(pieza_seleccionada, nueva_pos, jugador, posicion_index)
 			print("Pieza movida a la posición: ", posicion_index)
 			verificar_victoria(pieza_seleccionada, nueva_pos)
@@ -354,7 +355,6 @@ func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 				var piezas = jugadores[jugador_num]["piezas"]
 				for pieza_actual in piezas:
 					if pieza_actual.position == nueva_pos && pieza_actual != pieza  :
-						print(pieza.name, ": ", pieza_actual.position, pieza_actual, pieza )
 						ajustar_posiciones_piezas_en_posicion(jugador, posicion_index)
 			if movimientos_pendientes == 0:
 				terminar_turno()
@@ -420,7 +420,7 @@ func ajustar_posiciones_piezas_en_posicion(jugador_num, posicion_index):
 		if piezas_en_posicion.size() == 0:
 			return
 		var posiciones_validas = obtener_posiciones_validas(jugador_num)
-		var base_pos = posiciones_validas[posicion_index] * 15.9
+		var base_pos = posiciones_validas[posicion_index]
 		var num_piezas = piezas_en_posicion.size()
 		
 		if num_piezas == 1:
@@ -441,7 +441,7 @@ func ajustar_posiciones_piezas_en_posicion(jugador_num, posicion_index):
 
 func verificar_colision_con_otras_piezas(jugador_actual, posicion_index):
 	var posiciones_validas_actual = obtener_posiciones_validas(jugador_actual)
-	var nueva_pos = posiciones_validas_actual[posicion_index] * 15.9
+	var nueva_pos = posiciones_validas_actual[posicion_index]
 	for jugador_num in jugadores.keys():
 		if jugador_num != jugador_actual:
 			var posiciones_validas_oponente = obtener_posiciones_validas(jugador_num)
@@ -449,7 +449,7 @@ func verificar_colision_con_otras_piezas(jugador_actual, posicion_index):
 				var ha_salido_oponente = jugadores[jugador_num]["han_salido"][i]
 				if ha_salido_oponente:
 					var posicion_index_oponente = jugadores[jugador_num]["posiciones"][i]
-					var pos_oponente = posiciones_validas_oponente[posicion_index_oponente] * 15.9
+					var pos_oponente = posiciones_validas_oponente[posicion_index_oponente]
 					if nueva_pos == pos_oponente:
 						if not es_posicion_segura(nueva_pos):
 							var nombre_jugador_actual = nombres_jugadores[jugador_actual]
@@ -460,7 +460,7 @@ func verificar_colision_con_otras_piezas(jugador_actual, posicion_index):
 							print("No se puede comer en una posición segura.")
 
 func verificar_victoria(pieza, posFinal):
-	var PosicionGanar = posicionesGanar[turnoActual - 1] * 15.9
+	var PosicionGanar = posicionesGanar[turnoActual - 1]
 	if posFinal == PosicionGanar:
 		var nombre_jugador = nombres_jugadores[turnoActual]
 		print("¡El " + nombre_jugador + " ha llevado una pieza a la meta!")
@@ -505,7 +505,7 @@ func es_posicion_segura(posicion):
 		#Vector2(20,-15) * 15.9,
 		#Vector2(-18,17) * 15.9,
 		#Vector2(17,19) * 15.9,
-		Vector2(1,1) * 15.9
+		Vector2(1,1)
 	]
 	return posicion in posiciones_seguras
 	
