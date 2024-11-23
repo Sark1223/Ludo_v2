@@ -61,40 +61,40 @@ var lbl_turno
 	##	47
 var posiciones = [
 	#cuadrante 1 - horizontal_derecha
-	Vector2(-289.8,0), Vector2(-241.5,0), Vector2(-193.2, 0), Vector2(-144.9, 0), Vector2(-96.6, 0), Vector2(-48.3, 0),
+	Vector2(-283.8,-2), Vector2(-235.5,-2), Vector2(-187.2, -2), Vector2(-138.9, -2), Vector2(-90.6, -2), Vector2(-42.3, -2),
 	#   0				1				2				3					4					5 
 	#cuadrante 1 - vertical_arriba
-	Vector2(-48.3, -48.3), Vector2(-48.3, -96.6), Vector2(-48.3,-144.9), Vector2(-48.3,-193.2), Vector2(-48.3, -241.5),  
+	Vector2(-42.3, -48.3), Vector2(-42.3, -96.6), Vector2(-42.3,-144.9), Vector2(-42.3,-193.2), Vector2(-42.3, -241.5),  
 	#   6					7				8					9					10			
 	#cuadrante 1/2 - horizontal_derecha
-	Vector2(0, -241.5), Vector2(48.3, -241.5), 
+	Vector2(5, -232.5), Vector2(53, -235.5), 
 	#	11					12
 	##cuadrante 2 - vertical_abajo
-	Vector2(48.3, -193.2),Vector2(48.3,-144.9), Vector2(48.3,-96.6), Vector2(48.3, -48.3),Vector2(48.3, 0),
+	Vector2(55, -191),Vector2(55,-144.9), Vector2(55,-96.6), Vector2(55, -48.3),Vector2(55, 0),
 	#	13				14				15				16				17
 	##cuadrante 2 - horizontal_derecha
-	Vector2(96.6, 0), Vector2(144.9, 0),Vector2(193.2, 0), Vector2(241.6, 0), Vector2(289.8, 0), 
+	Vector2(101, 2), Vector2(149.9, 2),Vector2(198.2, 2), Vector2(246.6, 2), Vector2(294.8, 2), 
 	#	18				19			20				21					22
 	#cuadrante 2/3 - vertical_abajo
-	Vector2(289.8, 48.3), Vector2(289.8, 96.6), 
+	Vector2(294.8, 48.3), Vector2(294.8, 96.6), 
 	#	23				24
 	#cuadrante 3 - horizontal_izquierda
-	Vector2(241.5, 96.6), Vector2(193.2, 96.6),Vector2(144.9, 96.6), Vector2(96.2, 96.2), Vector2(48.3,96.6),
+	Vector2(250, 95), Vector2(198.2, 95),Vector2(149.9, 95), Vector2(101, 95), Vector2(53.3,95),
 	#	25				26				27				28				29
 	#cuadrante 3 - vertical_abajo
-	Vector2(48.3, 144.9), Vector2(48.3, 193.2),Vector2(48.3, 241.5),Vector2(48.3, 289.8),Vector2(48.3, 338.1),
+	Vector2(53.3, 144.9), Vector2(53.3, 193.2),Vector2(53.3, 241.5),Vector2(53.3, 289.8),Vector2(53.3, 338.1),
 	#	30				31				32			33				34
 	#cuadrante 3/4
-	Vector2(0, 338.1),Vector2(-48.3, 338.1),
+	Vector2(5, 338.1),Vector2(-43.3, 338.1),
 	#	35				36
 	#cuadrante 4 - vertical_arriba 14.3 16.1
-	Vector2(-48.3, 289.8),Vector2(-48.3, 241.5), Vector2(-48.3, 193.2), Vector2(-48.3, 144.9), Vector2(-32.2, 96.6), 
+	Vector2(-43, 292.5),Vector2(-43.3, 241.5), Vector2(-43.3, 193.2), Vector2(-43.3, 144.9), Vector2(-43.2, 96.6), 
 	#	37				38				39					40				41
 	#cuadrante 4 - horizontal_izquierda
-	Vector2(-96.2, 96.2), Vector2(-144.9, 96.6), Vector2(-193.2, 64.4), Vector2(-241.5,96.6),	Vector2(-289.8,96.6),
+	Vector2(-91.2, 96.2), Vector2(-139.9, 96.6), Vector2(-188.2, 64.4), Vector2(-236.5,96.6),	Vector2(-284.8,96.6),
 	#	42				43				44				45					46
 	#cuadrante 4/1
-	Vector2(-289.8, 48.3)]
+	Vector2(-284.8, 48.3)]
 	#	47
 #var posicionesInicio = [Vector2(-51,306), Vector2(260,108), Vector2(46,-199), Vector2(11,-251)]
 var posicionesInicio = [Vector2(-43, 292.5), Vector2(250, 95), Vector2(55, -191), Vector2(-16,0)]
@@ -312,56 +312,138 @@ func mover_pieza(pasos):
 		else:
 			print("No puedes moverte fuera del tablero.")
 
+func obtenerCuadrosMovimiento(jugador, posicion_index):
+	# Obtener el array de posiciones correspondiente al jugador
+	var posiciones_validas = obtener_posiciones_validas(jugador)
+	# Encontrar índice inicial
+	var indice_inicial = 0
+	for i in range(posiciones_validas.size()):
+		if posiciones_validas[i].distance_to(pieza_seleccionada.position) < 10:  # Umbral de distancia
+			indice_inicial = i
+			break
+	
+	#creacion de arreglo para posiciones intermedias
+	var posiciones_intermedias = []
+	#Si la pieza esat saliendo de casa
+	#if not jugadores[jugador]["han_salido"][indice_pieza_seleccionada]:
+	if posicion_index == 0:
+		posiciones_intermedias.append(posicionesInicio[jugador -1])
+	else:
+		for i in range(indice_inicial + 1, posicion_index + 1):
+			posiciones_intermedias.append((posiciones_validas[i]))
+	
+	return posiciones_intermedias
+
 func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 	if pieza != null:
 		movimientos_pendientes += 1  # Incrementar al iniciar el movimiento
 
-		var pos_inicial = pieza.position
-		var direccion = nueva_pos - pos_inicial
+		var pos_inicial
+		var direccion 
+		var arreglo_posicisiones = obtenerCuadrosMovimiento(jugador, posicion_index)
 
-		# Reproducir animación según dirección
-		if abs(direccion.y) > abs(direccion.x):
-			if direccion.y > 0:
-				pieza.play("salto_frente")
-			else:
-				pieza.play("salto_atras")
-		else:
-			if direccion.x > 0:
-				pieza.play("salto_lado")
-			else:
-				pieza.play("salto_lado_izq")
-
+		var contador_posicion = 0;
 		var tween = create_tween()
-		tween.tween_property(pieza, "position", nueva_pos, 1)
-		sfx_jump.play()
-
-		tween.finished.connect(func():
-			# Reproducir animación default
+		while contador_posicion < arreglo_posicisiones.size():
+			pos_inicial = pieza.position
+			direccion = nueva_pos - pieza.position
+			var casilla_sig = arreglo_posicisiones[contador_posicion]
+			
+			# Reproducir animación según dirección
 			if abs(direccion.y) > abs(direccion.x):
 				if direccion.y > 0:
-					pieza.play("default_frente")
+					pieza.play("salto_frente")
 				else:
-					pieza.play("default_atras")
+					pieza.play("salto_atras")
 			else:
 				if direccion.x > 0:
-					pieza.play("default_lado")
+					pieza.play("salto_lado")
 				else:
-					pieza.play("default_lado_izq")
+					pieza.play("salto_lado_izq")
 
-			print("Pieza movida a: ", nueva_pos," ", pieza.position)
-			movimientos_pendientes -= 1  # Decrementar al terminar el movimiento
-			
-			for jugador_num in jugadores.keys():
-				var piezas = jugadores[jugador_num]["piezas"]
-				for pieza_actual in piezas:
-					if pieza_actual.position == nueva_pos && pieza_actual != pieza  :
-						ajustar_posiciones_piezas_en_posicion(jugador, posicion_index)
-			if movimientos_pendientes == 0:
-				terminar_turno()
-		)
+			tween.tween_property(pieza, "position" , casilla_sig, 1)
+			sfx_jump.play()
+			contador_posicion += 1
+
+			tween.finished.connect(func():
+				# Reproducir animación default
+				if abs(direccion.y) > abs(direccion.x):
+					if direccion.y > 0:
+						pieza.play("default_frente")
+					else:
+						pieza.play("default_atras")
+				else:
+					if direccion.x > 0:
+						pieza.play("default_lado")
+					else:
+						pieza.play("default_lado_izq")
+
+				print("Pieza movida a: ", nueva_pos," ", pieza.position)
+				movimientos_pendientes -= 1  # Decrementar al terminar el movimiento
+				
+				for jugador_num in jugadores.keys():
+					var piezas = jugadores[jugador_num]["piezas"]
+					for pieza_actual in piezas:
+						if pieza_actual.position == nueva_pos && pieza_actual != pieza  :
+							ajustar_posiciones_piezas_en_posicion(jugador, posicion_index)
+				if movimientos_pendientes == 0:
+					terminar_turno()
+			)
 	else:
 		print("Error: La pieza es null.")
+		
 
+#func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
+	#if pieza != null:
+		#movimientos_pendientes += 1  # Incrementar al iniciar el movimiento
+#
+		#var pos_inicial = pieza.position
+		#var direccion = nueva_pos - pieza.position
+#
+		## Reproducir animación según dirección
+		#if abs(direccion.y) > abs(direccion.x):
+			#if direccion.y > 0:
+				#pieza.play("salto_frente")
+			#else:
+				#pieza.play("salto_atras")
+		#else:
+			#if direccion.x > 0:
+				#pieza.play("salto_lado")
+			#else:
+				#pieza.play("salto_lado_izq")
+#
+		#var tween = create_tween()
+		#tween.tween_property(pieza, "position", nueva_pos, 1)
+		#sfx_jump.play()
+#
+		#tween.finished.connect(func():
+			## Reproducir animación default
+			#if abs(direccion.y) > abs(direccion.x):
+				#if direccion.y > 0:
+					#pieza.play("default_frente")
+				#else:
+					#pieza.play("default_atras")
+			#else:
+				#if direccion.x > 0:
+					#pieza.play("default_lado")
+				#else:
+					#pieza.play("default_lado_izq")
+#
+			#print("Pieza movida a: ", nueva_pos," ", pieza.position)
+			#movimientos_pendientes -= 1  # Decrementar al terminar el movimiento
+			#
+			#for jugador_num in jugadores.keys():
+				#var piezas = jugadores[jugador_num]["piezas"]
+				#for pieza_actual in piezas:
+					#if pieza_actual.position == nueva_pos && pieza_actual != pieza  :
+						#ajustar_posiciones_piezas_en_posicion(jugador, posicion_index)
+			#if movimientos_pendientes == 0:
+				#terminar_turno()
+		#)
+	#else:
+		#print("Error: La pieza es null.")
+		#
+		
 func cambiar_turno():
 	turnoActual += 1
 	if turnoActual > totalJugadores:
