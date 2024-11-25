@@ -4389,6 +4389,8 @@ tile_set = SubResource("TileSet_sqhbn")
 position = Vector2(822, 152)
 scale = Vector2(2.46875, 2.6875)
 animation = &"salto_lado"
+frame = 0
+frame_progress = 0.0
 
 [node name="btn_gato" type="TextureButton" parent="fondo_realxd/select_jugador/gatito"]
 texture_filter = 1
@@ -4523,6 +4525,6 @@ animation = &"default_lado_izq"
 [connection signal="button_down" from="btn_Join" to="." method="_on_join_button_down"]
 [connection signal="button_down" from="empezar" to="." method="_on_empezar_button_down"]
 [connection signal="pressed" from="Escenario_puerto/puerto" to="." method="_on_puerto_pressed"]
-[connection signal="pressed" from="Escenario_campo/campos" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="Escenario_campo/campos" to="." method="_on_campos_pressed"]
+[connection signal="pressed" from="Escenario_campo/campos" to="." method="_on_texture_button_pressed"]
 [connection signal="button_down" from="host" to="." method="_on_host_button_down"]

@@ -4,7 +4,7 @@ extends Node
 var dado
 var veces_dado_igual_seis = 0
 var turnoActual = 1
-var totalJugadores = 3
+var totalJugadores = 4
 var jugadores = {}
 var pieza_seleccionada = null
 var indice_pieza_seleccionada = null
@@ -97,9 +97,9 @@ var posiciones = [
 	Vector2(-284.8, 48.3)]
 	#	47
 #var posicionesInicio = [Vector2(-51,306), Vector2(260,108), Vector2(46,-199), Vector2(11,-251)]
-var posicionesInicio = [Vector2(-43, 292.5), Vector2(250, 95), Vector2(55, -191), Vector2(-16,0)]
+var posicionesInicio = [Vector2(-43, 292.5), Vector2(250, 95), Vector2(55, -191), Vector2(-235,8)]
 #var posicionesInicio = [Vector2(-3,18), Vector2(14,6), Vector2(3,-12), Vector2(-16,0)]
-var posicionesGanar = [Vector2(0, 4), Vector2(1, 1), Vector2(0, 2), Vector2(-1,2)]
+var posicionesGanar = [Vector2(0, 4), Vector2(22, 34), Vector2(5, 25), Vector2(-9,35)]
 	
 	#empieza en el 37
 var posicionesValidasP1 =[
@@ -108,7 +108,7 @@ var posicionesValidasP1 =[
 	posiciones[10], posiciones[11],	posiciones[12],posiciones[13],posiciones[14],posiciones[15],posiciones[16],posiciones[17],posiciones[18],posiciones[19], 
 	posiciones[20], posiciones[21],	posiciones[22],posiciones[23],posiciones[24],posiciones[25],posiciones[26],posiciones[27],posiciones[28],posiciones[29],
 	posiciones[30],	posiciones[31],	posiciones[32],posiciones[33],posiciones[34],posiciones[35],
-	Vector2(0, 19), Vector2(0, 16), Vector2(0, 13), Vector2(0, 10), Vector2(0, 7), Vector2(0, 4)]
+	Vector2(292.5, 6), Vector2(245, 16), Vector2(198, 16), Vector2(51, 16), Vector2(103, 6), Vector2(51, 6)]
 
 	#empieza en el 25
 var posicionesValidasP2 =[
@@ -117,7 +117,7 @@ var posicionesValidasP2 =[
 	posiciones[46], posiciones[47],	posiciones[0], posiciones[1], posiciones[2], posiciones[3], posiciones[4], posiciones[5], posiciones[6], posiciones[7], 
 	posiciones[8], posiciones[9],	posiciones[10], posiciones[11],posiciones[12],posiciones[13],posiciones[14],posiciones[15],posiciones[16],posiciones[17],
 	posiciones[18],posiciones[19], posiciones[20], posiciones[21],posiciones[22],posiciones[23],
-	Vector2(16, 3), Vector2(13, 3), Vector2(10, 3), Vector2(7, 3), Vector2(4, 3), Vector2(1, 1)]
+	Vector2(247, 53), Vector2(196, 53), Vector2(148, 53), Vector2(101, 53), Vector2(53, 53), Vector2(22, 34)]
 
 	#empieza en el 15
 var posicionesValidasP3 =[
@@ -126,7 +126,7 @@ var posicionesValidasP3 =[
 	posiciones[34],posiciones[35],posiciones[36],posiciones[37], posiciones[38], posiciones[39], posiciones[40], posiciones[41],posiciones[42], posiciones[43],
 	posiciones[44], posiciones[45], posiciones[46], posiciones[47],	posiciones[0], posiciones[1], posiciones[2], posiciones[3], posiciones[4], posiciones[5], 
 	posiciones[6], posiciones[7], posiciones[8], posiciones[9],	posiciones[10], posiciones[11],
-	Vector2(0, -13), Vector2(0, -10), Vector2(0, -7), Vector2(0, -4), Vector2(-0, -1), Vector2(0, 2)]
+	Vector2(5, -191), Vector2(5, -138), Vector2(5, -91), Vector2(5, -41), Vector2(-5, -5), Vector2(5, 25)]
 
 	#empieza en el 1
 var posicionesValidasP4 =[
@@ -135,7 +135,7 @@ var posicionesValidasP4 =[
 	posiciones[22],posiciones[23],posiciones[24],posiciones[25],posiciones[26],posiciones[27],posiciones[28],posiciones[29],posiciones[30],	posiciones[31],
 	posiciones[32],posiciones[33],posiciones[34],posiciones[35],posiciones[36],posiciones[37], posiciones[38], posiciones[39], posiciones[40], posiciones[41],
 	posiciones[42], posiciones[43], posiciones[44], posiciones[45], posiciones[46], posiciones[47],
-	Vector2(-16,3), Vector2(-13,3), Vector2(-10,3), Vector2(-7,3), Vector2(-4,3), Vector2(-1,2)]
+	Vector2(-235, 53), Vector2(-186,53), Vector2(-138,53), Vector2(-89,53), Vector2(-41,53), Vector2(-9,35)]
 
 var nombres_jugadores = {
 	1: "Gato",
@@ -160,6 +160,13 @@ func _on_ready() -> void:
 		"piezas_en_meta": []
 	}
 	jugadores[3] = {
+		"piezas": [],
+		"posiciones": [],
+		"han_salido": [],
+		"posiciones_iniciales": [],
+		"piezas_en_meta": []
+	}
+	jugadores[4] = {
 		"piezas": [],
 		"posiciones": [],
 		"han_salido": [],
@@ -203,7 +210,21 @@ func _on_ready() -> void:
 		#Asignar jugador_num e indice_pieza a la pieza
 		pieza.jugador_num = 3
 		pieza.indice_pieza = i - 1 # Los indices comienzan con 0
+	
+	# Configurar piezas del Jugador 4 (oso)
+	for i in range(1, 5):
+		var pieza_nombre = "oso" + (str(i) if i > 1 else "")
+		var pieza = get_node("%s" % pieza_nombre)
+		jugadores[4]["piezas"].append(pieza)
+		jugadores[4]["posiciones"].append(-1)
+		jugadores[4]["han_salido"].append(false)
+		jugadores[4]["posiciones_iniciales"].append(pieza.position)
+		pieza.connect("piece_clicked", Callable(self, "_on_pieza_seleccionada"))
+		#Asignar jugador_num e indice_pieza a la pieza
+		pieza.jugador_num = 4
+		pieza.indice_pieza = i - 1 # Los indices comienzan con 0
 		
+	
 	dado_sprite = get_node("dado")
 	# Obtener el nodo lbl_turno (ajusta la ruta si es necesario)
 	lbl_turno = get_node("lbl_turno")
@@ -328,15 +349,17 @@ func obtenerCuadrosMovimiento(jugador, posicion_index):
 	#if not jugadores[jugador]["han_salido"][indice_pieza_seleccionada]:
 	if posicion_index == 0:
 		posiciones_intermedias.append(posicionesInicio[jugador -1])
+		movimientos_pendientes += 1 
 	else:
+		movimientos_pendientes = dado
 		for i in range(indice_inicial + 1, posicion_index + 1):
 			posiciones_intermedias.append((posiciones_validas[i]))
-	
+			
 	return posiciones_intermedias
 
 func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 	if pieza != null:
-		movimientos_pendientes += 1  # Incrementar al iniciar el movimiento
+		#movimientos_pendientes += 1  # Incrementar al iniciar el movimiento
 
 		var pos_inicial
 		var direccion 
@@ -379,7 +402,7 @@ func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 						pieza.play("default_lado_izq")
 
 				print("Pieza movida a: ", nueva_pos," ", pieza.position)
-				movimientos_pendientes -= 1  # Decrementar al terminar el movimiento
+				movimientos_pendientes -= 1 # Decrementar al terminar el movimiento
 				
 				for jugador_num in jugadores.keys():
 					var piezas = jugadores[jugador_num]["piezas"]
@@ -389,6 +412,7 @@ func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 				if movimientos_pendientes == 0:
 					terminar_turno()
 			)
+			
 	else:
 		print("Error: La pieza es null.")
 		
