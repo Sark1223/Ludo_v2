@@ -91,7 +91,7 @@ var posiciones = [
 	Vector2(-43, 292.5),Vector2(-43.3, 241.5), Vector2(-43.3, 193.2), Vector2(-43.3, 144.9), Vector2(-43.2, 96.6), 
 	#	37				38				39					40				41
 	#cuadrante 4 - horizontal_izquierda
-	Vector2(-91.2, 96.2), Vector2(-101, 96.6), Vector2(-188.2, 64.4), Vector2(-236.5,96.6),	Vector2(-284.8,96.6),
+	Vector2(-91.2, 99), Vector2(-138, 99), Vector2(-188.2, 99), Vector2(-236.5,96.6),	Vector2(-284.8,96.6),
 	#	42				43				44				45					46
 	#cuadrante 4/1
 	Vector2(-284.8, 48.3)]
@@ -362,7 +362,6 @@ func obtenerCuadrosMovimiento(jugador, posicion_index):
 
 func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 	if pieza != null:
-		#movimientos_pendientes += 1  # Incrementar al iniciar el movimiento
 
 		var pos_inicial
 		var direccion 
@@ -387,7 +386,7 @@ func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 				else:
 					pieza.play("salto_lado_izq")
 
-			tween.tween_property(pieza, "position" , casilla_sig, 1)
+			tween.tween_property(pieza, "position" , casilla_sig, .8)
 			sfx_jump.play()
 			contador_posicion += 1
 
@@ -420,57 +419,6 @@ func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 		print("Error: La pieza es null.")
 		
 
-#func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
-	#if pieza != null:
-		#movimientos_pendientes += 1  # Incrementar al iniciar el movimiento
-#
-		#var pos_inicial = pieza.position
-		#var direccion = nueva_pos - pieza.position
-#
-		## Reproducir animación según dirección
-		#if abs(direccion.y) > abs(direccion.x):
-			#if direccion.y > 0:
-				#pieza.play("salto_frente")
-			#else:
-				#pieza.play("salto_atras")
-		#else:
-			#if direccion.x > 0:
-				#pieza.play("salto_lado")
-			#else:
-				#pieza.play("salto_lado_izq")
-#
-		#var tween = create_tween()
-		#tween.tween_property(pieza, "position", nueva_pos, 1)
-		#sfx_jump.play()
-#
-		#tween.finished.connect(func():
-			## Reproducir animación default
-			#if abs(direccion.y) > abs(direccion.x):
-				#if direccion.y > 0:
-					#pieza.play("default_frente")
-				#else:
-					#pieza.play("default_atras")
-			#else:
-				#if direccion.x > 0:
-					#pieza.play("default_lado")
-				#else:
-					#pieza.play("default_lado_izq")
-#
-			#print("Pieza movida a: ", nueva_pos," ", pieza.position)
-			#movimientos_pendientes -= 1  # Decrementar al terminar el movimiento
-			#
-			#for jugador_num in jugadores.keys():
-				#var piezas = jugadores[jugador_num]["piezas"]
-				#for pieza_actual in piezas:
-					#if pieza_actual.position == nueva_pos && pieza_actual != pieza  :
-						#ajustar_posiciones_piezas_en_posicion(jugador, posicion_index)
-			#if movimientos_pendientes == 0:
-				#terminar_turno()
-		#)
-	#else:
-		#print("Error: La pieza es null.")
-		#
-		
 func cambiar_turno():
 	turnoActual += 1
 	if turnoActual > totalJugadores:

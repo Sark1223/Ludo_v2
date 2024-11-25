@@ -290,30 +290,33 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.7,
 "texture": SubResource("AtlasTexture_503vk")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xle65")
 }, {
-"duration": 1.0,
+"duration": 0.9,
+"texture": SubResource("AtlasTexture_apo88")
+}, {
+"duration": 0.9,
 "texture": SubResource("AtlasTexture_apo88")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nj633")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_ypclf")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_l7en8")
 }, {
-"duration": 1.0,
+"duration": 1.1,
 "texture": SubResource("AtlasTexture_cg3kw")
 }],
 "loop": true,
 "name": &"salto_atras",
-"speed": 11.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -331,73 +334,73 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mvuwa")
 }, {
-"duration": 1.0,
+"duration": 2.4,
 "texture": SubResource("AtlasTexture_aifoj")
 }, {
-"duration": 1.0,
+"duration": 1.8,
 "texture": SubResource("AtlasTexture_uyeew")
 }],
 "loop": true,
 "name": &"salto_frente",
-"speed": 11.0
+"speed": 10.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_jxipp")
 }, {
-"duration": 1.0,
+"duration": 0.7,
 "texture": SubResource("AtlasTexture_7h18q")
 }, {
-"duration": 1.0,
+"duration": 0.7,
 "texture": SubResource("AtlasTexture_wb47s")
 }, {
-"duration": 1.0,
+"duration": 0.7,
 "texture": SubResource("AtlasTexture_re7fl")
 }, {
-"duration": 1.0,
+"duration": 0.7,
 "texture": SubResource("AtlasTexture_yongu")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_yh0pb")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_8cxtj")
 }, {
-"duration": 1.0,
+"duration": 0.7,
 "texture": SubResource("AtlasTexture_81idu")
 }],
 "loop": true,
 "name": &"salto_lado",
-"speed": 11.0
+"speed": 10.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_vmtmq")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_dohxf")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_stggx")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_vog02")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_c51pm")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_1tln2")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_0dvn0")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_pr6hx")
 }],
 "loop": true,
 "name": &"salto_lado_izq",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -473,6 +476,7 @@ animations = [{
 [node name="oso" type="AnimatedSprite2D"]
 position = Vector2(-5, -5)
 sprite_frames = SubResource("SpriteFrames_3iuvt")
-animation = &"salto_lado_izq"
+animation = &"salto_lado"
 autoplay = "default_lado"
+frame_progress = 0.133862
 script = ExtResource("10_roc8a")

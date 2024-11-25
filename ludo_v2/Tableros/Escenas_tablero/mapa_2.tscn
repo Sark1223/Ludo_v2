@@ -1576,7 +1576,6 @@ texture_normal = ExtResource("3_41ro2")
 texture_filter = 1
 position = Vector2(-113, 145.395)
 animation = &"default_lado_izq"
-frame = 0
 frame_progress = 0.0
 
 [node name="gatito2" parent="." instance=ExtResource("4_cc1gf")]
