@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://brbgqnixcy2x0"]
+[gd_scene load_steps=70 format=3 uid="uid://brbgqnixcy2x0"]
 
 [ext_resource type="Texture2D" uid="uid://bkm276jvdjrug" path="res://Personajes/Spritesheets_personajes/Oso/oso_default_atras.png" id="1_to04c"]
 [ext_resource type="Texture2D" uid="uid://bqj1mxplbk525" path="res://Personajes/Spritesheets_personajes/Oso/oso_default_frente.png" id="2_qw834"]
@@ -203,6 +203,46 @@ region = Rect2(384, 0, 48, 48)
 atlas = ExtResource("9_jp5ek")
 region = Rect2(432, 0, 48, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tepi"]
+atlas = ExtResource("9_jp5ek")
+region = Rect2(432, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3t3x"]
+atlas = ExtResource("9_jp5ek")
+region = Rect2(384, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_teg4s"]
+atlas = ExtResource("9_jp5ek")
+region = Rect2(336, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3s7um"]
+atlas = ExtResource("9_jp5ek")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vju5v"]
+atlas = ExtResource("9_jp5ek")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7ky5"]
+atlas = ExtResource("9_jp5ek")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8s6p1"]
+atlas = ExtResource("9_jp5ek")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcnlx"]
+atlas = ExtResource("9_jp5ek")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kam8e"]
+atlas = ExtResource("9_jp5ek")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7r30"]
+atlas = ExtResource("9_jp5ek")
+region = Rect2(0, 0, 48, 48)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_3iuvt"]
 animations = [{
 "frames": [{
@@ -273,7 +313,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"salto_atras",
-"speed": 5.0
+"speed": 11.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -299,7 +339,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"salto_frente",
-"speed": 5.0
+"speed": 11.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -328,7 +368,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"salto_lado",
-"speed": 5.0
+"speed": 11.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -393,12 +433,46 @@ animations = [{
 "loop": false,
 "name": &"transportar_frente",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tepi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3t3x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_teg4s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3s7um")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vju5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7ky5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8s6p1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcnlx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kam8e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7r30")
+}],
+"loop": true,
+"name": &"transportar_frente_r",
+"speed": 5.0
 }]
 
 [node name="oso" type="AnimatedSprite2D"]
 position = Vector2(-5, -5)
-scale = Vector2(1.3125, 1.3125)
 sprite_frames = SubResource("SpriteFrames_3iuvt")
-animation = &"transportar_frente"
+animation = &"salto_lado_izq"
 autoplay = "default_lado"
 script = ExtResource("10_roc8a")

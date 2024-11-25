@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://ccpnh6x4ilpq2"]
+[gd_scene load_steps=49 format=4 uid="uid://ccpnh6x4ilpq2"]
 
 [ext_resource type="Script" path="res://Interfaz/Interfaz_Codigo/multi_control.gd" id="1_7labk"]
 [ext_resource type="Texture2D" uid="uid://cipo1o4dmfckg" path="res://Interfaz/interfaz_diseño/Grass.png" id="2_5ck5p"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://b4tr8hi02jumv" path="res://tileset_diseño_general/Tileset-Terrain2.png" id="13_8g1u6"]
 [ext_resource type="PackedScene" uid="uid://0jsekysatrqe" path="res://Personajes/Escenas_personajes/sombrero.tscn" id="14_e2f0o"]
 [ext_resource type="PackedScene" uid="uid://cxxvmy3ca5tm0" path="res://Personajes/Escenas_personajes/mono.tscn" id="15_ogpuc"]
+[ext_resource type="PackedScene" uid="uid://brbgqnixcy2x0" path="res://Personajes/Escenas_personajes/oso.tscn" id="17_bpbop"]
 [ext_resource type="FontFile" uid="uid://cbrdkkdfqp4a7" path="res://Interfaz/interfaz_diseño/fuentes/Gobold Hollow Bold.otf" id="17_itjv4"]
 [ext_resource type="Texture2D" uid="uid://dagjvdtjkmli8" path="res://Interfaz/docks.png" id="17_k7nre"]
 [ext_resource type="Texture2D" uid="uid://c52fuadqkswjx" path="res://Interfaz/fields.png" id="18_01qfs"]
@@ -4389,7 +4390,6 @@ tile_set = SubResource("TileSet_sqhbn")
 position = Vector2(822, 152)
 scale = Vector2(2.46875, 2.6875)
 animation = &"salto_lado"
-frame = 0
 frame_progress = 0.0
 
 [node name="btn_gato" type="TextureButton" parent="fondo_realxd/select_jugador/gatito"]
@@ -4421,16 +4421,31 @@ offset_right = 19.0
 offset_bottom = 18.0
 
 [node name="Mono" parent="fondo_realxd/select_jugador" instance=ExtResource("15_ogpuc")]
-position = Vector2(825, 257)
+position = Vector2(999, 357)
 scale = Vector2(1.23214, 1.23214)
 frame_progress = 0.10549
 
 [node name="btn_chango" type="TextureButton" parent="fondo_realxd/select_jugador/Mono"]
 texture_filter = 1
-offset_left = -33.0
-offset_top = -25.0
-offset_right = 23.0
-offset_bottom = 27.0
+anchors_preset = -1
+anchor_left = 0.418
+anchor_top = 0.556
+anchor_right = 0.418
+anchor_bottom = 0.556
+offset_left = -56.7811
+offset_top = -56.2955
+offset_right = -0.78113
+offset_bottom = -4.29548
+
+[node name="oso" parent="fondo_realxd/select_jugador" instance=ExtResource("17_bpbop")]
+position = Vector2(822, 250)
+scale = Vector2(2.70117, 2.70117)
+
+[node name="btn_oso" type="TextureButton" parent="fondo_realxd/select_jugador/oso"]
+offset_left = -13.0
+offset_top = -15.0
+offset_right = 13.0
+offset_bottom = 16.0
 
 [node name="btn_Join" type="Button" parent="."]
 layout_mode = 0
@@ -4518,6 +4533,7 @@ autoplay = true
 position = Vector2(1006.81, 281.184)
 scale = Vector2(2.63281, 2.58742)
 animation = &"default_lado_izq"
+script = null
 
 [connection signal="pressed" from="fondo_realxd/select_jugador/gatito/btn_gato" to="." method="_on_btn_gato_pressed"]
 [connection signal="pressed" from="fondo_realxd/select_jugador/sombrero/btn_sombrero" to="." method="_on_btn_sombrero_pressed"]

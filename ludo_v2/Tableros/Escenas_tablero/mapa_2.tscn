@@ -1605,15 +1605,19 @@ position = Vector2(160, 141.855)
 
 [node name="dino" parent="." instance=ExtResource("14_k83tv")]
 position = Vector2(209, -168.792)
+script = null
 
 [node name="dino2" parent="." instance=ExtResource("14_k83tv")]
 position = Vector2(216, -128.842)
+script = null
 
 [node name="dino3" parent="." instance=ExtResource("14_k83tv")]
 position = Vector2(148, -170.79)
+script = null
 
 [node name="dino4" parent="." instance=ExtResource("14_k83tv")]
 position = Vector2(149, -126.844)
+script = null
 
 [node name="Node" type="Node" parent="."]
 

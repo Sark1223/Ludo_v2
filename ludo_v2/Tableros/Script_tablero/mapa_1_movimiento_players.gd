@@ -91,7 +91,7 @@ var posiciones = [
 	Vector2(-43, 292.5),Vector2(-43.3, 241.5), Vector2(-43.3, 193.2), Vector2(-43.3, 144.9), Vector2(-43.2, 96.6), 
 	#	37				38				39					40				41
 	#cuadrante 4 - horizontal_izquierda
-	Vector2(-91.2, 96.2), Vector2(-139.9, 96.6), Vector2(-188.2, 64.4), Vector2(-236.5,96.6),	Vector2(-284.8,96.6),
+	Vector2(-91.2, 96.2), Vector2(-101, 96.6), Vector2(-188.2, 64.4), Vector2(-236.5,96.6),	Vector2(-284.8,96.6),
 	#	42				43				44				45					46
 	#cuadrante 4/1
 	Vector2(-284.8, 48.3)]
@@ -140,7 +140,8 @@ var posicionesValidasP4 =[
 var nombres_jugadores = {
 	1: "Gato",
 	2: "Sombrero",
-	3: "Dinosaurio"
+	3: "Dinosaurio",
+	4: "Oso"
 }
 
 func _on_ready() -> void:
@@ -288,6 +289,8 @@ func obtener_posiciones_validas(jugador):
 			return posicionesValidasP2
 		3:
 			return posicionesValidasP3
+		4:
+			return posicionesValidasP4
 		_:
 			return []
 
