@@ -15,6 +15,7 @@ var estado_turno = ESTADO_ESPERANDO_DADO
 var movimientos_pendientes = 0
 var dado_sprite
 var lbl_turno
+@onready var meta: AnimatedSprite2D = $meta
 
 #Audio
 @onready var sfx_jump: AudioStreamPlayer = $sfx_jump
@@ -108,7 +109,7 @@ var posicionesValidasP1 =[
 	posiciones[10], posiciones[11],	posiciones[12],posiciones[13],posiciones[14],posiciones[15],posiciones[16],posiciones[17],posiciones[18],posiciones[19], 
 	posiciones[20], posiciones[21],	posiciones[22],posiciones[23],posiciones[24],posiciones[25],posiciones[26],posiciones[27],posiciones[28],posiciones[29],
 	posiciones[30],	posiciones[31],	posiciones[32],posiciones[33],posiciones[34],posiciones[35],
-	Vector2(6, 292.5), Vector2(6, 245), Vector2(22, 34), Vector2(6, 51), Vector2(6, 103), Vector2(6, 51)]
+	Vector2(6, 292.5), Vector2(6, 245), Vector2(6, 195), Vector2(6, 151), Vector2(6, 103), Vector2(6, 51)]
 
 	#empieza en el 25
 var posicionesValidasP2 =[
@@ -235,7 +236,8 @@ func _on_ready() -> void:
 	lbl_turno = get_node("lbl_turno")
 	# Actualizar el label al iniciar el juego
 	actualizar_lbl_turno() # Replace with function body.
-	
+	#Pruevaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+	#verificar_victoria(2, Vector2(6, 51))
 	
 func actualizar_lbl_turno():
 	var nombre_jugador = nombres_jugadores[turnoActual]
@@ -329,14 +331,12 @@ func mover_pieza(pasos):
 		if posicion_index + pasos < posiciones_validas.size():
 			posicion_index += pasos
 			# Ajustar las posiciones en la posición antigua antes de mover la pieza
-			ajustar_posiciones_piezas_en_posicion(jugador, old_posicion_index)
+			#ajustar_posiciones_piezas_en_posicion(jugador, old_posicion_index)
 			jugadores[jugador]["posiciones"][indice_pieza] = posicion_index
-			#var nueva_pos = Vector2(7.5,-300)
 			var nueva_pos = posiciones_validas[posicion_index] 
 			mover_posicion(pieza_seleccionada, nueva_pos, jugador, posicion_index)
 			print("Pieza movida a la posición: ", posicion_index)
-			verificar_victoria(pieza_seleccionada, nueva_pos)
-			verificar_colision_con_otras_piezas(jugador, posicion_index)
+			
 		else:
 			print("No puedes moverte fuera del tablero.")
 
@@ -416,6 +416,8 @@ func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 						if pieza_actual.position == nueva_pos && pieza_actual != pieza  :
 							ajustar_posiciones_piezas_en_posicion(jugador, posicion_index)
 				if movimientos_pendientes == 0:
+					verificar_victoria(pieza_seleccionada, nueva_pos, pieza.indice_pieza)
+					verificar_colision_con_otras_piezas(jugador, posicion_index)
 					terminar_turno()
 			)
 			
@@ -442,63 +444,63 @@ func terminar_turno():
 	actualizar_lbl_turno()
 	
 func ajustar_posiciones_piezas_en_posicion(jugador_num, posicion_index):
-	if posicion_index == -1:
-		# Ajustar las posiciones de las piezas en casa
-		var piezas_en_casa = []
-		for i in range(jugadores[jugador_num]["piezas"].size()):
-			if jugadores[jugador_num]["posiciones"][i] == -1:
-				piezas_en_casa.append(jugadores[jugador_num]["piezas"][i])
-		if piezas_en_casa.size() == 0:
-			return
-		var base_positions = []
-		for pieza in piezas_en_casa:
-			var indice_pieza = jugadores[jugador_num]["piezas"].find(pieza)
-			var base_pos = jugadores[jugador_num]["posiciones_iniciales"][indice_pieza]
-			base_positions.append(base_pos)
-		# Ajustar las posiciones ligeramente alrededor de sus posiciones base
-		var num_piezas = piezas_en_casa.size()
-		
-		if num_piezas == 1:
-			# Solo una pieza, mover a la posición base sin desplazamiento
-			var target_position = base_positions[0]
-			var tween = create_tween()
-			tween.tween_property(piezas_en_casa[0], "position", target_position, 0.5)
-		else:
-			# Ajustar las posiciones ligeramente alrededor de sus posiciones base
-			var angle_step = 2 * PI / num_piezas
-			var radius = 16  # Ajusta el radio según sea necesario
-			for idx in range(num_piezas):
-				var angle = idx * angle_step
-				var offset = Vector2(radius * cos(angle), radius * sin(angle))
-				var target_position = base_positions[idx] + offset
-				var tween = create_tween()
-				tween.tween_property(piezas_en_casa[idx], "position", target_position, 0.5)
+	#if posicion_index == -1:
+		## Ajustar las posiciones de las piezas en casa
+		#var piezas_en_casa = []
+		#for i in range(jugadores[jugador_num]["piezas"].size()):
+			#if jugadores[jugador_num]["posiciones"][i] == -1:
+				#piezas_en_casa.append(jugadores[jugador_num]["piezas"][i])
+		#if piezas_en_casa.size() == 0:
+			#return
+		#var base_positions = []
+		#for pieza in piezas_en_casa:
+			#var indice_pieza = jugadores[jugador_num]["piezas"].find(pieza)
+			#var base_pos = jugadores[jugador_num]["posiciones_iniciales"][indice_pieza]
+			#base_positions.append(base_pos)
+		## Ajustar las posiciones ligeramente alrededor de sus posiciones base
+		#var num_piezas = piezas_en_casa.size()
+		#
+		#if num_piezas == 1:
+			## Solo una pieza, mover a la posición base sin desplazamiento
+			#var target_position = base_positions[0]
+			#var tween = create_tween()
+			#tween.tween_property(piezas_en_casa[0], "position", target_position, 0.5)
+		#else:
+			## Ajustar las posiciones ligeramente alrededor de sus posiciones base
+			#var angle_step = 2 * PI / num_piezas
+			#var radius = 16  # Ajusta el radio según sea necesario
+			#for idx in range(num_piezas):
+				#var angle = idx * angle_step
+				#var offset = Vector2(radius * cos(angle), radius * sin(angle))
+				#var target_position = base_positions[idx] + offset
+				#var tween = create_tween()
+				#tween.tween_property(piezas_en_casa[idx], "position", target_position, 0.5)
+	#else:
+	var piezas_en_posicion = []
+	for i in range(jugadores[jugador_num]["piezas"].size()):
+		if jugadores[jugador_num]["posiciones"][i] == posicion_index:
+			piezas_en_posicion.append(jugadores[jugador_num]["piezas"][i])
+	if piezas_en_posicion.size() == 0:
+		return
+	var posiciones_validas = obtener_posiciones_validas(jugador_num)
+	var base_pos = posiciones_validas[posicion_index]
+	var num_piezas = piezas_en_posicion.size()
+	
+	if num_piezas == 1:
+		# Solo una pieza, mover a la posición base sin desplazamiento
+		var target_position = base_pos
+		var tween = create_tween()
+		tween.tween_property(piezas_en_posicion[0], "position", target_position, 0.5)
 	else:
-		var piezas_en_posicion = []
-		for i in range(jugadores[jugador_num]["piezas"].size()):
-			if jugadores[jugador_num]["posiciones"][i] == posicion_index:
-				piezas_en_posicion.append(jugadores[jugador_num]["piezas"][i])
-		if piezas_en_posicion.size() == 0:
-			return
-		var posiciones_validas = obtener_posiciones_validas(jugador_num)
-		var base_pos = posiciones_validas[posicion_index]
-		var num_piezas = piezas_en_posicion.size()
-		
-		if num_piezas == 1:
-			# Solo una pieza, mover a la posición base sin desplazamiento
-			var target_position = base_pos
+		# Ajustar las posiciones en el tablero cuando hay múltiples piezas
+		var angle_step = 2 * PI / num_piezas
+		var radius = 16  # Ajusta el radio según sea necesario
+		for idx in range(num_piezas):
+			var angle = idx * angle_step
+			var offset = Vector2(radius * cos(angle), radius * sin(angle))
+			var target_position = base_pos + offset
 			var tween = create_tween()
-			tween.tween_property(piezas_en_posicion[0], "position", target_position, 0.5)
-		else:
-			# Ajustar las posiciones en el tablero cuando hay múltiples piezas
-			var angle_step = 2 * PI / num_piezas
-			var radius = 16  # Ajusta el radio según sea necesario
-			for idx in range(num_piezas):
-				var angle = idx * angle_step
-				var offset = Vector2(radius * cos(angle), radius * sin(angle))
-				var target_position = base_pos + offset
-				var tween = create_tween()
-				tween.tween_property(piezas_en_posicion[idx], "position", target_position, 0.5)
+			tween.tween_property(piezas_en_posicion[idx], "position", target_position, 0.5)
 
 func verificar_colision_con_otras_piezas(jugador_actual, posicion_index):
 	var posiciones_validas_actual = obtener_posiciones_validas(jugador_actual)
@@ -520,12 +522,13 @@ func verificar_colision_con_otras_piezas(jugador_actual, posicion_index):
 						else:
 							print("No se puede comer en una posición segura.")
 
-func verificar_victoria(pieza, posFinal):
+func verificar_victoria(pieza, posFinal, pzIndice):
 	var PosicionGanar = posicionesGanar[turnoActual - 1]
-	if posFinal == PosicionGanar:
+	if posFinal.distance_to(PosicionGanar) <= 10:
 		var nombre_jugador = nombres_jugadores[turnoActual]
 		print("¡El " + nombre_jugador + " ha llevado una pieza a la meta!")
 		# Reproducir la animación transportar_frente
+		$meta.play("ganar")
 		pieza.play("transportar_frente")
 		sfx_wrap.play()
 		# Esperar un tiempo fijo (por ejemplo, 1.06 segundos)
@@ -536,7 +539,7 @@ func verificar_victoria(pieza, posFinal):
 		pieza.hide()
 		# Marcar la pieza como ganadora
 		var jugador = turnoActual
-		var indice_pieza = indice_pieza_seleccionada
+		var indice_pieza = pzIndice
 		jugadores[jugador]["piezas_en_meta"].append(pieza)
 		# Actualizar el estado de la pieza
 		jugadores[jugador]["han_salido"][indice_pieza] = false
@@ -585,7 +588,7 @@ func enviar_pieza_a_casa(jugador_num, indice_pieza):
 	await $Timer.timeout
 	print("La pieza del Jugador %d, índice %d ha sido enviada a casa." % [jugador_num, indice_pieza])
 	# Ajustar las posiciones en casa después de que la pieza llegue
-	ajustar_posiciones_piezas_en_posicion(jugador_num, -1)
+	#ajustar_posiciones_piezas_en_posicion(jugador_num, -1)
 
 # Nueva función: transportar_pieza_a_casa
 func transportar_pieza_a_casa(pieza, posicion_inicial, jugador_num, old_posicion_index):

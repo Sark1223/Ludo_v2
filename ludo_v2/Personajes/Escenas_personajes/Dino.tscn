@@ -421,7 +421,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default_lado",
-"speed": 6.0
+"speed": 6.6
 }, {
 "frames": [{
 "duration": 1.0,
@@ -438,7 +438,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default_lado_izq",
-"speed": 6.0
+"speed": 6.6
 }, {
 "frames": [{
 "duration": 0.8,
@@ -730,6 +730,6 @@ animations = [{
 position = Vector2(25.5, 10.6293)
 scale = Vector2(1.34375, 1.32058)
 sprite_frames = SubResource("SpriteFrames_7ksmg")
-animation = &"default_lado_izq"
+animation = &"salto_atras"
 autoplay = "default_frente"
 script = ExtResource("13_q5rnw")
