@@ -421,7 +421,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default_lado",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -438,7 +438,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default_lado_izq",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 0.8,
@@ -464,7 +464,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"salto_atras",
-"speed": 11.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 0.8,
@@ -484,7 +484,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"salto_frente",
-"speed": 11.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 0.8,
@@ -516,7 +516,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"salto_lado",
-"speed": 11.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 0.8,
@@ -548,7 +548,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"salto_lado_izq",
-"speed": 12.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -651,7 +651,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_51crf")
 }],
-"loop": true,
+"loop": false,
 "name": &"transportar_frente_r",
 "speed": 5.0
 }, {
@@ -730,7 +730,6 @@ animations = [{
 position = Vector2(25.5, 10.6293)
 scale = Vector2(1.34375, 1.32058)
 sprite_frames = SubResource("SpriteFrames_7ksmg")
-animation = &"salto_atras"
+animation = &"default_lado_izq"
 autoplay = "default_frente"
-frame_progress = 0.844805
 script = ExtResource("13_q5rnw")

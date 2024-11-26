@@ -478,7 +478,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"salto_atras",
-"speed": 11.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 0.5,
@@ -519,7 +519,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"salto_frente",
-"speed": 11.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 0.8,
@@ -551,7 +551,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"salto_lado",
-"speed": 11.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 0.8,
@@ -583,7 +583,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"salto_lado_izq",
-"speed": 11.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -727,5 +727,5 @@ animations = [{
 sprite_frames = SubResource("SpriteFrames_f8m0i")
 animation = &"salto_frente"
 autoplay = "default_frente"
-frame_progress = 0.590259
+frame_progress = 0.959557
 script = ExtResource("9_dmvpb")

@@ -4533,6 +4533,7 @@ autoplay = true
 position = Vector2(1006.81, 281.184)
 scale = Vector2(2.63281, 2.58742)
 animation = &"default_lado_izq"
+frame_progress = 0.0
 script = null
 
 [connection signal="pressed" from="fondo_realxd/select_jugador/gatito/btn_gato" to="." method="_on_btn_gato_pressed"]

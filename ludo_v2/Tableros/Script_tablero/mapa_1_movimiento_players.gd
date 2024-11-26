@@ -97,9 +97,9 @@ var posiciones = [
 	Vector2(-284.8, 48.3)]
 	#	47
 #var posicionesInicio = [Vector2(-51,306), Vector2(260,108), Vector2(46,-199), Vector2(11,-251)]
-var posicionesInicio = [Vector2(-43, 292.5), Vector2(250, 95), Vector2(55, -191), Vector2(-235,8)]
+var posicionesInicio = [Vector2(-43, 292.5), Vector2(250, 95), Vector2(55, -191), Vector2(-235,-2)]
 #var posicionesInicio = [Vector2(-3,18), Vector2(14,6), Vector2(3,-12), Vector2(-16,0)]
-var posicionesGanar = [Vector2(0, 4), Vector2(22, 34), Vector2(5, 25), Vector2(-9,35)]
+var posicionesGanar = [Vector2(6, 51), Vector2(22, 34), Vector2(5, 25), Vector2(-9,35)]
 	
 	#empieza en el 37
 var posicionesValidasP1 =[
@@ -108,7 +108,7 @@ var posicionesValidasP1 =[
 	posiciones[10], posiciones[11],	posiciones[12],posiciones[13],posiciones[14],posiciones[15],posiciones[16],posiciones[17],posiciones[18],posiciones[19], 
 	posiciones[20], posiciones[21],	posiciones[22],posiciones[23],posiciones[24],posiciones[25],posiciones[26],posiciones[27],posiciones[28],posiciones[29],
 	posiciones[30],	posiciones[31],	posiciones[32],posiciones[33],posiciones[34],posiciones[35],
-	Vector2(292.5, 6), Vector2(245, 16), Vector2(198, 16), Vector2(51, 16), Vector2(103, 6), Vector2(51, 6)]
+	Vector2(6, 292.5), Vector2(6, 245), Vector2(22, 34), Vector2(6, 51), Vector2(6, 103), Vector2(6, 51)]
 
 	#empieza en el 25
 var posicionesValidasP2 =[
@@ -130,7 +130,7 @@ var posicionesValidasP3 =[
 
 	#empieza en el 1
 var posicionesValidasP4 =[
-	posiciones[2],posiciones[3],posiciones[4],posiciones[5],posiciones[6],posiciones[7],posiciones[8],posiciones[9],posiciones[10], posiciones[11],
+	Vector2(-235,4), posiciones[2],posiciones[3],posiciones[4],posiciones[5],posiciones[6],posiciones[7],posiciones[8],posiciones[9],posiciones[10], posiciones[11],
 	posiciones[12],posiciones[13],posiciones[14],posiciones[15],posiciones[16],posiciones[17],posiciones[18],posiciones[19], posiciones[20], posiciones[21],
 	posiciones[22],posiciones[23],posiciones[24],posiciones[25],posiciones[26],posiciones[27],posiciones[28],posiciones[29],posiciones[30],	posiciones[31],
 	posiciones[32],posiciones[33],posiciones[34],posiciones[35],posiciones[36],posiciones[37], posiciones[38], posiciones[39], posiciones[40], posiciones[41],
@@ -211,6 +211,8 @@ func _on_ready() -> void:
 		#Asignar jugador_num e indice_pieza a la pieza
 		pieza.jugador_num = 3
 		pieza.indice_pieza = i - 1 # Los indices comienzan con 0
+	for i in range(posicionesValidasP3.size()):
+					posicionesValidasP3[i].y = posicionesValidasP3[i].y -5
 	
 	# Configurar piezas del Jugador 4 (oso)
 	for i in range(1, 5):
@@ -225,6 +227,8 @@ func _on_ready() -> void:
 		pieza.jugador_num = 4
 		pieza.indice_pieza = i - 1 # Los indices comienzan con 0
 		
+	for i in range(posicionesValidasP4.size()):
+					posicionesValidasP4[i].y = posicionesValidasP4[i].y -8
 	
 	dado_sprite = get_node("dado")
 	# Obtener el nodo lbl_turno (ajusta la ruta si es necesario)
@@ -507,7 +511,7 @@ func verificar_colision_con_otras_piezas(jugador_actual, posicion_index):
 				if ha_salido_oponente:
 					var posicion_index_oponente = jugadores[jugador_num]["posiciones"][i]
 					var pos_oponente = posiciones_validas_oponente[posicion_index_oponente]
-					if nueva_pos == pos_oponente:
+					if nueva_pos.distance_to(pos_oponente) <= 10:
 						if not es_posicion_segura(nueva_pos):
 							var nombre_jugador_actual = nombres_jugadores[jugador_actual]
 							var nombre_oponente = nombres_jugadores[jugador_num]

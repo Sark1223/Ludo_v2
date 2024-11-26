@@ -257,7 +257,7 @@ func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 				pieza.play("salto_lado_izq")
 
 		var tween = create_tween()
-		tween.tween_property(pieza, "position", nueva_pos, 2)
+		tween.tween_property(pieza, "position", nueva_pos, 1)
 		sfx_jump.play()
 
 		tween.finished.connect(func():

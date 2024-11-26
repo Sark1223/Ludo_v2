@@ -1576,7 +1576,6 @@ texture_normal = ExtResource("3_41ro2")
 texture_filter = 1
 position = Vector2(-113, 145.395)
 animation = &"default_lado_izq"
-frame_progress = 0.0
 
 [node name="gatito2" parent="." instance=ExtResource("4_cc1gf")]
 texture_filter = 1
@@ -1604,19 +1603,15 @@ position = Vector2(160, 141.855)
 
 [node name="dino" parent="." instance=ExtResource("14_k83tv")]
 position = Vector2(209, -168.792)
-script = null
 
 [node name="dino2" parent="." instance=ExtResource("14_k83tv")]
 position = Vector2(216, -128.842)
-script = null
 
 [node name="dino3" parent="." instance=ExtResource("14_k83tv")]
 position = Vector2(148, -170.79)
-script = null
 
 [node name="dino4" parent="." instance=ExtResource("14_k83tv")]
 position = Vector2(149, -126.844)
-script = null
 
 [node name="Node" type="Node" parent="."]
 
