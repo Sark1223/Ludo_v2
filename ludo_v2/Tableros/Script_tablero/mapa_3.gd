@@ -20,7 +20,7 @@ var PosicionGanar = Vector2(1,1)
 
 func _ready():
 	var boton = $TirarDado
-	boton.connect("pressed", Callable(self, "_on_dice_button_pressed"))
+	#boton.connect("pressed", Callable(self, "_on_dice_button_pressed"))
 
 	# Inicializar jugadores y sus piezas
 	jugadores[1] = {

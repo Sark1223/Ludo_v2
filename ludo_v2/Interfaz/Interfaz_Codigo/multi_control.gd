@@ -9,6 +9,7 @@ var cat: String = "res://Personajes/Escenas_personajes/gatito.tscn"
 var hat: String = "res://Personajes/Escenas_personajes/sombrero.tscn"
 var level_1: String = "res://Tableros/Escenas_tablero/mapa_1_1.tscn"
 var level_2: String = "res://Tableros/Escenas_tablero/mapa_2.tscn"
+var level_3: String = "res://Tableros/Escenas_tablero/Mapa_3.tscn"
 var sceneSelect: String = ""
 
 # var GameManager = preload("res://Interfaz/Interfaz_Codigo/GameManager.gd")
@@ -110,3 +111,8 @@ func _on_btn_sombrero_pressed() -> void:
 func _on_btn_gato_pressed() -> void:
 	global_var.playerChar = cat
 	print("Se eligio el personaje gato")
+
+
+func _on_lavas_pressed() -> void:
+	global_var.sceneSelect = level_3
+	print("Se eligio el escenario del campo")

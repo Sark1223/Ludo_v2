@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://ccpnh6x4ilpq2"]
+[gd_scene load_steps=50 format=4 uid="uid://ccpnh6x4ilpq2"]
 
 [ext_resource type="Script" path="res://Interfaz/Interfaz_Codigo/multi_control.gd" id="1_7labk"]
 [ext_resource type="Texture2D" uid="uid://cipo1o4dmfckg" path="res://Interfaz/interfaz_diseño/Grass.png" id="2_5ck5p"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://c52fuadqkswjx" path="res://Interfaz/fields.png" id="18_01qfs"]
 [ext_resource type="AudioStream" uid="uid://cspv7kmgvinex" path="res://Sonido/Eric Skiff - Underclocked ♫ NO COPYRIGHT 8-bit Music + Background.MP3" id="21_obyjq"]
 [ext_resource type="PackedScene" uid="uid://do7hk21ws8xtw" path="res://Personajes/Escenas_personajes/Dino.tscn" id="22_7ihbn"]
+[ext_resource type="Texture2D" uid="uid://lotp6k7usobl" path="res://Interfaz/lava.png" id="24_xjhw5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1xm8i"]
 texture = ExtResource("2_7op0g")
@@ -4488,31 +4489,31 @@ label_settings = SubResource("LabelSettings_u03dp")
 
 [node name="Escenario_puerto" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 257.0
-offset_top = 433.0
-offset_right = 417.26
-offset_bottom = 583.0
+offset_left = 188.0
+offset_top = 434.0
+offset_right = 278.0
+offset_bottom = 518.0
 texture = ExtResource("17_k7nre")
 expand_mode = 3
 
 [node name="puerto" type="TextureButton" parent="Escenario_puerto"]
 layout_mode = 0
-offset_right = 150.0
-offset_bottom = 150.0
+offset_right = 91.0
+offset_bottom = 85.0
 
 [node name="Escenario_campo" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 87.0
 offset_top = 433.0
-offset_right = 237.0
-offset_bottom = 583.0
+offset_right = 172.0
+offset_bottom = 518.0
 texture = ExtResource("18_01qfs")
 expand_mode = 3
 
 [node name="campos" type="TextureButton" parent="Escenario_campo"]
 layout_mode = 0
-offset_right = 150.0
-offset_bottom = 150.0
+offset_right = 85.0
+offset_bottom = 86.0
 
 [node name="host" type="Button" parent="."]
 layout_mode = 0
@@ -4533,6 +4534,20 @@ position = Vector2(1006.81, 281.184)
 scale = Vector2(2.63281, 2.58742)
 script = null
 
+[node name="Escenario_lava" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 441.0
+offset_right = 426.0
+offset_bottom = 519.0
+texture = ExtResource("24_xjhw5")
+expand_mode = 3
+
+[node name="lavas" type="TextureButton" parent="Escenario_lava"]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 77.0
+
 [connection signal="pressed" from="fondo_realxd/select_jugador/gatito/btn_gato" to="." method="_on_btn_gato_pressed"]
 [connection signal="pressed" from="fondo_realxd/select_jugador/sombrero/btn_sombrero" to="." method="_on_btn_sombrero_pressed"]
 [connection signal="pressed" from="fondo_realxd/select_jugador/Mono/btn_chango" to="." method="_on_btn_chango_pressed"]
@@ -4542,3 +4557,4 @@ script = null
 [connection signal="pressed" from="Escenario_campo/campos" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="Escenario_campo/campos" to="." method="_on_campos_pressed"]
 [connection signal="button_down" from="host" to="." method="_on_host_button_down"]
+[connection signal="pressed" from="Escenario_lava/lavas" to="." method="_on_lavas_pressed"]
