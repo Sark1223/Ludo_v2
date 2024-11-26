@@ -1,0 +1,78 @@
+[gd_scene load_steps=2 format=3 uid="uid://bed2xkpq75mqm"]
+
+[ext_resource type="Script" path="res://Main.cs" id="1_t4afe"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_t4afe")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "INGRESA TU NOMBRE"
+
+[node name="L_Nombre" type="LineEdit" parent="Label"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 29.0
+offset_right = 169.0
+offset_bottom = 60.0
+
+[node name="Crear_S" type="Button" parent="Label"]
+layout_mode = 0
+offset_left = 203.0
+offset_top = 9.0
+offset_right = 304.0
+offset_bottom = 40.0
+text = "CREAR SALA"
+
+[node name="Unirme_S" type="Button" parent="Label"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.348
+offset_left = 201.0
+offset_top = 43.0
+offset_right = 310.0
+offset_bottom = 65.996
+text = "UNIRSE SALA"
+
+[node name="Label" type="Label" parent="Label"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 67.0
+offset_right = 47.0
+offset_bottom = 90.0
+text = "CODIGO DE LA SALA"
+
+[node name="L_Codigo" type="LineEdit" parent="Label"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 95.0
+offset_right = 164.0
+offset_bottom = 126.0
+
+[node name="Label2" type="Label" parent="Label"]
+layout_mode = 0
+offset_left = 391.0
+offset_top = 5.0
+offset_right = 431.0
+offset_bottom = 28.0
+text = "CHAT GRUPAL"
+
+[node name="LineEdit" type="LineEdit" parent="Label"]
+layout_mode = 0
+offset_left = 390.0
+offset_top = 36.0
+offset_right = 502.0
+offset_bottom = 67.0
+
+[node name="Enviar_S" type="Button" parent="Label"]
+layout_mode = 0
+offset_left = 531.0
+offset_top = 35.0
+offset_right = 621.0
+offset_bottom = 66.0
+text = "ENVIAR"
+
+[connection signal="pressed" from="Label/Crear_S" to="." method="_on_crear_s_pressed"]
+[connection signal="pressed" from="Label/Unirme_S" to="." method="_on_unirme_s_pressed"]
+[connection signal="pressed" from="Label/Enviar_S" to="." method="_on_enviar_s_pressed"]
