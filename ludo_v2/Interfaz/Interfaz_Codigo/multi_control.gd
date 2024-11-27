@@ -11,6 +11,7 @@ var level_1: String = "res://Tableros/Escenas_tablero/mapa_1_1.tscn"
 var level_2: String = "res://Tableros/Escenas_tablero/mapa_2.tscn"
 var level_3: String = "res://Tableros/Escenas_tablero/Mapa_3.tscn"
 var sceneSelect: String = ""
+@onready var lblmapa_select: Label = $lblmapaSelect
 
 # var GameManager = preload("res://Interfaz/Interfaz_Codigo/GameManager.gd")
 
@@ -90,13 +91,19 @@ func _on_empezar_button_down() -> void:
 
 func _on_campos_pressed() -> void:
 	global_var.sceneSelect = level_1
+	lblmapa_select.text = "Seleccionaste: Campo"
 	print("Se eligio el escenario del campo")
 
 
 func _on_puerto_pressed() -> void:
 	global_var.sceneSelect = level_2
+	lblmapa_select.text = "Seleccionaste: Puerto"
 	print("Se eligio el escenario del puerto")
 
+func _on_lavas_pressed() -> void:
+	global_var.sceneSelect = level_3
+	lblmapa_select.text = "Seleccionaste: Campo"
+	print("Se eligio el escenario del campo")
 
 func _on_btn_chango_pressed() -> void:
 	global_var.playerChar = monkey
@@ -111,8 +118,3 @@ func _on_btn_sombrero_pressed() -> void:
 func _on_btn_gato_pressed() -> void:
 	global_var.playerChar = cat
 	print("Se eligio el personaje gato")
-
-
-func _on_lavas_pressed() -> void:
-	global_var.sceneSelect = level_3
-	print("Se eligio el escenario del campo")

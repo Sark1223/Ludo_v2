@@ -1,14 +1,16 @@
 extends TextureRect
 
-@export var hover_scale: float = .95   # Factor de escala al pasar el cursor
+@export var hover_scale: float = .95  # Factor de escala al pasar el cursor
 @export var scale_duration: float = 0.2  # Duración de la animación de escala
 
 var original_scale: Vector2
+var has_focus: bool = false
 
 func _ready():
 	# Guardar la escala original
-		original_scale = scale
+	original_scale = scale
 
+#------------------------------ hover ----------------------------------
 func _on_mouse_entered():
 	# Animar el escalado cuando el cursor entra
 	var tween = create_tween()
