@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=4 uid="uid://5xdhye7kq1cq"]
+[gd_scene load_steps=10 format=4 uid="uid://5xdhye7kq1cq"]
 
 [ext_resource type="Script" path="res://Interfaz/Interfaz_Codigo/Menu.gd" id="1_q38go"]
 [ext_resource type="PackedScene" uid="uid://ccgss22fobcmo" path="res://Interfaz/Interfaz_Escenas/tipo_conexion_popUp.tscn" id="2_3kat2"]
 [ext_resource type="Texture2D" uid="uid://q05tv38sfwxp" path="res://tileset_diseño_general/Tiles_Menu_tableroWills.png" id="2_bemn5"]
+[ext_resource type="AudioStream" uid="uid://cphkld5r3c587" path="res://Sonido/10 AM.MP3" id="4_0asuo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1jphu"]
 texture = ExtResource("2_bemn5")
@@ -483,6 +484,14 @@ theme_override_fonts/font = SubResource("SystemFont_ii0ww")
 theme_override_font_sizes/font_size = 30
 text = "Salir"
 flat = true
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="sfx_fondo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_0asuo")
+volume_db = -10.0
+autoplay = true
 
 [connection signal="close_requested" from="Emergente" to="." method="_on_emergente_close_requested"]
 [connection signal="pressed" from="VBoxContainer/btnJugar" to="." method="_on_btn_jugar_pressed"]

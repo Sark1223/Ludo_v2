@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://brbgqnixcy2x0" path="res://Personajes/Escenas_personajes/oso.tscn" id="7_gpmmm"]
 [ext_resource type="AudioStream" uid="uid://52pnktvq2pyv" path="res://Sonido/Pop (Minecraft Sound) - Sound Effect for editing.MP3" id="7_jfyff"]
 [ext_resource type="AudioStream" uid="uid://bolbp63nq1hri" path="res://Sonido/Rolling Dice - Sound Effect (HD).MP3" id="8_mf6af"]
-[ext_resource type="AudioStream" uid="uid://cs3v2cndhie2f" path="res://Sonido/3DS System Music - Theme Shop.MP3" id="9_k016e"]
+[ext_resource type="AudioStream" uid="uid://ujnk4jsfm6w2" path="res://Sonido/[Non Copyrighted Music] @MiguelJohnson - Good Day To Die [Epic].MP3" id="10_8occ5"]
 [ext_resource type="AudioStream" uid="uid://dfkyewwxi8xt0" path="res://Sonido/sonic warp sound   Sound Effect.MP3" id="10_yf6hv"]
 [ext_resource type="AudioStream" uid="uid://cw4acgxihfx84" path="res://Sonido/Jump Sound Effect.MP3" id="11_r38gg"]
 [ext_resource type="PackedScene" uid="uid://cg32rv4pu048g" path="res://Tableros/Escenas_tablero/dado.tscn" id="12_404xj"]
@@ -1988,7 +1988,7 @@ volume_db = -5.0
 pitch_scale = 0.6
 
 [node name="sfx_fondo_jugar" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_k016e")
+stream = ExtResource("10_8occ5")
 volume_db = -15.0
 autoplay = true
 parameters/looping = true
