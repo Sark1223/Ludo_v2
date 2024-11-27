@@ -36,3 +36,4 @@ func _on_btn_local_pressed() -> void:
 
 	var scene = load("res://Interfaz/Interfaz_Escenas/multi_control.tscn").instantiate()
 	get_tree().root.add_child(scene) 
+	#get_tree().change_scene_to_file(scene)

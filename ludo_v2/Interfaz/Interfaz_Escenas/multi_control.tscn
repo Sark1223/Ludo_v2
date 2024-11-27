@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://ccpnh6x4ilpq2"]
+[gd_scene load_steps=54 format=4 uid="uid://ccpnh6x4ilpq2"]
 
 [ext_resource type="Script" path="res://Interfaz/Interfaz_Codigo/multi_control.gd" id="1_7labk"]
 [ext_resource type="Texture2D" uid="uid://cipo1o4dmfckg" path="res://Interfaz/interfaz_diseño/Grass.png" id="2_5ck5p"]
@@ -21,9 +21,12 @@
 [ext_resource type="FontFile" uid="uid://cbrdkkdfqp4a7" path="res://Interfaz/interfaz_diseño/fuentes/Gobold Hollow Bold.otf" id="17_itjv4"]
 [ext_resource type="Texture2D" uid="uid://dagjvdtjkmli8" path="res://Interfaz/docks.png" id="17_k7nre"]
 [ext_resource type="Texture2D" uid="uid://c52fuadqkswjx" path="res://Interfaz/fields.png" id="18_01qfs"]
+[ext_resource type="Script" path="res://Interfaz/Interfaz_Codigo/campoHover.gd" id="21_fyqo1"]
 [ext_resource type="AudioStream" uid="uid://cspv7kmgvinex" path="res://Sonido/Eric Skiff - Underclocked ♫ NO COPYRIGHT 8-bit Music + Background.MP3" id="21_obyjq"]
 [ext_resource type="PackedScene" uid="uid://do7hk21ws8xtw" path="res://Personajes/Escenas_personajes/Dino.tscn" id="22_7ihbn"]
+[ext_resource type="Script" path="res://Interfaz/Interfaz_Escenas/puertoHover.gd" id="23_v6ui4"]
 [ext_resource type="Texture2D" uid="uid://lotp6k7usobl" path="res://Interfaz/lava.png" id="24_xjhw5"]
+[ext_resource type="Script" path="res://Interfaz/Interfaz_Escenas/lavaHover.gd" id="25_e8su0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1xm8i"]
 texture = ExtResource("2_7op0g")
@@ -4334,6 +4337,18 @@ expand_margin_right = 10.0
 font = ExtResource("12_rimgl")
 font_size = 17
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f8uqn"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0.162767, 0.326765, 0, 0.101961)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.596078)
+
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -4487,33 +4502,71 @@ offset_bottom = 199.0
 text = "Nombre de jugador"
 label_settings = SubResource("LabelSettings_u03dp")
 
-[node name="Escenario_puerto" type="TextureRect" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 0
-offset_left = 188.0
-offset_top = 434.0
-offset_right = 278.0
-offset_bottom = 518.0
-texture = ExtResource("17_k7nre")
-expand_mode = 3
+offset_left = 79.0
+offset_top = 429.0
+offset_right = 419.0
+offset_bottom = 585.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_f8uqn")
+horizontal_scroll_mode = 2
+vertical_scroll_mode = 0
 
-[node name="puerto" type="TextureButton" parent="Escenario_puerto"]
-layout_mode = 0
-offset_right = 91.0
-offset_bottom = 85.0
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 10
 
-[node name="Escenario_campo" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 87.0
-offset_top = 433.0
-offset_right = 172.0
-offset_bottom = 518.0
+[node name="Escenario_campo" type="TextureRect" parent="ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+tooltip_text = "Campo"
 texture = ExtResource("18_01qfs")
 expand_mode = 3
+script = ExtResource("21_fyqo1")
 
-[node name="campos" type="TextureButton" parent="Escenario_campo"]
-layout_mode = 0
-offset_right = 85.0
-offset_bottom = 86.0
+[node name="campos" type="TextureButton" parent="ScrollContainer/HBoxContainer/Escenario_campo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+
+[node name="Escenario_puerto" type="TextureRect" parent="ScrollContainer/HBoxContainer"]
+custom_minimum_size = Vector2(140, 140)
+layout_mode = 2
+texture = ExtResource("17_k7nre")
+expand_mode = 3
+script = ExtResource("23_v6ui4")
+
+[node name="puerto" type="TextureButton" parent="ScrollContainer/HBoxContainer/Escenario_puerto"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Puerto"
+mouse_default_cursor_shape = 2
+
+[node name="Escenario_lava" type="TextureRect" parent="ScrollContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("24_xjhw5")
+expand_mode = 3
+script = ExtResource("25_e8su0")
+
+[node name="lavas" type="TextureButton" parent="ScrollContainer/HBoxContainer/Escenario_lava"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Lava"
+mouse_default_cursor_shape = 2
 
 [node name="host" type="Button" parent="."]
 layout_mode = 0
@@ -4534,27 +4587,19 @@ position = Vector2(1006.81, 281.184)
 scale = Vector2(2.63281, 2.58742)
 script = null
 
-[node name="Escenario_lava" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 300.0
-offset_top = 441.0
-offset_right = 426.0
-offset_bottom = 519.0
-texture = ExtResource("24_xjhw5")
-expand_mode = 3
-
-[node name="lavas" type="TextureButton" parent="Escenario_lava"]
-layout_mode = 0
-offset_right = 128.0
-offset_bottom = 77.0
-
 [connection signal="pressed" from="fondo_realxd/select_jugador/gatito/btn_gato" to="." method="_on_btn_gato_pressed"]
 [connection signal="pressed" from="fondo_realxd/select_jugador/sombrero/btn_sombrero" to="." method="_on_btn_sombrero_pressed"]
 [connection signal="pressed" from="fondo_realxd/select_jugador/Mono/btn_chango" to="." method="_on_btn_chango_pressed"]
 [connection signal="button_down" from="btn_Join" to="." method="_on_join_button_down"]
 [connection signal="button_down" from="empezar" to="." method="_on_empezar_button_down"]
-[connection signal="pressed" from="Escenario_puerto/puerto" to="." method="_on_puerto_pressed"]
-[connection signal="pressed" from="Escenario_campo/campos" to="." method="_on_texture_button_pressed"]
-[connection signal="pressed" from="Escenario_campo/campos" to="." method="_on_campos_pressed"]
+[connection signal="mouse_entered" from="ScrollContainer/HBoxContainer/Escenario_campo/campos" to="ScrollContainer/HBoxContainer/Escenario_campo" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ScrollContainer/HBoxContainer/Escenario_campo/campos" to="ScrollContainer/HBoxContainer/Escenario_campo" method="_on_mouse_exited"]
+[connection signal="pressed" from="ScrollContainer/HBoxContainer/Escenario_campo/campos" to="." method="_on_campos_pressed"]
+[connection signal="pressed" from="ScrollContainer/HBoxContainer/Escenario_campo/campos" to="." method="_on_texture_button_pressed"]
+[connection signal="mouse_entered" from="ScrollContainer/HBoxContainer/Escenario_puerto/puerto" to="ScrollContainer/HBoxContainer/Escenario_puerto" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ScrollContainer/HBoxContainer/Escenario_puerto/puerto" to="ScrollContainer/HBoxContainer/Escenario_puerto" method="_on_mouse_exited"]
+[connection signal="pressed" from="ScrollContainer/HBoxContainer/Escenario_puerto/puerto" to="." method="_on_puerto_pressed"]
+[connection signal="mouse_entered" from="ScrollContainer/HBoxContainer/Escenario_lava/lavas" to="ScrollContainer/HBoxContainer/Escenario_lava" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ScrollContainer/HBoxContainer/Escenario_lava/lavas" to="ScrollContainer/HBoxContainer/Escenario_lava" method="_on_mouse_exited"]
+[connection signal="pressed" from="ScrollContainer/HBoxContainer/Escenario_lava/lavas" to="." method="_on_lavas_pressed"]
 [connection signal="button_down" from="host" to="." method="_on_host_button_down"]
-[connection signal="pressed" from="Escenario_lava/lavas" to="." method="_on_lavas_pressed"]
