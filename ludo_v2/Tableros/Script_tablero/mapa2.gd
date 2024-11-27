@@ -3,7 +3,7 @@ extends Node
 var dado
 var veces_dado_igual_seis = 0
 var turnoActual = 1
-var totalJugadores = 3
+var totalJugadores = 4
 var jugadores = {}
 var pieza_seleccionada = null
 var indice_pieza_seleccionada = null
@@ -62,9 +62,9 @@ var PosicionGanar = Vector2(1,1)
 var nombres_jugadores = {
 	1: "Gato",
 	2: "Sombrero",
-	3: "Dinosaurio"
+	3: "Dinosaurio",
+	4: "Oso"
 }
-
 
 func _ready():
 	# Inicializar jugadores y sus piezas
@@ -83,6 +83,13 @@ func _ready():
 		"piezas_en_meta": []
 	}
 	jugadores[3] = {
+		"piezas": [],
+		"posiciones": [],
+		"han_salido": [],
+		"posiciones_iniciales": [],
+		"piezas_en_meta": []
+	}
+	jugadores[4] = {
 		"piezas": [],
 		"posiciones": [],
 		"han_salido": [],
@@ -125,6 +132,18 @@ func _ready():
 		pieza.connect("piece_clicked", Callable(self, "_on_pieza_seleccionada"))
 		#Asignar jugador_num e indice_pieza a la pieza
 		pieza.jugador_num = 3
+		pieza.indice_pieza = i - 1 # Los indices comienzan con 0
+
+	for i in range(1, 5):
+		var pieza_nombre = "oso" + (str(i) if i > 1 else "")
+		var pieza = get_node("%s" % pieza_nombre)
+		jugadores[4]["piezas"].append(pieza)
+		jugadores[4]["posiciones"].append(-1)
+		jugadores[4]["han_salido"].append(false)
+		jugadores[4]["posiciones_iniciales"].append(pieza.position)
+		pieza.connect("piece_clicked", Callable(self, "_on_pieza_seleccionada"))
+		#Asignar jugador_num e indice_pieza a la pieza
+		pieza.jugador_num = 4
 		pieza.indice_pieza = i - 1 # Los indices comienzan con 0
 
 	dado_sprite = get_node("dado")
@@ -215,6 +234,8 @@ func obtener_posiciones_validas(jugador):
 			return posicionValidaJ2
 		3:
 			return posicionValidaJ3
+		4:
+			return posicionValidaJ4
 		_:
 			return []
 

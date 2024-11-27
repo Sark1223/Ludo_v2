@@ -1,8 +1,12 @@
-[gd_scene load_steps=14 format=4 uid="uid://bbppudd6iu8r6"]
+[gd_scene load_steps=18 format=4 uid="uid://bbppudd6iu8r6"]
 
 [ext_resource type="Script" path="res://Tableros/Script_tablero/mapa_3.gd" id="1_ahosd"]
 [ext_resource type="Texture2D" uid="uid://q05tv38sfwxp" path="res://tileset_diseño_general/Tiles_Menu_tableroWills.png" id="1_d347d"]
 [ext_resource type="Texture2D" uid="uid://dxo76244r0cu0" path="res://icon.svg" id="2_6ofo5"]
+[ext_resource type="PackedScene" uid="uid://c48nhxac7vkkp" path="res://Personajes/Escenas_personajes/gatito.tscn" id="4_rgo5t"]
+[ext_resource type="PackedScene" uid="uid://0jsekysatrqe" path="res://Personajes/Escenas_personajes/sombrero.tscn" id="5_7yunh"]
+[ext_resource type="PackedScene" uid="uid://do7hk21ws8xtw" path="res://Personajes/Escenas_personajes/Dino.tscn" id="6_n1jf1"]
+[ext_resource type="PackedScene" uid="uid://brbgqnixcy2x0" path="res://Personajes/Escenas_personajes/oso.tscn" id="7_gpmmm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_btocf"]
 texture = ExtResource("1_d347d")
@@ -1897,3 +1901,56 @@ visible = false
 position = Vector2(111, 193)
 scale = Vector2(0.195313, 0.195313)
 texture = ExtResource("2_6ofo5")
+
+[node name="gatito" parent="." instance=ExtResource("4_rgo5t")]
+texture_filter = 1
+position = Vector2(353, 269.999)
+animation = &"default_lado_izq"
+
+[node name="gatito2" parent="." instance=ExtResource("4_rgo5t")]
+texture_filter = 1
+position = Vector2(298, 269)
+
+[node name="gatito3" parent="." instance=ExtResource("4_rgo5t")]
+texture_filter = 1
+position = Vector2(349, 317.94)
+
+[node name="gatito4" parent="." instance=ExtResource("4_rgo5t")]
+texture_filter = 1
+position = Vector2(298, 316.941)
+
+[node name="sombrero" parent="." instance=ExtResource("5_7yunh")]
+position = Vector2(483, 314.946)
+
+[node name="sombrero2" parent="." instance=ExtResource("5_7yunh")]
+position = Vector2(431, 314.946)
+
+[node name="sombrero3" parent="." instance=ExtResource("5_7yunh")]
+position = Vector2(480, 271)
+
+[node name="sombrero4" parent="." instance=ExtResource("5_7yunh")]
+position = Vector2(434, 271)
+
+[node name="dino" parent="." instance=ExtResource("6_n1jf1")]
+position = Vector2(695.5, 287.127)
+
+[node name="dino2" parent="." instance=ExtResource("6_n1jf1")]
+position = Vector2(702.5, 327.077)
+
+[node name="dino3" parent="." instance=ExtResource("6_n1jf1")]
+position = Vector2(634.5, 285.129)
+
+[node name="dino4" parent="." instance=ExtResource("6_n1jf1")]
+position = Vector2(635.5, 329.075)
+
+[node name="oso" parent="." instance=ExtResource("7_gpmmm")]
+position = Vector2(849.5, 344.5)
+
+[node name="oso2" parent="." instance=ExtResource("7_gpmmm")]
+position = Vector2(752.5, 344.5)
+
+[node name="oso3" parent="." instance=ExtResource("7_gpmmm")]
+position = Vector2(752.5, 263.5)
+
+[node name="oso4" parent="." instance=ExtResource("7_gpmmm")]
+position = Vector2(850.5, 263.5)

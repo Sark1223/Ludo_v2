@@ -471,12 +471,47 @@ animations = [{
 "loop": false,
 "name": &"transportar_frente_r",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tepi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3t3x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_teg4s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3s7um")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vju5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7ky5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8s6p1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcnlx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kam8e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7r30")
+}],
+"loop": false,
+"name": &"transportar_lado",
+"speed": 5.0
 }]
 
 [node name="oso" type="AnimatedSprite2D"]
 position = Vector2(-9.5, -9.5)
 scale = Vector2(1.28125, 1.28125)
 sprite_frames = SubResource("SpriteFrames_3iuvt")
-animation = &"salto_lado"
-autoplay = "default_lado"
+animation = &"transportar_lado"
+autoplay = "default_frente"
 script = ExtResource("10_roc8a")
