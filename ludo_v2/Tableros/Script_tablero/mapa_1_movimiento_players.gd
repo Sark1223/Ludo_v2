@@ -416,7 +416,8 @@ func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 						if pieza_actual.position == nueva_pos && pieza_actual != pieza  :
 							ajustar_posiciones_piezas_en_posicion(jugador, posicion_index)
 				if movimientos_pendientes == 0:
-					verificar_victoria(pieza_seleccionada, nueva_pos, pieza.indice_pieza)
+					#verificar_victoria(pieza, nueva_pos, pieza.indice_pieza)
+					verificar_victoria(pieza, nueva_pos)
 					verificar_colision_con_otras_piezas(jugador, posicion_index)
 					terminar_turno()
 			)
@@ -522,10 +523,24 @@ func verificar_colision_con_otras_piezas(jugador_actual, posicion_index):
 						else:
 							print("No se puede comer en una posición segura.")
 
-func verificar_victoria(pieza, posFinal, pzIndice):
+func verificar_victoria(pieza, posFinal):
 	var PosicionGanar = posicionesGanar[turnoActual - 1]
 	if posFinal.distance_to(PosicionGanar) <= 10:
+		# Marcar la pieza como ganadora
 		var nombre_jugador = nombres_jugadores[turnoActual]
+		var jugador = turnoActual
+		var indice_pieza = pieza.indice_pieza
+		jugadores[jugador]["piezas_en_meta"].append(pieza)
+		# Actualizar el estado de la pieza
+		jugadores[jugador]["han_salido"][indice_pieza] = false
+		jugadores[jugador]["posiciones"][indice_pieza] = -2  # Indica que está en la meta
+		# Verificar si el jugador ha ganado el juego
+		if jugadores[jugador]["piezas_en_meta"].size() >= 4:
+			print("¡El " + nombre_jugador + " ha ganado el juego!")
+			mostrar_mensaje_ganador(jugador)
+			# Implementar lógica para finalizar el juego, por ejemplo, detener la entrada
+			set_process(false)		
+		
 		print("¡El " + nombre_jugador + " ha llevado una pieza a la meta!")
 		# Reproducir la animación transportar_frente
 		$meta.play("ganar")
@@ -537,19 +552,8 @@ func verificar_victoria(pieza, posFinal, pzIndice):
 		await $Timer.timeout
 		# Hacer que la pieza desaparezca
 		pieza.hide()
-		# Marcar la pieza como ganadora
-		var jugador = turnoActual
-		var indice_pieza = pzIndice
-		jugadores[jugador]["piezas_en_meta"].append(pieza)
-		# Actualizar el estado de la pieza
-		jugadores[jugador]["han_salido"][indice_pieza] = false
-		jugadores[jugador]["posiciones"][indice_pieza] = -2  # Indica que está en la meta
-		# Verificar si el jugador ha ganado el juego
-		if jugadores[jugador]["piezas_en_meta"].size() >= 4:
-			print("¡El " + nombre_jugador + " ha ganado el juego!")
-			mostrar_mensaje_ganador(jugador)
-			# Implementar lógica para finalizar el juego, por ejemplo, detener la entrada
-			set_process(false)
+		
+
 
 func mostrar_mensaje_ganador(jugador):
 	var nombre_jugador = nombres_jugadores[jugador]
