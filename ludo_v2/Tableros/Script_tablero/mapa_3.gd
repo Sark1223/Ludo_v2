@@ -256,6 +256,9 @@ func mover_pieza(pasos):
 			jugadores[jugador]["posiciones"][indice_pieza] = posicion_index
 			var nueva_pos = posiciones[posicion_index]
 			mover_posicion(pieza_seleccionada, nueva_pos, jugador, posicion_index)
+			#var tween = create_tween()
+			#tween.tween_property(pieza_seleccionada, "position", nueva_pos, 1)
+			#terminar_turno()
 			print("La pieza ha salido de casa.")
 		else:
 			print("Necesitas un 6 para sacar una pieza de casa.")
@@ -330,7 +333,11 @@ func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 
 			print("Pieza movida a: ", nueva_pos)
 			movimientos_pendientes -= 1  # Decrementar al terminar el movimiento
-			ajustar_posiciones_piezas_en_posicion(jugador, posicion_index)
+			for jugador_num in jugadores.keys():
+					var piezas = jugadores[jugador_num]["piezas"]
+					for pieza_actual in piezas:
+						if pieza_actual.position == nueva_pos && pieza_actual != pieza  :
+							ajustar_posiciones_piezas_en_posicion(jugador, posicion_index)
 			if movimientos_pendientes == 0:
 				terminar_turno()
 		)
