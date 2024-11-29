@@ -399,6 +399,8 @@ func mostrar_mensaje_ganador(jugador):
 	add_child(label_ganador)
 
 func actualizar_lbl_turno():
+	$TileMapLayer.show()
+	$Timer2.start()
 	var nombre_jugador = nombres_jugadores[turnoActual]
 	var texto = "Turno del " + nombre_jugador + ": "
 	#mostrar_mensaje_ganador(turnoActual)
@@ -456,3 +458,9 @@ func tiene_movimientos_validos(jugador, dado):
 			if dado == 6:
 				return true
 	return false
+
+
+func _on_timer_2_timeout() -> void:
+	$lbl_turno.text = ""
+	$TileMapLayer.hide()
+	# Replace with function body.

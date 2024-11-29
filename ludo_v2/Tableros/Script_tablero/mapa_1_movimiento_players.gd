@@ -240,6 +240,8 @@ func _on_ready() -> void:
 	#verificar_victoria(2, Vector2(6, 51))
 	
 func actualizar_lbl_turno():
+	$TileMapLayer.show()
+	$Timer2.start()
 	var nombre_jugador = nombres_jugadores[turnoActual]
 	var texto = "Turno del " + nombre_jugador + ": "
 	#mostrar_mensaje_ganador(turnoActual)
@@ -685,3 +687,8 @@ func tiene_movimientos_validos(jugador, dado):
 	
 func _on_timer_timeout() -> void:
 	print("Termino")
+
+
+func _on_timer_2_timeout() -> void:
+	$lbl_turno.text = ""
+	$TileMapLayer.hide()
