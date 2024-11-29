@@ -393,9 +393,9 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -10.0
+offset_left = 1.0
 offset_top = -1.0
-offset_right = 8.0
+offset_right = 19.0
 offset_bottom = -80.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -486,6 +486,7 @@ text = "Salir"
 flat = true
 
 [node name="Timer" type="Timer" parent="."]
+process_callback = 0
 one_shot = true
 
 [node name="sfx_fondo" type="AudioStreamPlayer" parent="."]
@@ -496,3 +497,4 @@ autoplay = true
 [connection signal="close_requested" from="Emergente" to="." method="_on_emergente_close_requested"]
 [connection signal="pressed" from="VBoxContainer/btnJugar" to="." method="_on_btn_jugar_pressed"]
 [connection signal="pressed" from="VBoxContainer/btnSalir" to="." method="_on_btn_salir_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
