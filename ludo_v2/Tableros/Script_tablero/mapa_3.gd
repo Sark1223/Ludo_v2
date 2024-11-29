@@ -11,19 +11,11 @@ var posicionInicio=Vector2(560,600)
 
 # Declaración de 'posiciones_seguras'
 var posiciones_seguras = [
-	posiciones[0],    # Casilla de inicio del Jugador 1
-	posiciones[13],   # Casilla de inicio del Jugador 2
-	posiciones[26],   # Casilla de inicio del Jugador 3
-	posiciones[39],   # Casilla de inicio del Jugador 4
-	# Agrega más posiciones si es necesario
+	posiciones[posiciones.size() - 1],  # La última posición de 'posiciones' es la meta
 ]
 
-var puntos_inicio = {
-	1: 0,   # Índice en `posiciones` donde el Jugador 1 entra al camino
-	2: 13,  # Ajusta según corresponda
-	3: 26,
-	4: 39
-}
+
+var punto_inicio = 0
 
 var posicion_casas = {
 	1: Vector2(560, 600),  # Posición donde las piezas del Jugador 1 comienzan
@@ -32,20 +24,12 @@ var posicion_casas = {
 	4: Vector2(100, 300)
 }
 
-var metas = {
-	1: [Vector2(560,348), Vector2(560,300), Vector2(560,250), Vector2(560,200)],
-	2: [Vector2(608,111), Vector2(656,111), Vector2(704,111), Vector2(752,111)],
-	3: [Vector2(560,400), Vector2(560,450), Vector2(560,500), Vector2(560,550)],
-	4: [Vector2(272,111), Vector2(224,111), Vector2(176,111), Vector2(128,111)]
-}
-
 var dado
 var turnoActual = 1
 var totalJugadores = 4
 var jugadores = {}
 var pieza_seleccionada = null
 var indice_pieza_seleccionada = null
-var PosicionGanar = Vector2(1,1)
 var veces_dado_igual_seis = 0
 var pieza_en_movimiento = false
 var ESTADO_ESPERANDO_DADO = 0
@@ -70,88 +54,37 @@ var nombres_jugadores = {
 
 func _ready():
 	# Inicializar jugadores y sus piezas
-	jugadores[1] = {
-		"piezas": [],
-		"posiciones": [],
-		"han_salido": [],
-		"posiciones_iniciales": [],
-		"piezas_en_meta": []
-	}
-	jugadores[2] = {
-		"piezas": [],
-		"posiciones": [],
-		"han_salido": [],
-		"posiciones_iniciales": [],
-		"piezas_en_meta": []
-	}
-	jugadores[3] = {
-		"piezas": [],
-		"posiciones": [],
-		"han_salido": [],
-		"posiciones_iniciales": [],
-		"piezas_en_meta": []
-	}
-	jugadores[4] = {
-		"piezas": [],
-		"posiciones": [],
-		"han_salido": [],
-		"posiciones_iniciales": [],
-		"piezas_en_meta": []
-	}
-	# Configurar piezas del Jugador 1 (gatito)
-	for i in range(1, 5):
-		var pieza_nombre = "gatito" + (str(i) if i > 1 else "")
-		var pieza = get_node("%s" % pieza_nombre)
-		jugadores[1]["piezas"].append(pieza)
-		jugadores[1]["posiciones"].append(-1)
-		jugadores[1]["han_salido"].append(false)
-		jugadores[1]["posiciones_iniciales"].append(pieza.position)
-		pieza.connect("piece_clicked", Callable(self, "_on_pieza_seleccionada"))
-		#Asignar jugador_num e indice_pieza a la pieza
-		pieza.jugador_num = 1
-		pieza.indice_pieza = i - 1 # Los indices comienzan con 0
-	# Configurar piezas del Jugador 2 (sombrero)
-	for i in range(1, 5):
-		var pieza_nombre = "sombrero" + (str(i) if i > 1 else "")
-		var pieza = get_node("%s" % pieza_nombre)
-		jugadores[2]["piezas"].append(pieza)
-		jugadores[2]["posiciones"].append(-1)
-		jugadores[2]["han_salido"].append(false)
-		jugadores[2]["posiciones_iniciales"].append(pieza.position)
-		pieza.connect("piece_clicked", Callable(self, "_on_pieza_seleccionada"))
-		#Asignar jugador_num e indice_pieza a la pieza
-		pieza.jugador_num = 2
-		pieza.indice_pieza = i - 1 # Los indices comienzan con 0
-
-	# Configurar piezas del Jugador 3 (dino)
-	for i in range(1, 5):
-		var pieza_nombre = "dino" + (str(i) if i > 1 else "")
-		var pieza = get_node("%s" % pieza_nombre)
-		jugadores[3]["piezas"].append(pieza)
-		jugadores[3]["posiciones"].append(-1)
-		jugadores[3]["han_salido"].append(false)
-		jugadores[3]["posiciones_iniciales"].append(pieza.position)
-		pieza.connect("piece_clicked", Callable(self, "_on_pieza_seleccionada"))
-		#Asignar jugador_num e indice_pieza a la pieza
-		pieza.jugador_num = 3
-		pieza.indice_pieza = i - 1 # Los indices comienzan con 0
-
-	for i in range(1, 5):
-		var pieza_nombre = "oso" + (str(i) if i > 1 else "")
-		var pieza = get_node("%s" % pieza_nombre)
-		jugadores[4]["piezas"].append(pieza)
-		jugadores[4]["posiciones"].append(-1)
-		jugadores[4]["han_salido"].append(false)
-		jugadores[4]["posiciones_iniciales"].append(pieza.position)
-		pieza.connect("piece_clicked", Callable(self, "_on_pieza_seleccionada"))
-		#Asignar jugador_num e indice_pieza a la pieza
-		pieza.jugador_num = 4
-		pieza.indice_pieza = i - 1 # Los indices comienzan con 0
+	for jugador_num in range(1, 5):
+		jugadores[jugador_num] = {
+			"piezas": [],
+			"posiciones": [],
+			"han_salido": [],
+			"posiciones_iniciales": [],
+			"piezas_en_meta": []
+		}
+		# Configurar piezas para cada jugador
+		for i in range(1, 5):
+			var pieza_nombre = ""
+			match jugador_num:
+				1:
+					pieza_nombre = "gatito" + (str(i) if i > 1 else "")
+				2:
+					pieza_nombre = "sombrero" + (str(i) if i > 1 else "")
+				3:
+					pieza_nombre = "dino" + (str(i) if i > 1 else "")
+				4:
+					pieza_nombre = "oso" + (str(i) if i > 1 else "")
+			var pieza = get_node("%s" % pieza_nombre)
+			jugadores[jugador_num]["piezas"].append(pieza)
+			jugadores[jugador_num]["posiciones"].append(-1)
+			jugadores[jugador_num]["han_salido"].append(false)
+			jugadores[jugador_num]["posiciones_iniciales"].append(pieza.position)
+			pieza.connect("piece_clicked", Callable(self, "_on_pieza_seleccionada"))
+			pieza.jugador_num = jugador_num
+			pieza.indice_pieza = i - 1  # Los índices comienzan desde 0
 
 	dado_sprite = get_node("dado")
-	# Obtener el nodo lbl_turno (ajusta la ruta si es necesario)
 	lbl_turno = get_node("lbl_turno")
-	# Actualizar el label al iniciar el juego
 	actualizar_lbl_turno()
 
 func _on_tirar_dado_pressed() -> void: 
@@ -246,58 +179,43 @@ func mover_pieza(pasos):
 	var old_posicion_index = posicion_index
 
 	var total_camino = posiciones.size()
-	var total_meta = metas[jugador].size()
-	var total_posiciones = total_camino + total_meta
 
 	if not ha_salido:
 		if dado == 6:
 			jugadores[jugador]["han_salido"][indice_pieza] = true
-			posicion_index = puntos_inicio[jugador]
+			posicion_index = punto_inicio
 			jugadores[jugador]["posiciones"][indice_pieza] = posicion_index
 			var nueva_pos = posiciones[posicion_index]
 			mover_posicion(pieza_seleccionada, nueva_pos, jugador, posicion_index)
-			#var tween = create_tween()
-			#tween.tween_property(pieza_seleccionada, "position", nueva_pos, 1)
-			#terminar_turno()
 			print("La pieza ha salido de casa.")
 		else:
 			print("Necesitas un 6 para sacar una pieza de casa.")
 			terminar_turno()
 	else:
 		var nueva_posicion_index = posicion_index + pasos
-		if nueva_posicion_index < total_posiciones:
-			if nueva_posicion_index < total_camino:
-				posicion_index = nueva_posicion_index
-				jugadores[jugador]["posiciones"][indice_pieza] = posicion_index
-				var nueva_pos = posiciones[posicion_index]
-				mover_posicion(pieza_seleccionada, nueva_pos, jugador, posicion_index)
-				print("Pieza movida a la posición: ", posicion_index)
-			else:
-				var meta_index = nueva_posicion_index - total_camino
-				posicion_index = nueva_posicion_index
-				jugadores[jugador]["posiciones"][indice_pieza] = posicion_index
-				var nueva_pos = metas[jugador][meta_index]
-				mover_posicion(pieza_seleccionada, nueva_pos, jugador, posicion_index)
-				print("Pieza movida a la meta posición: ", meta_index)
-				if meta_index == metas[jugador].size() - 1:
-					verificar_victoria(pieza_seleccionada, nueva_pos)
-		elif nueva_posicion_index == total_posiciones:
-			# La pieza llega exactamente a la meta final
+		if nueva_posicion_index == total_camino:
+			# La pieza llega exactamente a la meta
 			posicion_index = -2  # Marcamos como en meta
 			jugadores[jugador]["posiciones"][indice_pieza] = posicion_index
-			var nueva_pos = metas[jugador][-1]
-			mover_posicion(pieza_seleccionada, nueva_pos, jugador, posicion_index)
 			print("¡La pieza ha llegado a la meta!")
-			verificar_victoria(pieza_seleccionada, nueva_pos)
+			verificar_victoria(pieza_seleccionada, null)
+		elif nueva_posicion_index < total_camino:
+			posicion_index = nueva_posicion_index
+			jugadores[jugador]["posiciones"][indice_pieza] = posicion_index
+			var nueva_pos = posiciones[posicion_index]
+			mover_posicion(pieza_seleccionada, nueva_pos, jugador, posicion_index)
+			print("Pieza movida a la posición: ", posicion_index)
+			if posicion_index == total_camino - 1:
+				verificar_victoria(pieza_seleccionada, nueva_pos)
 		else:
-			print("Movimiento no válido. Necesitas sacar un número exacto para entrar a la meta.")
+			print("Movimiento no válido. Necesitas sacar un número exacto para llegar al final.")
 			terminar_turno()
 			return
 		verificar_colision_con_otras_piezas(jugador, posicion_index)
 
 func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 	if pieza != null:
-		movimientos_pendientes += 1  # Incrementar al iniciar el movimiento
+		movimientos_pendientes += 1
 
 		var pos_inicial = pieza.position
 		var direccion = nueva_pos - pos_inicial
@@ -332,12 +250,8 @@ func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 					pieza.play("default_lado_izq")
 
 			print("Pieza movida a: ", nueva_pos)
-			movimientos_pendientes -= 1  # Decrementar al terminar el movimiento
-			for jugador_num in jugadores.keys():
-					var piezas = jugadores[jugador_num]["piezas"]
-					for pieza_actual in piezas:
-						if pieza_actual.position == nueva_pos && pieza_actual != pieza  :
-							ajustar_posiciones_piezas_en_posicion(jugador, posicion_index)
+			movimientos_pendientes -= 1
+			ajustar_posiciones_piezas_en_posicion(jugador, posicion_index)
 			if movimientos_pendientes == 0:
 				terminar_turno()
 		)
@@ -384,7 +298,7 @@ func ajustar_posiciones_piezas_en_posicion(jugador_num, posicion_index):
 		if piezas_en_posicion.size() == 0:
 			return
 		var posiciones_validas = obtener_posiciones_validas(jugador_num)
-		var base_pos = posiciones_validas[posicion_index] * 15.9
+		var base_pos = posiciones_validas[posicion_index]
 		var num_piezas = piezas_en_posicion.size()
 		
 		if num_piezas == 1:
@@ -452,7 +366,7 @@ func transportar_pieza_a_casa(pieza, posicion_inicial, jugador_num, old_posicion
 		print("Error: La pieza es null.")
 
 func obtener_posiciones_validas(jugador):
-	return posiciones + metas[jugador]
+	return posiciones
 
 
 func cambiar_turno():
@@ -462,16 +376,15 @@ func cambiar_turno():
 	print("Es el turno del Jugador ", turnoActual)
 
 func verificar_victoria(pieza, nueva_pos):
-	var jugador = turnoActual
-	if nueva_pos == metas[jugador][-1]:
-		print("¡El jugador ", jugador, " ha llevado una pieza a la meta!")
-		jugadores[jugador]["piezas_en_meta"].append(pieza)
-		jugadores[jugador]["posiciones"][indice_pieza_seleccionada] = -2
-		jugadores[jugador]["han_salido"][indice_pieza_seleccionada] = false
+	if nueva_pos == null or jugadores[turnoActual]["posiciones"][indice_pieza_seleccionada] == -2:
+		print("¡El jugador ", turnoActual, " ha llevado una pieza a la meta!")
+		jugadores[turnoActual]["piezas_en_meta"].append(pieza)
+		jugadores[turnoActual]["posiciones"][indice_pieza_seleccionada] = -2
+		jugadores[turnoActual]["han_salido"][indice_pieza_seleccionada] = false
 		pieza.hide()
-		if jugadores[jugador]["piezas_en_meta"].size() >= 4:
-			print("¡El jugador ", jugador, " ha ganado el juego!")
-			mostrar_mensaje_ganador(jugador)
+		if jugadores[turnoActual]["piezas_en_meta"].size() >= 4:
+			print("¡El jugador ", turnoActual, " ha ganado el juego!")
+			mostrar_mensaje_ganador(turnoActual)
 			set_process(false)
 
 func mostrar_mensaje_ganador(jugador):
@@ -498,41 +411,46 @@ func actualizar_lbl_turno():
 func verificar_colision_con_otras_piezas(jugador_actual, posicion_index):
 	var nueva_pos = obtener_posicion_por_indice(jugador_actual, posicion_index)
 	for jugador_num in jugadores.keys():
-		if jugador_num != jugador_actual:
-			for i in range(jugadores[jugador_num]["piezas"].size()):
-				var ha_salido_oponente = jugadores[jugador_num]["han_salido"][i]
-				if ha_salido_oponente:
-					var posicion_index_oponente = jugadores[jugador_num]["posiciones"][i]
-					var pos_oponente = obtener_posicion_por_indice(jugador_num, posicion_index_oponente)
-					if nueva_pos == pos_oponente:
-						if not es_posicion_segura(nueva_pos) and not esta_en_meta(posicion_index_oponente, jugador_num):
+		for i in range(jugadores[jugador_num]["piezas"].size()):
+			if jugador_num == jugador_actual and i == indice_pieza_seleccionada:
+				continue  # No compararse a sí mismo
+			var ha_salido_oponente = jugadores[jugador_num]["han_salido"][i]
+			if ha_salido_oponente:
+				var posicion_index_oponente = jugadores[jugador_num]["posiciones"][i]
+				if posicion_index_oponente == -2:
+					continue  # La pieza ya ha llegado a la meta
+				var pos_oponente = obtener_posicion_por_indice(jugador_num, posicion_index_oponente)
+				if nueva_pos == pos_oponente:
+					if jugador_num == jugador_actual:
+						# Es una pieza propia, ajustar posiciones para evitar superposición
+						print("Dos piezas del Jugador ", jugador_actual, " están en la misma posición.")
+						ajustar_posiciones_piezas_en_posicion(jugador_actual, posicion_index)
+					else:
+						if not es_posicion_segura(nueva_pos):
 							print("La pieza del Jugador ", jugador_actual, " ha comido la pieza del Jugador ", jugador_num)
 							enviar_pieza_a_casa(jugador_num, i)
 						else:
-							print("No se puede comer en una posición segura o en la meta.")
+							print("No se puede comer en una posición segura.")
 
 func esta_en_meta(posicion_index, jugador):
 	var total_camino = posiciones.size()
 	return posicion_index >= total_camino
 
 func obtener_posicion_por_indice(jugador, posicion_index):
-	var total_camino = posiciones.size()
-	if posicion_index < total_camino:
+	if posicion_index >= 0 and posicion_index < posiciones.size():
 		return posiciones[posicion_index]
 	else:
-		var meta_index = posicion_index - total_camino
-		return metas[jugador][meta_index]
-
+		# La pieza está en casa o ha llegado a la meta
+		return null
 
 func tiene_movimientos_validos(jugador, dado):
-	var total_posiciones = posiciones.size() + metas[jugador].size()
+	var total_posiciones = posiciones.size()
 	for i in range(jugadores[jugador]["piezas"].size()):
 		var ha_salido = jugadores[jugador]["han_salido"][i]
 		var posicion_index = jugadores[jugador]["posiciones"][i]
 		if ha_salido:
-			if posicion_index + dado < total_posiciones:
-				return true
-			elif posicion_index + dado == total_posiciones:
+			var nueva_posicion_index = posicion_index + dado
+			if nueva_posicion_index <= total_posiciones:
 				return true
 		else:
 			if dado == 6:
