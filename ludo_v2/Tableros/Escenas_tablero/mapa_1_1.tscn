@@ -8768,7 +8768,6 @@ sources/6 = SubResource("TileSetAtlasSource_by5id")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ekeug"]
 texture = ExtResource("17_54rt1")
-texture_region_size = Vector2i(5, 1)
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
