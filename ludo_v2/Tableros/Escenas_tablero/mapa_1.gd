@@ -1,6 +1,5 @@
 extends Node
 
-
 var dado
 var veces_dado_igual_seis = 0
 var turnoActual = 1
@@ -26,43 +25,6 @@ var dado_sprite
 @onready var sfx_wrap: AudioStreamPlayer = $sfx_wrap
 @onready var sfx_dado: AudioStreamPlayer = $sfx_dado
 
-#var posiciones = [
-	##cuadrante 1 - horizontal_derecha
-	#Vector2(-19,0), Vector2(-16,0), Vector2(-13, 0), Vector2(-10, 0), Vector2(-07, 0), Vector2(-04, 0),
-	##   0				1				2				3					4					5 
-	##cuadrante 1 - vertical_arriba
-	#Vector2(-03, -02), Vector2(-3, -5), Vector2(-03,-8), Vector2(-03,-11), Vector2(-03, -15),  
-	##   6					7				8					9					10			
-	##cuadrante 1/2 - horizontal_derecha
-	#Vector2(-1, -15), Vector2(2, -15), 
-	##	11					12
-	###cuadrante 2 - vertical_abajo
-	#Vector2(3, -13),Vector2(3,-10), Vector2(3,-7), Vector2(3, -4),Vector2(3, -1),
-	##	13				14				15				16				17
-	###cuadrante 2 - horizontal_derecha
-	#Vector2(5, 0), Vector2(8, 0),Vector2(11, 0), Vector2(14, 0), Vector2(17, 0), 
-	##	18				19			20				21					22
-	##cuadrante 2/3 - vertical_abajo
-	#Vector2(18, 2), Vector2(18, 5), 
-	##	23				24
-	##cuadrante 3 - horizontal_izquierda
-	#Vector2(16, 6), Vector2(13, 6),Vector2(10, 6), Vector2(7, 6), Vector2(4,6),
-	##	25				26				27				28				29
-	##cuadrante 3 - vertical_abajo
-	#Vector2(3, 8), Vector2(3, 11),Vector2(3, 14),Vector2(3, 17),Vector2(3, 20),
-	##	30				31				32			33				34
-	##cuadrante 3/4
-	#Vector2(1, 21),Vector2(-2, 21),
-	##	35				36
-	##cuadrante 4 - vertical_arriba
-	#Vector2(-3, 19),Vector2(-3, 16), Vector2(-3, 13), Vector2(-3, 10), Vector2(-2, 6), 
-	##	37				38				39					40				41
-	##cuadrante 4 - horizontal_izquierda
-	#Vector2(-5, 6), Vector2(-8, 6), Vector2(-11, 4), Vector2(-14,6),	Vector2(-18,6),
-	##	42				43				44				45					46
-	##cuadrante 4/1
-	#Vector2(-18, 4)]
-	##	47
 var posiciones = [
 	#cuadrante 1 - horizontal_derecha
 	Vector2(-283.8,-2), Vector2(-235.5,-2), Vector2(-187.2, -2), Vector2(-138.9, -2), Vector2(-90.6, -2), Vector2(-42.3, -2),
@@ -235,10 +197,7 @@ func _on_ready() -> void:
 					posicionesValidasP4[i].y = posicionesValidasP4[i].y -8
 	
 	dado_sprite = get_node("dado")
-	# Obtener el nodo lbl_turno (ajusta la ruta si es necesario)
-	#lbl_turno = get_node("lbl_turno")
-	#lbl_accion = get_node("lbl_accion")
-	# Actualizar el label al iniciar el juego
+	dado_sprite.connect("piece_clicked", Callable(self, "_on_tirar_dado_pressed"))
 	actualizar_lbl_turno() # Replace with function body.
 	#Pruevaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 	#verificar_victoria(2, Vector2(6, 51))
@@ -591,7 +550,7 @@ func transportar_pieza_a_casa(pieza, posicion_inicial, jugador_num, old_posicion
 		print("Error: La pieza es null.")
 
 
-func _on_tirar_dado_pressed() -> void:
+func _on_tirar_dado_pressed(indice_pieza) -> void:
 	if estado_turno != ESTADO_ESPERANDO_DADO:
 		print("No es tu turno para tirar el dado.")
 		return
