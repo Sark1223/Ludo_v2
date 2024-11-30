@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://cdkghv7bce6wo"]
+[gd_scene load_steps=42 format=4 uid="uid://cdkghv7bce6wo"]
 
 [ext_resource type="Texture2D" uid="uid://dheqq47d6inc2" path="res://tileset_diseño_general/demonstration.png" id="1_pkv4a"]
 [ext_resource type="Texture2D" uid="uid://i2i2ky7gtbs3" path="res://tileset_diseño_general/Serene_Village_16x16_edit.png" id="2_1fnfc"]
@@ -17,6 +17,8 @@
 [ext_resource type="AudioStream" uid="uid://cw4acgxihfx84" path="res://Sonido/Jump Sound Effect.MP3" id="15_qtl05"]
 [ext_resource type="PackedScene" uid="uid://brbgqnixcy2x0" path="res://Personajes/Escenas_personajes/oso.tscn" id="16_6uvfh"]
 [ext_resource type="Texture2D" uid="uid://q05tv38sfwxp" path="res://tileset_diseño_general/Tiles_Menu_tableroWills.png" id="17_54rt1"]
+[ext_resource type="Texture2D" uid="uid://bcwh4la6dnuko" path="res://Interfaz/interfaz_diseño/Objects/Basic_Furniture.png" id="18_tmhlc"]
+[ext_resource type="FontFile" uid="uid://dyvvoonk88kjt" path="res://Interfaz/interfaz_diseño/fuentes/fuentesWinMessage/Super-Mario-Bros--3.ttf" id="19_v7pv4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_alp1l"]
 texture = ExtResource("1_pkv4a")
@@ -9133,8 +9135,58 @@ texture = ExtResource("17_54rt1")
 [sub_resource type="TileSet" id="TileSet_bpau8"]
 sources/0 = SubResource("TileSetAtlasSource_ekeug")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ss0m6"]
+texture = ExtResource("18_tmhlc")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_b1214"]
+sources/0 = SubResource("TileSetAtlasSource_ss0m6")
+
 [sub_resource type="SystemFont" id="SystemFont_i7hlv"]
 font_weight = 225
+
+[sub_resource type="LabelSettings" id="LabelSettings_8diai"]
+font = ExtResource("19_v7pv4")
+font_size = 25
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -9327,18 +9379,22 @@ position = Vector2(-137, -175)
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(-54.478, 116.174)
 scale = Vector2(1.28125, 1.28125)
-tile_map_data = PackedByteArray("AAD3//r/AAAKAAwAAAD3//v/AAAKAA0AAAD4//r/AAALAAwAAAD5//r/AAALAAwAAAD6//r/AAALAAwAAAD7//v/AAALAA0AAAD8//v/AAALAA0AAAD8//r/AAALAAwAAAD9//r/AAALAAwAAAD7//r/AAALAAwAAAD+//r/AAALAAwAAAD///r/AAALAAwAAAAAAPr/AAALAAwAAAABAPr/AAALAAwAAAABAPv/AAALAA0AAAAAAPv/AAALAA0AAAD///v/AAALAA0AAAD+//v/AAALAA0AAAD9//v/AAALAA0AAAD6//v/AAALAA0AAAD5//v/AAALAA0AAAD4//v/AAALAA0AAAAIAPr/AAALAAwAAAAHAPr/AAALAAwAAAAGAPr/AAALAAwAAAAFAPr/AAALAAwAAAAEAPr/AAALAAwAAAADAPr/AAALAAwAAAACAPr/AAALAAwAAAAIAPv/AAALAA0AAAAHAPv/AAALAA0AAAAGAPv/AAALAA0AAAAFAPv/AAALAA0AAAAEAPv/AAALAA0AAAADAPv/AAALAA0AAAACAPv/AAALAA0AAAD3//z/AAAKAA0AAAD3//3/AAAKAA0AAAD3//7/AAAKAA0AAAD3////AAAKAA4AAAD4////AAALAA4AAAD5////AAALAA4AAAD6////AAALAA4AAAD6//7/AAALAA0AAAD7//7/AAALAA0AAAD7////AAALAA4AAAD8////AAALAA4AAAD9////AAALAA4AAAD+////AAALAA4AAAD/////AAALAA4AAAAAAP//AAALAA4AAAABAP//AAALAA4AAAACAP//AAALAA4AAAADAP//AAALAA4AAAAEAP//AAALAA4AAAAFAP//AAALAA4AAAAGAP//AAALAA4AAAAHAP//AAALAA4AAAAIAP//AAALAA4AAAAJAP//AAALAA4AAAAKAP//AAALAA4AAAALAP//AAALAA4AAAAMAP//AAALAA4AAAANAP//AAALAA4AAAAOAP//AAAMAA4AAAAOAPr/AAAMAAwAAAAOAP7/AAAMAA0AAAAOAP3/AAAMAA0AAAAOAPz/AAAMAA0AAAAOAPv/AAAMAA0AAAANAPr/AAALAAwAAAAMAPr/AAALAAwAAAALAPr/AAALAAwAAAAKAPr/AAALAAwAAAAJAPr/AAALAAwAAAD4//z/AAALAA0AAAD4//3/AAALAA0AAAD5//3/AAALAA0AAAD5//7/AAALAA0AAAD4//7/AAALAA0AAAD5//z/AAALAA0AAAD6//z/AAALAA0AAAD6//3/AAALAA0AAAD7//z/AAALAA0AAAD8//z/AAALAA0AAAD8//3/AAALAA0AAAD8//7/AAALAA0AAAD9//3/AAALAA0AAAD9//z/AAALAA0AAAD7//3/AAALAA0AAAD9//7/AAALAA0AAAD+//z/AAALAA0AAAAJAPv/AAALAA0AAAAKAPv/AAALAA0AAAALAPv/AAALAA0AAAAMAPv/AAALAA0AAAANAPv/AAALAA0AAAANAPz/AAALAA0AAAANAP3/AAALAA0AAAANAP7/AAALAA0AAAAMAP7/AAALAA0AAAAMAP3/AAALAA0AAAAMAPz/AAALAA0AAAALAPz/AAALAA0AAAAKAPz/AAALAA0AAAAKAP3/AAALAA0AAAAKAP7/AAALAA0AAAALAP3/AAALAA0AAAAJAP3/AAALAA0AAAAJAPz/AAALAA0AAAAIAPz/AAALAA0AAAALAP7/AAALAA0AAAAJAP7/AAALAA0AAAAIAP7/AAALAA0AAAAIAP3/AAALAA0AAAAHAP3/AAALAA0AAAAHAPz/AAALAA0AAAAHAP7/AAALAA0AAAAGAP7/AAALAA0AAAAGAP3/AAALAA0AAAAGAPz/AAALAA0AAAAFAPz/AAALAA0AAAAFAP3/AAALAA0AAAAFAP7/AAALAA0AAAAEAP7/AAALAA0AAAAEAP3/AAALAA0AAAAEAPz/AAALAA0AAAADAPz/AAALAA0AAAADAP3/AAALAA0AAAADAP7/AAALAA0AAAACAP7/AAALAA0AAAACAP3/AAALAA0AAAACAPz/AAALAA0AAAABAPz/AAALAA0AAAABAP3/AAALAA0AAAABAP7/AAALAA0AAAAAAP7/AAALAA0AAAAAAP3/AAALAA0AAAAAAPz/AAALAA0AAAD///z/AAALAA0AAAD///3/AAALAA0AAAD///7/AAALAA0AAAD+//3/AAALAA0AAAD+//7/AAALAA0AAAA=")
 tile_set = SubResource("TileSet_bpau8")
+rendering_quadrant_size = 1
 
 [node name="TileMapLayer" type="TileMapLayer" parent="TileMapLayer"]
 tile_map_data = PackedByteArray("AAD3//r/AAAKAAcAAAD4//r/AAALAAcAAAD5//r/AAALAAcAAAD6//r/AAALAAcAAAD8//r/AAALAAcAAAD9//r/AAALAAcAAAD7//r/AAALAAcAAAD+//r/AAALAAcAAAD///r/AAALAAcAAAAAAPr/AAALAAcAAAABAPr/AAALAAcAAAAHAPr/AAALAAcAAAAGAPr/AAALAAcAAAAFAPr/AAALAAcAAAAEAPr/AAALAAcAAAADAPr/AAALAAcAAAACAPr/AAALAAcAAAD3////AAAKAAkAAAAOAP//AAAMAAkAAAANAP//AAALAAkAAAAMAP//AAALAAkAAAALAP//AAALAAkAAAAKAP//AAALAAkAAAAJAP//AAALAAkAAAAIAP//AAALAAkAAAAHAP//AAALAAkAAAAGAP//AAALAAkAAAAAAP//AAALAAkAAAD/////AAALAAkAAAD+////AAALAAkAAAD9////AAALAAkAAAD8////AAALAAkAAAD7////AAALAAkAAAD6////AAALAAkAAAD5////AAALAAkAAAD4////AAALAAkAAAAOAPr/AAAMAAcAAAAOAPv/AAAMAAgAAAAOAPz/AAAMAAgAAAAOAP3/AAAMAAgAAAAOAP7/AAAMAAgAAAANAPr/AAALAAcAAAAMAPr/AAALAAcAAAALAPr/AAALAAcAAAAKAPr/AAALAAcAAAAJAPr/AAALAAcAAAAIAPr/AAALAAcAAAD3//v/AAAKAAgAAAD3//z/AAAKAAgAAAD3//3/AAAKAAgAAAD3//7/AAAKAAgAAAABAP//AAALAAkAAAACAP//AAALAAkAAAADAP//AAALAAkAAAAEAP//AAALAAkAAAAFAP//AAALAAkAAAA=")
 tile_set = SubResource("TileSet_bpau8")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="TileMapLayer"]
+tile_set = SubResource("TileSet_b1214")
 
 [node name="Timer2" type="Timer" parent="."]
 wait_time = 2.967
 one_shot = true
 
 [node name="lbl_turno" type="Label" parent="."]
+layout_mode = 0
 offset_left = -228.0
 offset_top = -5.0
 offset_right = 249.0
@@ -9351,7 +9407,9 @@ theme_override_constants/shadow_offset_y = 1
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = SubResource("SystemFont_i7hlv")
 theme_override_font_sizes/font_size = 25
-text = "M	ensaje"
+text = "the DINOSAURIO win"
+label_settings = SubResource("LabelSettings_8diai")
+horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 justification_flags = 2

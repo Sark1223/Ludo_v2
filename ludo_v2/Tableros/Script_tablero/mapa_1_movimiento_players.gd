@@ -15,6 +15,7 @@ var estado_turno = ESTADO_ESPERANDO_DADO
 var movimientos_pendientes = 0
 var dado_sprite
 var lbl_turno
+
 @onready var meta: AnimatedSprite2D = $meta
 
 #Audio

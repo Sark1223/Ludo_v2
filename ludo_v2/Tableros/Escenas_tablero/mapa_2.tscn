@@ -2052,6 +2052,7 @@ tile_map_data = PackedByteArray("AAD3//r/AAAKAAcAAAD4//r/AAALAAcAAAD5//r/AAALAAc
 tile_set = SubResource("TileSet_ewnul")
 
 [node name="lbl_turno" type="Label" parent="."]
+layout_mode = 0
 offset_left = -173.0
 offset_top = -45.0
 offset_right = 209.0
