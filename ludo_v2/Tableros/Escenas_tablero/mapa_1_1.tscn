@@ -1,13 +1,14 @@
-[gd_scene load_steps=42 format=4 uid="uid://cdkghv7bce6wo"]
+[gd_scene load_steps=52 format=4 uid="uid://cdkghv7bce6wo"]
 
+[ext_resource type="Script" path="res://Tableros/Escenas_tablero/mapa_1.gd" id="1_akq2c"]
 [ext_resource type="Texture2D" uid="uid://dheqq47d6inc2" path="res://tileset_diseño_general/demonstration.png" id="1_pkv4a"]
 [ext_resource type="Texture2D" uid="uid://i2i2ky7gtbs3" path="res://tileset_diseño_general/Serene_Village_16x16_edit.png" id="2_1fnfc"]
 [ext_resource type="Texture2D" uid="uid://b4tr8hi02jumv" path="res://tileset_diseño_general/Tileset-Terrain2.png" id="3_p6bxy"]
 [ext_resource type="Texture2D" uid="uid://crhe485bousbu" path="res://Tableros/Diseño_tablero/Cuadros_M1.png" id="4_t5vap"]
-[ext_resource type="Script" path="res://Tableros/Script_tablero/mapa_1_movimiento_players.gd" id="5_h7vtb"]
 [ext_resource type="PackedScene" uid="uid://chn7gbfoesw34" path="res://Tableros/Escenas_tablero/meta.tscn" id="6_s3dxf"]
 [ext_resource type="PackedScene" uid="uid://cg32rv4pu048g" path="res://Tableros/Escenas_tablero/dado.tscn" id="7_sq2nu"]
 [ext_resource type="PackedScene" uid="uid://c48nhxac7vkkp" path="res://Personajes/Escenas_personajes/gatito.tscn" id="8_ssgx7"]
+[ext_resource type="Script" path="res://Tableros/Escenas_tablero/dado_click.gd" id="9_j1b8y"]
 [ext_resource type="PackedScene" uid="uid://0jsekysatrqe" path="res://Personajes/Escenas_personajes/sombrero.tscn" id="9_w5ewx"]
 [ext_resource type="PackedScene" uid="uid://do7hk21ws8xtw" path="res://Personajes/Escenas_personajes/Dino.tscn" id="10_1xfqn"]
 [ext_resource type="AudioStream" uid="uid://52pnktvq2pyv" path="res://Sonido/Pop (Minecraft Sound) - Sound Effect for editing.MP3" id="11_kyy6i"]
@@ -19,6 +20,9 @@
 [ext_resource type="Texture2D" uid="uid://q05tv38sfwxp" path="res://tileset_diseño_general/Tiles_Menu_tableroWills.png" id="17_54rt1"]
 [ext_resource type="Texture2D" uid="uid://bcwh4la6dnuko" path="res://Interfaz/interfaz_diseño/Objects/Basic_Furniture.png" id="18_tmhlc"]
 [ext_resource type="FontFile" uid="uid://dyvvoonk88kjt" path="res://Interfaz/interfaz_diseño/fuentes/fuentesWinMessage/Super-Mario-Bros--3.ttf" id="19_v7pv4"]
+[ext_resource type="FontFile" uid="uid://dwwlqj4pjor22" path="res://Interfaz/interfaz_diseño/fuentes/Gobold Regular.otf" id="20_5otta"]
+[ext_resource type="FontFile" uid="uid://dtwiq5edl0vjk" path="res://Interfaz/interfaz_diseño/fuentes/fuentesWinMessage/8-bit Arcade In.ttf" id="22_ne31k"]
+[ext_resource type="FontFile" uid="uid://bharr7sbbi5e" path="res://Interfaz/interfaz_diseño/fuentes/fuentesWinMessage/8-bit Arcade Out.ttf" id="23_a5pej"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_alp1l"]
 texture = ExtResource("1_pkv4a")
@@ -9135,7 +9139,7 @@ texture = ExtResource("17_54rt1")
 [sub_resource type="TileSet" id="TileSet_bpau8"]
 sources/0 = SubResource("TileSetAtlasSource_ekeug")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ss0m6"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_khvsf"]
 texture = ExtResource("18_tmhlc")
 0:0/0 = 0
 1:0/0 = 0
@@ -9177,16 +9181,957 @@ texture = ExtResource("18_tmhlc")
 6:5/0 = 0
 7:5/0 = 0
 8:5/0 = 0
+27:42/0 = 0
+27:43/0 = 0
+27:44/0 = 0
+28:44/0 = 0
+28:45/0 = 0
+29:45/0 = 0
+30:46/0 = 0
+29:46/0 = 0
+28:46/0 = 0
+27:45/0 = 0
+27:46/0 = 0
+28:42/0 = 0
+29:42/0 = 0
+30:42/0 = 0
+31:42/0 = 0
+32:42/0 = 0
+33:42/0 = 0
+34:42/0 = 0
+35:42/0 = 0
+36:42/0 = 0
+36:43/0 = 0
+36:44/0 = 0
+36:45/0 = 0
+36:46/0 = 0
+35:46/0 = 0
+34:46/0 = 0
+33:46/0 = 0
+32:46/0 = 0
+31:46/0 = 0
+30:45/0 = 0
+31:45/0 = 0
+32:45/0 = 0
+33:45/0 = 0
+34:45/0 = 0
+35:45/0 = 0
+35:44/0 = 0
+34:44/0 = 0
+33:44/0 = 0
+32:44/0 = 0
+31:44/0 = 0
+30:44/0 = 0
+29:44/0 = 0
+28:43/0 = 0
+29:43/0 = 0
+30:43/0 = 0
+31:43/0 = 0
+32:43/0 = 0
+33:43/0 = 0
+34:43/0 = 0
+35:43/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cjwml"]
+texture = ExtResource("2_1fnfc")
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+16:0/0 = 0
+17:0/0 = 0
+18:0/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+11:1/0 = 0
+12:1/0 = 0
+13:1/0 = 0
+14:1/0 = 0
+17:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+11:2/0 = 0
+12:2/0 = 0
+13:2/0 = 0
+16:2/0 = 0
+17:2/0 = 0
+18:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+11:3/0 = 0
+12:3/0 = 0
+13:3/0 = 0
+14:3/0 = 0
+16:3/0 = 0
+17:3/0 = 0
+18:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+10:4/0 = 0
+11:4/0 = 0
+12:4/0 = 0
+13:4/0 = 0
+14:4/0 = 0
+16:4/0 = 0
+17:4/0 = 0
+18:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+9:5/0 = 0
+10:5/0 = 0
+11:5/0 = 0
+12:5/0 = 0
+13:5/0 = 0
+14:5/0 = 0
+16:5/0 = 0
+17:5/0 = 0
+18:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+9:6/0 = 0
+10:6/0 = 0
+11:6/0 = 0
+12:6/0 = 0
+13:6/0 = 0
+14:6/0 = 0
+16:6/0 = 0
+17:6/0 = 0
+18:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+8:7/0 = 0
+9:7/0 = 0
+10:7/0 = 0
+11:7/0 = 0
+12:7/0 = 0
+13:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+11:8/0 = 0
+12:8/0 = 0
+13:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+11:9/0 = 0
+12:9/0 = 0
+13:9/0 = 0
+0:10/0 = 0
+1:10/0 = 0
+2:10/0 = 0
+3:10/0 = 0
+4:10/0 = 0
+5:10/0 = 0
+2:12/0 = 0
+3:12/0 = 0
+4:12/0 = 0
+5:12/0 = 0
+6:12/0 = 0
+7:12/0 = 0
+9:12/0 = 0
+10:12/0 = 0
+11:12/0 = 0
+12:12/0 = 0
+13:12/0 = 0
+14:12/0 = 0
+15:12/0 = 0
+16:12/0 = 0
+0:13/0 = 0
+1:13/0 = 0
+2:13/0 = 0
+5:13/0 = 0
+6:13/0 = 0
+7:13/0 = 0
+8:13/0 = 0
+9:13/0 = 0
+10:13/0 = 0
+11:13/0 = 0
+12:13/0 = 0
+13:13/0 = 0
+14:13/0 = 0
+15:13/0 = 0
+16:13/0 = 0
+17:13/0 = 0
+18:13/0 = 0
+0:14/0 = 0
+1:14/0 = 0
+2:14/0 = 0
+3:14/0 = 0
+4:14/0 = 0
+5:14/0 = 0
+7:14/0 = 0
+8:14/0 = 0
+9:14/0 = 0
+10:14/0 = 0
+11:14/0 = 0
+12:14/0 = 0
+13:14/0 = 0
+14:14/0 = 0
+15:14/0 = 0
+16:14/0 = 0
+17:14/0 = 0
+18:14/0 = 0
+0:15/0 = 0
+1:15/0 = 0
+2:15/0 = 0
+3:15/0 = 0
+4:15/0 = 0
+5:15/0 = 0
+6:15/0 = 0
+8:15/0 = 0
+9:15/0 = 0
+10:15/0 = 0
+11:15/0 = 0
+12:15/0 = 0
+13:15/0 = 0
+14:15/0 = 0
+15:15/0 = 0
+16:15/0 = 0
+17:15/0 = 0
+18:15/0 = 0
+0:16/0 = 0
+1:16/0 = 0
+2:16/0 = 0
+3:16/0 = 0
+4:16/0 = 0
+6:16/0 = 0
+7:16/0 = 0
+8:16/0 = 0
+9:16/0 = 0
+10:16/0 = 0
+11:16/0 = 0
+12:16/0 = 0
+13:16/0 = 0
+14:16/0 = 0
+15:16/0 = 0
+16:16/0 = 0
+17:16/0 = 0
+18:16/0 = 0
+0:17/0 = 0
+1:17/0 = 0
+2:17/0 = 0
+3:17/0 = 0
+4:17/0 = 0
+5:17/0 = 0
+6:17/0 = 0
+7:17/0 = 0
+8:17/0 = 0
+9:17/0 = 0
+10:17/0 = 0
+11:17/0 = 0
+12:17/0 = 0
+13:17/0 = 0
+14:17/0 = 0
+15:17/0 = 0
+16:17/0 = 0
+17:17/0 = 0
+18:17/0 = 0
+0:18/0 = 0
+1:18/0 = 0
+2:18/0 = 0
+3:18/0 = 0
+4:18/0 = 0
+5:18/0 = 0
+6:18/0 = 0
+7:18/0 = 0
+9:18/0 = 0
+10:18/0 = 0
+11:18/0 = 0
+12:18/0 = 0
+13:18/0 = 0
+14:18/0 = 0
+15:18/0 = 0
+16:18/0 = 0
+17:18/0 = 0
+18:18/0 = 0
+0:19/0 = 0
+1:19/0 = 0
+2:19/0 = 0
+3:19/0 = 0
+4:19/0 = 0
+5:19/0 = 0
+6:19/0 = 0
+7:19/0 = 0
+9:19/0 = 0
+10:19/0 = 0
+11:19/0 = 0
+12:19/0 = 0
+13:19/0 = 0
+14:19/0 = 0
+15:19/0 = 0
+16:19/0 = 0
+17:19/0 = 0
+18:19/0 = 0
+0:20/0 = 0
+1:20/0 = 0
+4:20/0 = 0
+5:20/0 = 0
+9:20/0 = 0
+10:20/0 = 0
+11:20/0 = 0
+12:20/0 = 0
+13:20/0 = 0
+14:20/0 = 0
+15:20/0 = 0
+16:20/0 = 0
+17:20/0 = 0
+18:20/0 = 0
+0:21/0 = 0
+1:21/0 = 0
+2:21/0 = 0
+3:21/0 = 0
+4:21/0 = 0
+5:21/0 = 0
+6:21/0 = 0
+7:21/0 = 0
+8:21/0 = 0
+9:21/0 = 0
+10:21/0 = 0
+11:21/0 = 0
+12:21/0 = 0
+13:21/0 = 0
+14:21/0 = 0
+15:21/0 = 0
+16:21/0 = 0
+17:21/0 = 0
+18:21/0 = 0
+0:22/0 = 0
+1:22/0 = 0
+2:22/0 = 0
+3:22/0 = 0
+4:22/0 = 0
+5:22/0 = 0
+6:22/0 = 0
+7:22/0 = 0
+8:22/0 = 0
+9:22/0 = 0
+10:22/0 = 0
+11:22/0 = 0
+12:22/0 = 0
+13:22/0 = 0
+14:22/0 = 0
+15:22/0 = 0
+16:22/0 = 0
+17:22/0 = 0
+18:22/0 = 0
+0:23/0 = 0
+1:23/0 = 0
+2:23/0 = 0
+3:23/0 = 0
+4:23/0 = 0
+5:23/0 = 0
+6:23/0 = 0
+7:23/0 = 0
+8:23/0 = 0
+9:23/0 = 0
+10:23/0 = 0
+11:23/0 = 0
+12:23/0 = 0
+13:23/0 = 0
+14:23/0 = 0
+15:23/0 = 0
+16:23/0 = 0
+17:23/0 = 0
+18:23/0 = 0
+0:24/0 = 0
+1:24/0 = 0
+2:24/0 = 0
+3:24/0 = 0
+4:24/0 = 0
+5:24/0 = 0
+6:24/0 = 0
+7:24/0 = 0
+8:24/0 = 0
+9:24/0 = 0
+10:24/0 = 0
+11:24/0 = 0
+12:24/0 = 0
+13:24/0 = 0
+14:24/0 = 0
+15:24/0 = 0
+16:24/0 = 0
+17:24/0 = 0
+18:24/0 = 0
+0:25/0 = 0
+1:25/0 = 0
+2:25/0 = 0
+3:25/0 = 0
+4:25/0 = 0
+5:25/0 = 0
+6:25/0 = 0
+7:25/0 = 0
+8:25/0 = 0
+9:25/0 = 0
+10:25/0 = 0
+11:25/0 = 0
+12:25/0 = 0
+13:25/0 = 0
+14:25/0 = 0
+15:25/0 = 0
+16:25/0 = 0
+17:25/0 = 0
+18:25/0 = 0
+0:26/0 = 0
+1:26/0 = 0
+2:26/0 = 0
+3:26/0 = 0
+4:26/0 = 0
+5:26/0 = 0
+6:26/0 = 0
+7:26/0 = 0
+8:26/0 = 0
+9:26/0 = 0
+10:26/0 = 0
+11:26/0 = 0
+12:26/0 = 0
+13:26/0 = 0
+14:26/0 = 0
+15:26/0 = 0
+16:26/0 = 0
+17:26/0 = 0
+18:26/0 = 0
+0:27/0 = 0
+1:27/0 = 0
+2:27/0 = 0
+3:27/0 = 0
+4:27/0 = 0
+5:27/0 = 0
+6:27/0 = 0
+7:27/0 = 0
+8:27/0 = 0
+9:27/0 = 0
+10:27/0 = 0
+11:27/0 = 0
+12:27/0 = 0
+13:27/0 = 0
+14:27/0 = 0
+15:27/0 = 0
+17:27/0 = 0
+18:27/0 = 0
+0:28/0 = 0
+1:28/0 = 0
+2:28/0 = 0
+3:28/0 = 0
+4:28/0 = 0
+5:28/0 = 0
+6:28/0 = 0
+7:28/0 = 0
+8:28/0 = 0
+9:28/0 = 0
+10:28/0 = 0
+11:28/0 = 0
+12:28/0 = 0
+13:28/0 = 0
+14:28/0 = 0
+15:28/0 = 0
+17:28/0 = 0
+18:28/0 = 0
+0:29/0 = 0
+1:29/0 = 0
+2:29/0 = 0
+3:29/0 = 0
+4:29/0 = 0
+5:29/0 = 0
+6:29/0 = 0
+7:29/0 = 0
+8:29/0 = 0
+9:29/0 = 0
+10:29/0 = 0
+11:29/0 = 0
+12:29/0 = 0
+13:29/0 = 0
+14:29/0 = 0
+15:29/0 = 0
+16:29/0 = 0
+17:29/0 = 0
+18:29/0 = 0
+0:30/0 = 0
+1:30/0 = 0
+2:30/0 = 0
+3:30/0 = 0
+4:30/0 = 0
+5:30/0 = 0
+6:30/0 = 0
+7:30/0 = 0
+8:30/0 = 0
+9:30/0 = 0
+10:30/0 = 0
+11:30/0 = 0
+12:30/0 = 0
+13:30/0 = 0
+14:30/0 = 0
+15:30/0 = 0
+16:30/0 = 0
+17:30/0 = 0
+18:30/0 = 0
+0:31/0 = 0
+1:31/0 = 0
+2:31/0 = 0
+3:31/0 = 0
+4:31/0 = 0
+5:31/0 = 0
+6:31/0 = 0
+7:31/0 = 0
+8:31/0 = 0
+9:31/0 = 0
+10:31/0 = 0
+11:31/0 = 0
+12:31/0 = 0
+13:31/0 = 0
+14:31/0 = 0
+15:31/0 = 0
+16:31/0 = 0
+17:31/0 = 0
+18:31/0 = 0
+0:32/0 = 0
+1:32/0 = 0
+2:32/0 = 0
+3:32/0 = 0
+4:32/0 = 0
+5:32/0 = 0
+6:32/0 = 0
+7:32/0 = 0
+8:32/0 = 0
+9:32/0 = 0
+10:32/0 = 0
+11:32/0 = 0
+12:32/0 = 0
+13:32/0 = 0
+14:32/0 = 0
+0:33/0 = 0
+1:33/0 = 0
+2:33/0 = 0
+3:33/0 = 0
+4:33/0 = 0
+5:33/0 = 0
+6:33/0 = 0
+7:33/0 = 0
+8:33/0 = 0
+9:33/0 = 0
+10:33/0 = 0
+11:33/0 = 0
+12:33/0 = 0
+13:33/0 = 0
+14:33/0 = 0
+15:33/0 = 0
+16:33/0 = 0
+17:33/0 = 0
+18:33/0 = 0
+0:34/0 = 0
+1:34/0 = 0
+2:34/0 = 0
+3:34/0 = 0
+4:34/0 = 0
+5:34/0 = 0
+6:34/0 = 0
+7:34/0 = 0
+8:34/0 = 0
+9:34/0 = 0
+10:34/0 = 0
+11:34/0 = 0
+12:34/0 = 0
+13:34/0 = 0
+14:34/0 = 0
+15:34/0 = 0
+16:34/0 = 0
+18:34/0 = 0
+0:35/0 = 0
+1:35/0 = 0
+2:35/0 = 0
+3:35/0 = 0
+4:35/0 = 0
+5:35/0 = 0
+6:35/0 = 0
+7:35/0 = 0
+8:35/0 = 0
+9:35/0 = 0
+10:35/0 = 0
+11:35/0 = 0
+12:35/0 = 0
+13:35/0 = 0
+14:35/0 = 0
+15:35/0 = 0
+0:36/0 = 0
+1:36/0 = 0
+2:36/0 = 0
+3:36/0 = 0
+4:36/0 = 0
+5:36/0 = 0
+6:36/0 = 0
+7:36/0 = 0
+8:36/0 = 0
+9:36/0 = 0
+10:36/0 = 0
+11:36/0 = 0
+12:36/0 = 0
+13:36/0 = 0
+14:36/0 = 0
+15:36/0 = 0
+0:37/0 = 0
+1:37/0 = 0
+2:37/0 = 0
+3:37/0 = 0
+4:37/0 = 0
+5:37/0 = 0
+6:37/0 = 0
+7:37/0 = 0
+8:37/0 = 0
+9:37/0 = 0
+10:37/0 = 0
+11:37/0 = 0
+12:37/0 = 0
+13:37/0 = 0
+14:37/0 = 0
+0:38/0 = 0
+1:38/0 = 0
+2:38/0 = 0
+3:38/0 = 0
+4:38/0 = 0
+5:38/0 = 0
+6:38/0 = 0
+7:38/0 = 0
+8:38/0 = 0
+9:38/0 = 0
+10:38/0 = 0
+11:38/0 = 0
+12:38/0 = 0
+13:38/0 = 0
+14:38/0 = 0
+0:39/0 = 0
+1:39/0 = 0
+2:39/0 = 0
+3:39/0 = 0
+4:39/0 = 0
+5:39/0 = 0
+6:39/0 = 0
+7:39/0 = 0
+8:39/0 = 0
+9:39/0 = 0
+10:39/0 = 0
+11:39/0 = 0
+12:39/0 = 0
+13:39/0 = 0
+14:39/0 = 0
+0:40/0 = 0
+1:40/0 = 0
+2:40/0 = 0
+3:40/0 = 0
+4:40/0 = 0
+5:40/0 = 0
+6:40/0 = 0
+7:40/0 = 0
+8:40/0 = 0
+9:40/0 = 0
+10:40/0 = 0
+11:40/0 = 0
+12:40/0 = 0
+13:40/0 = 0
+14:40/0 = 0
+0:41/0 = 0
+1:41/0 = 0
+2:41/0 = 0
+3:41/0 = 0
+4:41/0 = 0
+5:41/0 = 0
+6:41/0 = 0
+7:41/0 = 0
+8:41/0 = 0
+9:41/0 = 0
+10:41/0 = 0
+11:41/0 = 0
+12:41/0 = 0
+13:41/0 = 0
+14:41/0 = 0
+15:41/0 = 0
+0:42/0 = 0
+1:42/0 = 0
+2:42/0 = 0
+3:42/0 = 0
+4:42/0 = 0
+5:42/0 = 0
+6:42/0 = 0
+7:42/0 = 0
+8:42/0 = 0
+9:42/0 = 0
+10:42/0 = 0
+11:42/0 = 0
+12:42/0 = 0
+13:42/0 = 0
+14:42/0 = 0
+15:42/0 = 0
+0:43/0 = 0
+1:43/0 = 0
+2:43/0 = 0
+3:43/0 = 0
+4:43/0 = 0
+5:43/0 = 0
+6:43/0 = 0
+7:43/0 = 0
+8:43/0 = 0
+9:43/0 = 0
+10:43/0 = 0
+11:43/0 = 0
+12:43/0 = 0
+13:43/0 = 0
+14:43/0 = 0
+15:43/0 = 0
+0:44/0 = 0
+1:44/0 = 0
+2:44/0 = 0
+3:44/0 = 0
+4:44/0 = 0
+5:44/0 = 0
+6:44/0 = 0
+7:44/0 = 0
+8:44/0 = 0
+9:44/0 = 0
+10:44/0 = 0
+11:44/0 = 0
+12:44/0 = 0
+13:44/0 = 0
+14:44/0 = 0
+15:44/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_b1214"]
-sources/0 = SubResource("TileSetAtlasSource_ss0m6")
+sources/1 = SubResource("TileSetAtlasSource_khvsf")
+sources/2 = SubResource("TileSetAtlasSource_cjwml")
 
 [sub_resource type="SystemFont" id="SystemFont_i7hlv"]
 font_weight = 225
 
 [sub_resource type="LabelSettings" id="LabelSettings_8diai"]
 font = ExtResource("19_v7pv4")
-font_size = 25
+font_size = 20
+shadow_color = Color(0, 0, 0, 0.152941)
+
+[sub_resource type="LabelSettings" id="LabelSettings_groli"]
+font = ExtResource("20_5otta")
+shadow_size = 6
+shadow_color = Color(0.00784314, 0.00784314, 0.00392157, 0.0470588)
+
+[sub_resource type="LabelSettings" id="LabelSettings_o0deg"]
+font = ExtResource("22_ne31k")
+font_size = 80
+font_color = Color(0.908391, 0.879004, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8x4m6"]
+font = ExtResource("23_a5pej")
+font_size = 80
+font_color = Color(0.965298, 0.505328, 0, 1)
+shadow_color = Color(0, 0, 0, 0.352941)
+shadow_offset = Vector2(1, 2)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a4do6"]
+texture = ExtResource("18_tmhlc")
+texture_region_size = Vector2i(5, 5)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+54:83/0 = 0
+55:84/0 = 0
+56:84/0 = 0
+57:85/0 = 0
+58:86/0 = 0
+59:86/0 = 0
+60:87/0 = 0
+61:87/0 = 0
+62:88/0 = 0
+63:89/0 = 0
+64:89/0 = 0
+65:90/0 = 0
+66:90/0 = 0
+67:91/0 = 0
+55:87/0 = 0
+55:88/0 = 0
+55:89/0 = 0
+56:90/0 = 0
+57:90/0 = 0
+58:90/0 = 0
+59:90/0 = 0
+60:90/0 = 0
+61:91/0 = 0
+62:91/0 = 0
+63:91/0 = 0
+64:91/0 = 0
+66:89/0 = 0
+67:88/0 = 0
+66:88/0 = 0
+65:87/0 = 0
+64:87/0 = 0
+63:87/0 = 0
+62:87/0 = 0
+61:86/0 = 0
+60:86/0 = 0
+58:85/0 = 0
+56:86/0 = 0
+55:86/0 = 0
+54:85/0 = 0
+54:84/0 = 0
+55:90/0 = 0
+58:91/0 = 0
+59:91/0 = 0
+60:91/0 = 0
+63:92/0 = 0
+64:92/0 = 0
+65:92/0 = 0
+19:17/0 = 0
+1:17/0 = 0
+8:17/0 = 0
+4:17/0 = 0
+12:17/0 = 0
+19:84/0 = 0
+19:85/0 = 0
+20:86/0 = 0
+20:87/0 = 0
+21:87/0 = 0
+22:87/0 = 0
+23:87/0 = 0
+24:87/0 = 0
+23:86/0 = 0
+22:85/0 = 0
+21:84/0 = 0
+20:84/0 = 0
+20:85/0 = 0
+21:85/0 = 0
+20:88/0 = 0
+20:89/0 = 0
+19:90/0 = 0
+20:90/0 = 0
+21:90/0 = 0
+22:90/0 = 0
+23:90/0 = 0
+24:90/0 = 0
+24:89/0 = 0
+25:88/0 = 0
+39:85/0 = 0
+38:85/0 = 0
+37:86/0 = 0
+36:86/0 = 0
+35:87/0 = 0
+36:88/0 = 0
+37:89/0 = 0
+38:90/0 = 0
+39:91/0 = 0
+40:90/0 = 0
+41:89/0 = 0
+41:88/0 = 0
+42:87/0 = 0
+43:86/0 = 0
+42:86/0 = 0
+41:86/0 = 0
+40:86/0 = 0
+39:86/0 = 0
+39:87/0 = 0
+40:88/0 = 0
+40:84/0 = 0
+39:84/0 = 0
+38:83/0 = 0
+37:83/0 = 0
+37:84/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_lcpm6"]
+sources/0 = SubResource("TileSetAtlasSource_a4do6")
 
 [node name="Control2" type="Control"]
 layout_mode = 3
@@ -9195,7 +10140,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("5_h7vtb")
+script = ExtResource("1_akq2c")
 
 [node name="disenio_tablero" type="TileMapLayer" parent="."]
 position = Vector2(-1.91994, -0.959969)
@@ -9208,67 +10153,17 @@ tile_map_data = PackedByteArray("AAD0/wEACwABAAUAAAD3/wEACwABAAUAAAD4/wEACwACAAU
 tile_set = SubResource("TileSet_sjxpf")
 
 [node name="dado" type="RichTextLabel" parent="disenio_tablero/cuadros"]
-offset_left = 374.92
-offset_top = 264.599
-offset_right = 513.92
-offset_bottom = 304.599
+offset_left = 367.92
+offset_top = 300.96
+offset_right = 506.92
+offset_bottom = 340.96
 text = "SOY UN DADO"
 scroll_active = false
-metadata/_edit_use_anchors_ = true
-
-[node name="btn_dado" type="Button" parent="disenio_tablero/cuadros"]
-anchors_preset = -1
-anchor_left = 0.317299
-anchor_top = 0.310199
-anchor_right = 0.317299
-anchor_bottom = 0.310199
-offset_left = 390.92
-offset_top = 295.599
-offset_right = 466.92
-offset_bottom = 326.599
-text = "Presiona"
-script = ExtResource("5_h7vtb")
 metadata/_edit_use_anchors_ = true
 
 [node name="objetos_tablero" type="TileMapLayer" parent="disenio_tablero"]
 tile_map_data = PackedByteArray("AAAVAO7/BgADAB0AAAAVAO//BgADAB4AAAAVAPD/BgADAB8AAAAVAPH/BgADACAAAAAWAO7/BgAEAB0AAAAWAO//BgAEAB4AAAAWAPD/BgAEAB8AAAAWAPH/BgAEACAAAAAXAO7/BgAFAB0AAAAXAO//BgAFAB4AAAAXAPD/BgAFAB8AAAAXAPH/BgAFACAAAAAVAPP/BgAKABkAAAAVAPT/BgAKABoAAAAVAPX/BgAKABsAAAAVAPb/BgAKABwAAAAWAPP/BgALABkAAAAWAPT/BgALABoAAAAWAPX/BgALABsAAAAWAPb/BgALABwAAAAXAPP/BgAMABkAAAAXAPT/BgAMABoAAAAXAPX/BgAMABsAAAAXAPb/BgAMABwAAAAVAPj/BgADACUAAAAVAPn/BgADACYAAAAVAPr/BgADACcAAAAVAPv/BgADACgAAAAWAPj/BgAEACUAAAAWAPn/BgAEACYAAAAWAPr/BgAEACcAAAAWAPv/BgAEACgAAAAXAPj/BgAFACUAAAAXAPn/BgAFACYAAAAXAPr/BgAFACcAAAAXAPv/BgAFACgAAAAVAP3/BgAKACkAAAAVAP7/BgAKACoAAAAVAP//BgAKACsAAAAVAAAABgAKACwAAAAWAP3/BgALACkAAAAWAP7/BgALACoAAAAWAP//BgALACsAAAAWAAAABgALACwAAAAXAP3/BgAMACkAAAAXAP7/BgAMACoAAAAXAP//BgAMACsAAAAXAAAABgAMACwAAAA=")
 tile_set = SubResource("TileSet_2jcm7")
-
-[node name="player1" type="RichTextLabel" parent="disenio_tablero/objetos_tablero"]
-offset_left = 389.0
-offset_top = -274.0
-offset_right = 483.0
-offset_bottom = -245.0
-text = "Player 1"
-scroll_active = false
-metadata/_edit_use_anchors_ = true
-
-[node name="player2" type="RichTextLabel" parent="disenio_tablero/objetos_tablero"]
-offset_left = 388.788
-offset_top = -193.914
-offset_right = 482.788
-offset_bottom = -164.914
-text = "Player 2"
-scroll_active = false
-metadata/_edit_use_anchors_ = true
-
-[node name="player3" type="RichTextLabel" parent="disenio_tablero/objetos_tablero"]
-offset_left = 388.788
-offset_top = -110.396
-offset_right = 482.788
-offset_bottom = -81.3965
-text = "Player 3"
-scroll_active = false
-metadata/_edit_use_anchors_ = true
-
-[node name="player4" type="RichTextLabel" parent="disenio_tablero/objetos_tablero"]
-offset_left = 389.748
-offset_top = -28.7991
-offset_right = 483.748
-offset_bottom = 0.200922
-text = "Player 4"
-scroll_active = false
-metadata/_edit_use_anchors_ = true
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="disenio_tablero/objetos_tablero"]
 modulate = Color(0.982343, 0.982342, 0.982342, 1)
@@ -9283,6 +10178,38 @@ jugador3: yo les gane a los 2
 jugador4: ;-;"
 metadata/_edit_use_anchors_ = true
 
+[node name="lbl_player1" type="Label" parent="disenio_tablero/objetos_tablero"]
+offset_left = 396.92
+offset_top = -266.04
+offset_right = 465.92
+offset_bottom = -243.04
+text = "Gato
+"
+
+[node name="lbl_player2" type="Label" parent="disenio_tablero/objetos_tablero"]
+offset_left = 394.92
+offset_top = -184.04
+offset_right = 463.92
+offset_bottom = -161.04
+text = "Sombrero
+"
+
+[node name="lbl_player3" type="Label" parent="disenio_tablero/objetos_tablero"]
+offset_left = 393.92
+offset_top = -107.04
+offset_right = 462.92
+offset_bottom = -84.04
+text = "Dinosaurio
+"
+
+[node name="lbl_player4" type="Label" parent="disenio_tablero/objetos_tablero"]
+offset_left = 397.92
+offset_top = -29.04
+offset_right = 466.92
+offset_bottom = -6.04003
+text = "Oso
+"
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-2.04003, 23.9992)
 
@@ -9293,11 +10220,10 @@ frame = 0
 frame_progress = 0.0
 
 [node name="dado" parent="." instance=ExtResource("7_sq2nu")]
-position = Vector2(417, 229)
-scale = Vector2(2.14063, 2.30852)
+position = Vector2(420, 247)
+scale = Vector2(3.40625, 3.46531)
 animation = &"uno"
-frame = 0
-frame_progress = 0.0
+script = ExtResource("9_j1b8y")
 
 [node name="gatito" parent="." instance=ExtResource("8_ssgx7")]
 position = Vector2(-140, 277)
@@ -9376,29 +10302,30 @@ position = Vector2(-235, -175)
 [node name="oso4" parent="." instance=ExtResource("16_6uvfh")]
 position = Vector2(-137, -175)
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
+[node name="Hoja_msg_turno" type="TileMapLayer" parent="."]
+visible = false
 position = Vector2(-54.478, 116.174)
 scale = Vector2(1.28125, 1.28125)
 tile_set = SubResource("TileSet_bpau8")
-rendering_quadrant_size = 1
 
-[node name="TileMapLayer" type="TileMapLayer" parent="TileMapLayer"]
-tile_map_data = PackedByteArray("AAD3//r/AAAKAAcAAAD4//r/AAALAAcAAAD5//r/AAALAAcAAAD6//r/AAALAAcAAAD8//r/AAALAAcAAAD9//r/AAALAAcAAAD7//r/AAALAAcAAAD+//r/AAALAAcAAAD///r/AAALAAcAAAAAAPr/AAALAAcAAAABAPr/AAALAAcAAAAHAPr/AAALAAcAAAAGAPr/AAALAAcAAAAFAPr/AAALAAcAAAAEAPr/AAALAAcAAAADAPr/AAALAAcAAAACAPr/AAALAAcAAAD3////AAAKAAkAAAAOAP//AAAMAAkAAAANAP//AAALAAkAAAAMAP//AAALAAkAAAALAP//AAALAAkAAAAKAP//AAALAAkAAAAJAP//AAALAAkAAAAIAP//AAALAAkAAAAHAP//AAALAAkAAAAGAP//AAALAAkAAAAAAP//AAALAAkAAAD/////AAALAAkAAAD+////AAALAAkAAAD9////AAALAAkAAAD8////AAALAAkAAAD7////AAALAAkAAAD6////AAALAAkAAAD5////AAALAAkAAAD4////AAALAAkAAAAOAPr/AAAMAAcAAAAOAPv/AAAMAAgAAAAOAPz/AAAMAAgAAAAOAP3/AAAMAAgAAAAOAP7/AAAMAAgAAAANAPr/AAALAAcAAAAMAPr/AAALAAcAAAALAPr/AAALAAcAAAAKAPr/AAALAAcAAAAJAPr/AAALAAcAAAAIAPr/AAALAAcAAAD3//v/AAAKAAgAAAD3//z/AAAKAAgAAAD3//3/AAAKAAgAAAD3//7/AAAKAAgAAAABAP//AAALAAkAAAACAP//AAALAAkAAAADAP//AAALAAkAAAAEAP//AAALAAkAAAAFAP//AAALAAkAAAA=")
-tile_set = SubResource("TileSet_bpau8")
-
-[node name="TileMapLayer2" type="TileMapLayer" parent="TileMapLayer"]
+[node name="TileMapLayer2" type="TileMapLayer" parent="Hoja_msg_turno"]
+scale = Vector2(1, 1)
+tile_map_data = PackedByteArray("AAD4//v/AgARAAQAAAD5//v/AgARAAQAAAD6//v/AgARAAQAAAD7//v/AgARAAQAAAD8//v/AgARAAQAAAD9//v/AgARAAQAAAD+//v/AgARAAQAAAD///v/AgARAAQAAAAAAPv/AgARAAQAAAABAPv/AgARAAQAAAACAPv/AgARAAQAAAADAPv/AgARAAQAAAAEAPv/AgARAAQAAAAFAPv/AgARAAQAAAAGAPv/AgARAAQAAAAHAPv/AgARAAQAAAAIAPv/AgARAAQAAAAJAPv/AgARAAQAAAAKAPv/AgARAAQAAAALAPv/AgARAAQAAAAMAPv/AgARAAQAAAANAPv/AgARAAQAAAAOAPz/AgARAAQAAAAOAP3/AgARAAQAAAANAP7/AgARAAQAAAAMAP7/AgARAAQAAAALAP7/AgARAAQAAAAKAP7/AgARAAQAAAAJAP7/AgARAAQAAAAIAP7/AgARAAQAAAAHAP7/AgARAAQAAAAGAP7/AgARAAQAAAAFAP7/AgARAAQAAAAEAP7/AgARAAQAAAADAP7/AgARAAQAAAACAP7/AgARAAQAAAABAP7/AgARAAQAAAAAAP7/AgARAAQAAAD///7/AgARAAQAAAD+//7/AgARAAQAAAD9//7/AgARAAQAAAD8//7/AgARAAQAAAD7//7/AgARAAQAAAD6//7/AgARAAQAAAD5//7/AgARAAQAAAD4//7/AgARAAQAAAD3//3/AgARAAQAAAD3//z/AgARAAQAAAD4//z/AgARAAQAAAD5//z/AgARAAQAAAD6//z/AgARAAQAAAD7//z/AgARAAQAAAD8//z/AgARAAQAAAD9//z/AgARAAQAAAD5//3/AgARAAQAAAD4//3/AgARAAQAAAD6//3/AgARAAQAAAD7//3/AgARAAQAAAD8//3/AgARAAQAAAD9//3/AgARAAQAAAD+//3/AgARAAQAAAD///3/AgARAAQAAAAAAP3/AgARAAQAAAABAP3/AgARAAQAAAACAP3/AgARAAQAAAADAP3/AgARAAQAAAAEAP3/AgARAAQAAAAFAP3/AgARAAQAAAAGAP3/AgARAAQAAAAHAP3/AgARAAQAAAAIAPz/AgARAAQAAAAHAPz/AgARAAQAAAAGAPz/AgARAAQAAAAFAPz/AgARAAQAAAAEAPz/AgARAAQAAAADAPz/AgARAAQAAAACAPz/AgARAAQAAAABAPz/AgARAAQAAAAAAPz/AgARAAQAAAD///z/AgARAAQAAAD+//z/AgARAAQAAAAJAPz/AgARAAQAAAAKAPz/AgARAAQAAAALAPz/AgARAAQAAAAMAPz/AgARAAQAAAANAPz/AgARAAQAAAANAP3/AgARAAQAAAAMAP3/AgARAAQAAAALAP3/AgARAAQAAAAKAP3/AgARAAQAAAAJAP3/AgARAAQAAAAIAP3/AgARAAQAAAA=")
 tile_set = SubResource("TileSet_b1214")
 
-[node name="Timer2" type="Timer" parent="."]
+[node name="TileMapLayer" type="TileMapLayer" parent="Hoja_msg_turno"]
+tile_map_data = PackedByteArray("AAAOAPv/AAAKAAcAACAOAPz/AAAMAAgAAAAOAP3/AAAMAAgAAAAOAP7/AAAKAAcAAAD3//v/AAAKAAcAADD3//z/AAAKAAgAAAD3//3/AAAKAAgAAAD3//7/AAAKAAcAABD4//v/AAALAAcAAAD5//v/AAALAAcAAAD6//v/AAALAAcAAAD7//v/AAALAAcAAAD8//v/AAALAAcAAAD9//v/AAALAAcAAAD+//v/AAALAAcAAAD///v/AAALAAcAAAAAAPv/AAALAAcAAAABAPv/AAALAAcAAAACAPv/AAALAAcAAAADAPv/AAALAAcAAAAEAPv/AAALAAcAAAAFAPv/AAALAAcAAAAGAPv/AAALAAcAAAAHAPv/AAALAAcAAAAIAPv/AAALAAcAAAAJAPv/AAALAAcAAAAKAPv/AAALAAcAAAALAPv/AAALAAcAAAAMAPv/AAALAAcAAAANAPv/AAALAAcAAAD4//7/AAALAAcAACD5//7/AAALAAcAACD6//7/AAALAAcAACD7//7/AAALAAcAACD8//7/AAALAAcAACD9//7/AAALAAcAACD+//7/AAALAAcAACD///7/AAALAAcAACAAAP7/AAALAAcAACABAP7/AAALAAcAACACAP7/AAALAAcAACADAP7/AAALAAcAACAEAP7/AAALAAcAACAFAP7/AAALAAcAACAGAP7/AAALAAcAACAHAP7/AAALAAcAACAIAP7/AAALAAcAACAJAP7/AAALAAcAACAKAP7/AAALAAcAACALAP7/AAALAAcAACAMAP7/AAALAAcAACANAP7/AAALAAcAACA=")
+tile_set = SubResource("TileSet_bpau8")
+
+[node name="Timer2" type="Timer" parent="Hoja_msg_turno"]
 wait_time = 2.967
 one_shot = true
 
-[node name="lbl_turno" type="Label" parent="."]
-layout_mode = 0
-offset_left = -228.0
-offset_top = -5.0
-offset_right = 249.0
-offset_bottom = 113.0
+[node name="lbl_turno" type="Label" parent="Hoja_msg_turno"]
+offset_left = -129.968
+offset_top = -72.7212
+offset_right = 224.032
+offset_bottom = -43.7212
 theme_override_colors/font_color = Color(0.920268, 0.829022, 0.902081, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0.0639044, 0.0332835, 0.0814211, 1)
@@ -9407,13 +10334,50 @@ theme_override_constants/shadow_offset_y = 1
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = SubResource("SystemFont_i7hlv")
 theme_override_font_sizes/font_size = 25
-text = "the DINOSAURIO win"
+text = "turno del dinosaurio"
 label_settings = SubResource("LabelSettings_8diai")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 justification_flags = 2
 
+[node name="lbl_accion" type="Label" parent="Hoja_msg_turno"]
+offset_left = -127.627
+offset_top = -46.1846
+offset_right = 226.373
+offset_bottom = -23.1846
+text = "Selecciona una pieza"
+label_settings = SubResource("LabelSettings_groli")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hoja_Ganador" type="TileMapLayer" parent="."]
+
+[node name="lbl_Ganador" type="Label" parent="Hoja_Ganador"]
+offset_left = -578.0
+offset_top = -37.0
+offset_right = 574.0
+offset_bottom = 71.0
+text = "!EL DINOSAURIO HA GANADO¡"
+label_settings = SubResource("LabelSettings_o0deg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lbl_Ganador_sadow" type="Label" parent="Hoja_Ganador/lbl_Ganador"]
+offset_right = 1153.0
+offset_bottom = 108.0
+text = "!EL DINOSAURIO HA GANADO¡"
+label_settings = SubResource("LabelSettings_8x4m6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Hoja_Ganador"]
+tile_map_data = PackedByteArray("AADr//3/AAAEABEAAADw////AAAEABEAAADq/wcAAAAEABEAAADl//z/AAAEABEAAAATAP7/AAAEABEAAAAXAPv/AAAEABEAAAAYAPv/AAAEABEAAAAbAP3/AAAEABEAAAAcAAEAAAAEABEAAAATAAcAAAAEABEAAAAUAAcAAAAEABEAAAAaAAoAAAAEABEAAAAZAAYAAAABABEAAAD7/woAAAAEABEAAADo/wgAAAAEABEAAADl/wcAAAAEABEAAADm//3/AAAIABEAAADi//7/AAAIABEAAADh/wMAAAAIABEAAADp//v/AAAIABEAAADp//7/AAAIABEAAAAWAP//AAAIABEAAAASAPr/AAAIABEAAAAdAAQAAAAIABEAAAAXAAcAAAAIABEAAADr/wkAAAAIABEAAADt//7/AAAIABEAAAAQAPz/AAABABEAAAAOAP3/AAAIABEAAADm/wMAAAABABEAAADj/wUAAAABABEAAADh/wEAAAABABEAAADj/wEAAAABABEAAAD2////AAABABEAAAD0//z/AAABABEAAADj/wwAAAABABEAAADm/wkAAAABABEAAADx//r/AAABABEAAADx////AAABABEAAADx/woAAAABABEAAADz/wkAAAAIABEAAAD7//z/AAABABEAAAD///3/AAABABEAAAABAAMAAAABABEAAAAEAP3/AAABABEAAAAJAAwAAAABABEAAAAKAP//AAABABEAAAALAP3/AAAIABEAAAALAAYAAAABABEAAAAPAAIAAAABABEAAAARAA0AAAABABEAAAAWAAkAAAABABEAAAAeAP3/AAABABEAAAAfAP3/AAABABEAAAAgAPv/AAABABEAAAD5/woAAAAEABEAAAACAAQAAAAEABEAAAD3/wUAAAAIABEAAAD//wkAAAAIABEAAAAAAAoAAAAIABEAAAABAAUAAAAIABEAAAAIAAgAAAAIABEAAAAQAAcAAAAIABEAAAAQAAsAAAAIABEAAADu//j/AAAEABEAAAD2//n/AAAEABEAAAD9//v/AAAEABEAAAACAPj/AAAEABEAAAADAPv/AAAEABEAAADr//b/AAAIABEAAADu//7/AAAIABEAAAD2//z/AAAIABEAAAAHAPb/AAAIABEAAAAIAPf/AAAIABEAAAAQAP3/AAAIABEAAAAeAPj/AAAIABEAAAAeAPz/AAAIABEAAAAVAAwAAAAIABEAAAAVAA4AAAAIABEAAAAYAA4AAAAIABEAAADq/w0AAAAEABEAAADt/w4AAAAEABEAAAD+/w0AAAAEABEAAAD//wwAAAAEABEAAAAEAA4AAAAEABEAAAALAAwAAAAEABEAAAA=")
+tile_set = SubResource("TileSet_lcpm6")
+
+[node name="img_trofeo" type="TextureRect" parent="Hoja_Ganador"]
+offset_right = 40.0
+offset_bottom = 40.0
+
 [connection signal="ready" from="." to="." method="_on_ready"]
-[connection signal="pressed" from="disenio_tablero/cuadros/btn_dado" to="." method="_on_tirar_dado_pressed"]
-[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+[connection signal="timeout" from="Hoja_msg_turno/Timer2" to="." method="_on_timer_2_timeout"]
