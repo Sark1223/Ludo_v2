@@ -268,7 +268,7 @@ func obtener_posiciones_validas(jugador):
 			return []
 
 func mover_pieza(pasos):
-	#Verificar si ya se selecciono pieza
+	# Verificar si ya se seleccionó pieza
 	if pieza_seleccionada == null:
 		print("Debes seleccionar una pieza para mover.")
 		return
@@ -284,61 +284,49 @@ func mover_pieza(pasos):
 	var posiciones_validas = obtener_posiciones_validas(jugador)
 	var posicion_index = jugadores[jugador]["posiciones"][indice_pieza]
 	var ha_salido = jugadores[jugador]["han_salido"][indice_pieza]
-	var old_posicion_index = posicion_index  # Guardar la posición anterior
+	var posicion_index_inicial = posicion_index  # Guardar la posición inicial
 
 	if not ha_salido:
 		jugadores[jugador]["han_salido"][indice_pieza] = true
 		posicion_index = 0
 		jugadores[jugador]["posiciones"][indice_pieza] = posicion_index
-		#var nueva_pos = Vector2(7.5,-300)
 		var nueva_pos = posicionesInicio[jugador - 1] 
-		mover_posicion(pieza_seleccionada, nueva_pos, jugador, posicion_index)
-		print("La pieza ha salido de casa. " ,posicionesInicio[jugador - 1] ," " , posicionesInicio[jugador - 1])
+		mover_posicion(pieza_seleccionada, nueva_pos, jugador, posicion_index, posicion_index_inicial)
+		print("La pieza ha salido de casa.", posicionesInicio[jugador - 1])
 	else:
 		if posicion_index + pasos < posiciones_validas.size():
 			posicion_index += pasos
-			# Ajustar las posiciones en la posición antigua antes de mover la pieza
-			#ajustar_posiciones_piezas_en_posicion(jugador, old_posicion_index)
 			jugadores[jugador]["posiciones"][indice_pieza] = posicion_index
 			var nueva_pos = posiciones_validas[posicion_index] 
-			mover_posicion(pieza_seleccionada, nueva_pos, jugador, posicion_index)
-			print("Pieza movida a la posición: ", posicion_index)
-			
+			mover_posicion(pieza_seleccionada, nueva_pos, jugador, posicion_index, posicion_index_inicial)
+			print("Pieza movida a la posición:", posicion_index)
 		else:
 			print("No puedes moverte fuera del tablero.")
 
-func obtenerCuadrosMovimiento(jugador, posicion_index):
-	# Obtener el array de posiciones correspondiente al jugador
+func obtenerCuadrosMovimiento(jugador, posicion_index, posicion_index_inicial):
 	var posiciones_validas = obtener_posiciones_validas(jugador)
-	# Encontrar índice inicial
-	var indice_inicial = 0
-	for i in range(posiciones_validas.size()):
-		if posiciones_validas[i].distance_to(pieza_seleccionada.position) < 10:  # Umbral de distancia
-			indice_inicial = i
-			break
-	
-	#creacion de arreglo para posiciones intermedias
+	var indice_inicial = posicion_index_inicial
+
 	var posiciones_intermedias = []
-	#Si la pieza esat saliendo de casa
-	#if not jugadores[jugador]["han_salido"][indice_pieza_seleccionada]:
-	if posicion_index == 0:
+
+	if posicion_index_inicial == -1:
+		# La pieza está saliendo de casa
 		posiciones_intermedias.append(posicionesInicio[jugador -1])
 		movimientos_pendientes += 1 
 	else:
 		movimientos_pendientes = dado
 		for i in range(indice_inicial + 1, posicion_index + 1):
-			posiciones_intermedias.append((posiciones_validas[i]))
+			posiciones_intermedias.append(posiciones_validas[i])
 			
 	return posiciones_intermedias
 
-func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
+func mover_posicion(pieza, nueva_pos, jugador, posicion_index, posicion_index_inicial):
 	if pieza != null:
-
 		var pos_inicial
 		var direccion 
-		var arreglo_posicisiones = obtenerCuadrosMovimiento(jugador, posicion_index)
+		var arreglo_posicisiones = obtenerCuadrosMovimiento(jugador, posicion_index, posicion_index_inicial)
 
-		var contador_posicion = 0;
+		var contador_posicion = 0
 		var tween = create_tween()
 		while contador_posicion < arreglo_posicisiones.size():
 			pos_inicial = pieza.position
@@ -357,7 +345,7 @@ func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 				else:
 					pieza.play("salto_lado_izq")
 
-			tween.tween_property(pieza, "position" , casilla_sig, .8)
+			tween.tween_property(pieza, "position", casilla_sig, 0.8)
 			sfx_jump.play()
 			contador_posicion += 1
 
@@ -374,21 +362,19 @@ func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 					else:
 						pieza.play("default_lado_izq")
 
-				print("Pieza movida a: ", nueva_pos," ", pieza.position)
-				movimientos_pendientes -= 1 # Decrementar al terminar el movimiento
+				print("Pieza movida a:", nueva_pos, pieza.position)
+				movimientos_pendientes -= 1  # Decrementar al terminar el movimiento
 				
 				for jugador_num in jugadores.keys():
 					var piezas = jugadores[jugador_num]["piezas"]
 					for pieza_actual in piezas:
-						if pieza_actual.position == nueva_pos && pieza_actual != pieza  :
+						if pieza_actual.position == nueva_pos and pieza_actual != pieza:
 							ajustar_posiciones_piezas_en_posicion(jugador, posicion_index)
 				if movimientos_pendientes == 0:
-					#verificar_victoria(pieza, nueva_pos, pieza.indice_pieza)
 					verificar_victoria(pieza, nueva_pos)
 					verificar_colision_con_otras_piezas(jugador, posicion_index)
 					terminar_turno()
 			)
-			
 	else:
 		print("Error: La pieza es null.")
 
