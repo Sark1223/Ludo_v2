@@ -1888,7 +1888,7 @@ sources/0 = SubResource("TileSetAtlasSource_hydn3")
 [sub_resource type="SystemFont" id="SystemFont_nhpkk"]
 font_weight = 225
 
-[node name="Control" type="Control"]
+[node name="Control2" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

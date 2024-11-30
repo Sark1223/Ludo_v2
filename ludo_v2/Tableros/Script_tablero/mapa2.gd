@@ -163,7 +163,6 @@ func tirar_dado():
 	dado = randi() % 6 + 1
 	if dado == 6:
 		veces_dado_igual_seis += 1
-
 func _on_pieza_seleccionada(jugador_num, indice_pieza):
 	if estado_turno != ESTADO_ESPERANDO_PIEZA:
 		print("No puedes mover una pieza en este momento.")
@@ -527,7 +526,7 @@ func ajustar_posiciones_piezas_en_posicion(jugador_num, posicion_index):
 		else:
 			# Ajustar las posiciones en el tablero cuando hay múltiples piezas
 			var angle_step = 2 * PI / num_piezas
-			var radius = 16  # Ajusta el radio según sea necesario
+			var radius = 21  # Ajusta el radio según sea necesario
 			for idx in range(num_piezas):
 				var angle = idx * angle_step
 				var offset = Vector2(radius * cos(angle), radius * sin(angle))

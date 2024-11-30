@@ -9188,7 +9188,7 @@ font_weight = 225
 font = ExtResource("19_v7pv4")
 font_size = 25
 
-[node name="Control" type="Control"]
+[node name="Control2" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
