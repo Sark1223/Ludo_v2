@@ -1,6 +1,6 @@
-[gd_scene load_steps=52 format=4 uid="uid://cdkghv7bce6wo"]
+[gd_scene load_steps=53 format=4 uid="uid://cdkghv7bce6wo"]
 
-[ext_resource type="Script" path="res://Tableros/Escenas_tablero/mapa_1.gd" id="1_akq2c"]
+[ext_resource type="Script" path="res://Tableros/Script_tablero/mapa_1.gd" id="1_akq2c"]
 [ext_resource type="Texture2D" uid="uid://dheqq47d6inc2" path="res://tileset_diseño_general/demonstration.png" id="1_pkv4a"]
 [ext_resource type="Texture2D" uid="uid://i2i2ky7gtbs3" path="res://tileset_diseño_general/Serene_Village_16x16_edit.png" id="2_1fnfc"]
 [ext_resource type="Texture2D" uid="uid://b4tr8hi02jumv" path="res://tileset_diseño_general/Tileset-Terrain2.png" id="3_p6bxy"]
@@ -23,6 +23,7 @@
 [ext_resource type="FontFile" uid="uid://dwwlqj4pjor22" path="res://Interfaz/interfaz_diseño/fuentes/Gobold Regular.otf" id="20_5otta"]
 [ext_resource type="FontFile" uid="uid://dtwiq5edl0vjk" path="res://Interfaz/interfaz_diseño/fuentes/fuentesWinMessage/8-bit Arcade In.ttf" id="22_ne31k"]
 [ext_resource type="FontFile" uid="uid://bharr7sbbi5e" path="res://Interfaz/interfaz_diseño/fuentes/fuentesWinMessage/8-bit Arcade Out.ttf" id="23_a5pej"]
+[ext_resource type="Texture2D" uid="uid://urat53opx2i5" path="res://Tableros/Diseño_tablero/trofeo.png" id="24_fkqd7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_alp1l"]
 texture = ExtResource("1_pkv4a")
@@ -8767,6 +8768,7 @@ sources/6 = SubResource("TileSetAtlasSource_by5id")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ekeug"]
 texture = ExtResource("17_54rt1")
+texture_region_size = Vector2i(5, 1)
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -9965,7 +9967,7 @@ font_weight = 225
 
 [sub_resource type="LabelSettings" id="LabelSettings_8diai"]
 font = ExtResource("19_v7pv4")
-font_size = 20
+font_size = 18
 shadow_color = Color(0, 0, 0, 0.152941)
 
 [sub_resource type="LabelSettings" id="LabelSettings_groli"]
@@ -9977,13 +9979,15 @@ shadow_color = Color(0.00784314, 0.00784314, 0.00392157, 0.0470588)
 font = ExtResource("22_ne31k")
 font_size = 80
 font_color = Color(0.908391, 0.879004, 0, 1)
+shadow_color = Color(0, 0, 0, 0.25098)
+shadow_offset = Vector2(4, 6)
 
 [sub_resource type="LabelSettings" id="LabelSettings_8x4m6"]
 font = ExtResource("23_a5pej")
 font_size = 80
 font_color = Color(0.965298, 0.505328, 0, 1)
 shadow_color = Color(0, 0, 0, 0.352941)
-shadow_offset = Vector2(1, 2)
+shadow_offset = Vector2(0, 2)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a4do6"]
 texture = ExtResource("18_tmhlc")
@@ -10223,6 +10227,8 @@ frame_progress = 0.0
 position = Vector2(420, 247)
 scale = Vector2(3.40625, 3.46531)
 animation = &"uno"
+frame = 0
+frame_progress = 0.0
 script = ExtResource("9_j1b8y")
 
 [node name="gatito" parent="." instance=ExtResource("8_ssgx7")]
@@ -10303,13 +10309,11 @@ position = Vector2(-235, -175)
 position = Vector2(-137, -175)
 
 [node name="Hoja_msg_turno" type="TileMapLayer" parent="."]
-visible = false
 position = Vector2(-54.478, 116.174)
 scale = Vector2(1.28125, 1.28125)
 tile_set = SubResource("TileSet_bpau8")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="Hoja_msg_turno"]
-scale = Vector2(1, 1)
 tile_map_data = PackedByteArray("AAD4//v/AgARAAQAAAD5//v/AgARAAQAAAD6//v/AgARAAQAAAD7//v/AgARAAQAAAD8//v/AgARAAQAAAD9//v/AgARAAQAAAD+//v/AgARAAQAAAD///v/AgARAAQAAAAAAPv/AgARAAQAAAABAPv/AgARAAQAAAACAPv/AgARAAQAAAADAPv/AgARAAQAAAAEAPv/AgARAAQAAAAFAPv/AgARAAQAAAAGAPv/AgARAAQAAAAHAPv/AgARAAQAAAAIAPv/AgARAAQAAAAJAPv/AgARAAQAAAAKAPv/AgARAAQAAAALAPv/AgARAAQAAAAMAPv/AgARAAQAAAANAPv/AgARAAQAAAAOAPz/AgARAAQAAAAOAP3/AgARAAQAAAANAP7/AgARAAQAAAAMAP7/AgARAAQAAAALAP7/AgARAAQAAAAKAP7/AgARAAQAAAAJAP7/AgARAAQAAAAIAP7/AgARAAQAAAAHAP7/AgARAAQAAAAGAP7/AgARAAQAAAAFAP7/AgARAAQAAAAEAP7/AgARAAQAAAADAP7/AgARAAQAAAACAP7/AgARAAQAAAABAP7/AgARAAQAAAAAAP7/AgARAAQAAAD///7/AgARAAQAAAD+//7/AgARAAQAAAD9//7/AgARAAQAAAD8//7/AgARAAQAAAD7//7/AgARAAQAAAD6//7/AgARAAQAAAD5//7/AgARAAQAAAD4//7/AgARAAQAAAD3//3/AgARAAQAAAD3//z/AgARAAQAAAD4//z/AgARAAQAAAD5//z/AgARAAQAAAD6//z/AgARAAQAAAD7//z/AgARAAQAAAD8//z/AgARAAQAAAD9//z/AgARAAQAAAD5//3/AgARAAQAAAD4//3/AgARAAQAAAD6//3/AgARAAQAAAD7//3/AgARAAQAAAD8//3/AgARAAQAAAD9//3/AgARAAQAAAD+//3/AgARAAQAAAD///3/AgARAAQAAAAAAP3/AgARAAQAAAABAP3/AgARAAQAAAACAP3/AgARAAQAAAADAP3/AgARAAQAAAAEAP3/AgARAAQAAAAFAP3/AgARAAQAAAAGAP3/AgARAAQAAAAHAP3/AgARAAQAAAAIAPz/AgARAAQAAAAHAPz/AgARAAQAAAAGAPz/AgARAAQAAAAFAPz/AgARAAQAAAAEAPz/AgARAAQAAAADAPz/AgARAAQAAAACAPz/AgARAAQAAAABAPz/AgARAAQAAAAAAPz/AgARAAQAAAD///z/AgARAAQAAAD+//z/AgARAAQAAAAJAPz/AgARAAQAAAAKAPz/AgARAAQAAAALAPz/AgARAAQAAAAMAPz/AgARAAQAAAANAPz/AgARAAQAAAANAP3/AgARAAQAAAAMAP3/AgARAAQAAAALAP3/AgARAAQAAAAKAP3/AgARAAQAAAAJAP3/AgARAAQAAAAIAP3/AgARAAQAAAA=")
 tile_set = SubResource("TileSet_b1214")
 
@@ -10334,7 +10338,7 @@ theme_override_constants/shadow_offset_y = 1
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = SubResource("SystemFont_i7hlv")
 theme_override_font_sizes/font_size = 25
-text = "turno del dinosaurio"
+text = "turno del DINOSAURIO"
 label_settings = SubResource("LabelSettings_8diai")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -10352,6 +10356,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Hoja_Ganador" type="TileMapLayer" parent="."]
+visible = false
 
 [node name="lbl_Ganador" type="Label" parent="Hoja_Ganador"]
 offset_left = -578.0
@@ -10364,6 +10369,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="lbl_Ganador_sadow" type="Label" parent="Hoja_Ganador/lbl_Ganador"]
+layout_mode = 0
 offset_right = 1153.0
 offset_bottom = 108.0
 text = "!EL DINOSAURIO HA GANADO¡"
@@ -10376,8 +10382,15 @@ tile_map_data = PackedByteArray("AADr//3/AAAEABEAAADw////AAAEABEAAADq/wcAAAAEABE
 tile_set = SubResource("TileSet_lcpm6")
 
 [node name="img_trofeo" type="TextureRect" parent="Hoja_Ganador"]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -105.0
+offset_top = 34.0
+offset_right = 98.0
+offset_bottom = 238.0
+texture = ExtResource("24_fkqd7")
+
+[node name="timer_ganar" type="Timer" parent="Hoja_Ganador"]
+wait_time = 7.851
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="timeout" from="Hoja_msg_turno/Timer2" to="." method="_on_timer_2_timeout"]
+[connection signal="timeout" from="Hoja_Ganador/timer_ganar" to="." method="_on_timer_ganar_timeout"]

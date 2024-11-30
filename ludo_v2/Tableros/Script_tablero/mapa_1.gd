@@ -15,6 +15,8 @@ var movimientos_pendientes = 0
 var dado_sprite
 
 @onready var meta: AnimatedSprite2D = $meta
+
+#hoja de mensajes (tirar/mover)
 @onready var timer_2: Timer = $Hoja_msg_turno/Timer2
 @onready var lbl_turno: Label = $Hoja_msg_turno/lbl_turno
 @onready var lbl_accion: Label = $Hoja_msg_turno/lbl_accion
@@ -111,6 +113,7 @@ var nombres_jugadores = {
 }
 
 func _on_ready() -> void:
+	$Hoja_Ganador.hide()
 	# Inicializar jugadores y sus piezas
 	jugadores[1] = {
 		"piezas": [],
@@ -206,7 +209,7 @@ func actualizar_lbl_turno():
 	$Hoja_msg_turno.show()
 	timer_2.start()
 	var nombre_jugador = nombres_jugadores[turnoActual]
-	lbl_turno.text = "turno del " + nombre_jugador
+	lbl_turno.text = "turno del " + nombre_jugador.to_upper()
 	#mostrar_mensaje_ganador(turnoActual)
 	if estado_turno == ESTADO_ESPERANDO_DADO:
 		lbl_accion.text = "Toca el dado."
@@ -489,15 +492,22 @@ func verificar_victoria(pieza, posFinal):
 
 
 func mostrar_mensaje_ganador(jugador):
+	$Hoja_Ganador.show()
+	$Hoja_Ganador/timer_ganar.start()
+	
 	var nombre_jugador = nombres_jugadores[jugador]
-	var mensaje = "¡the " + nombre_jugador.Upper() + " win!"
+	var mensaje = "¡el " + nombre_jugador + " ha ganado!"
+	
+	$Hoja_Ganador/lbl_Ganador/lbl_Ganador_sadow.text = mensaje;
+	$Hoja_Ganador/lbl_Ganador.text = mensaje;
+	
 	print(mensaje)
-	# Crear un Label para mostrar el mensaje
-	var label_ganador = Label.new()
-	label_ganador.text = mensaje
-	label_ganador.set_position(Vector2(-100, 0))  # Ajusta la posición según sea necesario
-	label_ganador.set_scale(Vector2(1, 1))  # Ajusta el tamaño del texto
-	add_child(label_ganador)
+	## Crear un Label para mostrar el mensaje
+	#var label_ganador = Label.new()
+	#label_ganador.text = mensaje
+	#label_ganador.set_position(Vector2(-100, 0))  # Ajusta la posición según sea necesario
+	#label_ganador.set_scale(Vector2(1, 1))  # Ajusta el tamaño del texto
+	#add_child(label_ganador)
 
 func es_posicion_segura(posicion):
 	var posiciones_seguras = [
@@ -624,3 +634,7 @@ func _on_timer_2_timeout() -> void:
 	#lbl_turno.text = ""
 	#lbl_accion.text = ""
 	$Hoja_msg_turno.hide()
+
+
+func _on_timer_ganar_timeout() -> void:
+	$Hoja_Ganador.hide()
