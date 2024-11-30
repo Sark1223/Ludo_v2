@@ -613,8 +613,6 @@ func _on_timer_timeout() -> void:
 
 
 func _on_timer_2_timeout() -> void:
-	#lbl_turno.text = ""
-	#lbl_accion.text = ""
 	$Hoja_msg_turno.hide()
 
 

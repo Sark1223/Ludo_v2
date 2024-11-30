@@ -13,12 +13,16 @@ var ESTADO_ESPERANDO_PIEZA = 1
 var estado_turno = ESTADO_ESPERANDO_DADO
 var movimientos_pendientes = 0
 var dado_sprite
-var lbl_turno
 
 @onready var sfx_jump: AudioStreamPlayer = $sfx_jump
 @onready var sfx_plop: AudioStreamPlayer = $sfx_plop
 @onready var sfx_wrap: AudioStreamPlayer = $sfx_wrap
 @onready var sfx_dado: AudioStreamPlayer = $sfx_dado
+
+#hoja turno
+@onready var timer_2: Timer = $Hoja_msg_turno/Timer2
+@onready var lbl_turno: Label = $Hoja_msg_turno/lbl_turno
+@onready var lbl_accion: Label = $Hoja_msg_turno/lbl_accion
 
 var posicionValidaJ1 = [
 	Vector2(1,23), Vector2(1,19), Vector2(5,19), Vector2(9,19), Vector2(13,19), Vector2(17,19),
@@ -67,6 +71,7 @@ var nombres_jugadores = {
 }
 
 func _ready():
+	$Hoja_Ganador.hide()
 	# Inicializar jugadores y sus piezas
 	jugadores[1] = {
 		"piezas": [],
@@ -147,8 +152,9 @@ func _ready():
 		pieza.indice_pieza = i - 1 # Los indices comienzan con 0
 
 	dado_sprite = get_node("dado")
+	dado_sprite.connect("piece_clicked", Callable(self, "_on_tirar_dado_pressed"))
 	# Obtener el nodo lbl_turno (ajusta la ruta si es necesario)
-	lbl_turno = get_node("lbl_turno")
+	#lbl_turno = get_node("lbl_turno")
 	# Actualizar el label al iniciar el juego
 	actualizar_lbl_turno()
 
@@ -348,17 +354,16 @@ func verificar_victoria(pieza, nueva_pos):
 			set_process(false)
 
 func mostrar_mensaje_ganador(jugador):
+	$Hoja_Ganador.show()
+	$Hoja_Ganador/timer_ganar.start()
+	
 	var nombre_jugador = nombres_jugadores[jugador]
-	var mensaje = "¡El " + nombre_jugador + " ha ganado la partida!"
-	print(mensaje)
-	# Crear un Label para mostrar el mensaje
-	var label_ganador = Label.new()
-	label_ganador.text = mensaje
-	label_ganador.set_position(Vector2(-100, 0))  # Ajusta la posición según sea necesario
-	label_ganador.set_scale(Vector2(1, 1))  # Ajusta el tamaño del texto
-	add_child(label_ganador)
+	var mensaje = "¡el " + nombre_jugador + " ha ganado!"
+	
+	$Hoja_Ganador/lbl_Ganador/lbl_Ganador_sadow.text = mensaje;
+	$Hoja_Ganador/lbl_Ganador.text = mensaje;
 
-func _on_tirar_dado_pressed() -> void:
+func _on_tirar_dado_pressed(indice_pieza) -> void:
 	if estado_turno != ESTADO_ESPERANDO_DADO:
 		print("No es tu turno para tirar el dado.")
 		return
@@ -538,16 +543,15 @@ func _on_timer_timeout() -> void:
 	print("Termino")
 
 func actualizar_lbl_turno():
-	$TileMapLayer.show()
-	$Timer2.start()
+	$Hoja_msg_turno.show()
+	timer_2.start()
 	var nombre_jugador = nombres_jugadores[turnoActual]
-	var texto = "Turno del " + nombre_jugador + ": "
+	lbl_turno.text = "turno del " + nombre_jugador.to_upper()
 	#mostrar_mensaje_ganador(turnoActual)
 	if estado_turno == ESTADO_ESPERANDO_DADO:
-		texto += "Tira el dado."
+		lbl_accion.text = "Toca el dado."
 	elif estado_turno == ESTADO_ESPERANDO_PIEZA:
-		texto += "Selecciona una pieza para mover."
-	lbl_turno.text = texto
+		lbl_accion.text =  "Selecciona una pieza."
 
 func tiene_movimientos_validos(jugador, dado):
 	for i in range(jugadores[jugador]["piezas"].size()):
@@ -571,8 +575,9 @@ func tiene_movimientos_validos(jugador, dado):
 func _on_window_close_requested() -> void:
 	pass # Replace with function body.
 
-
 func _on_timer_2_timeout() -> void:
-	$lbl_turno.text = ""
-	$TileMapLayer.hide()
+	$Hoja_msg_turno.hide()
+	
+func _on_timer_ganar_timeout() -> void:
+	$Hoja_Ganador.hide()
 	
