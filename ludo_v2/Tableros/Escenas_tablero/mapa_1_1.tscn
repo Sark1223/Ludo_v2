@@ -10137,7 +10137,7 @@ texture_region_size = Vector2i(5, 5)
 [sub_resource type="TileSet" id="TileSet_lcpm6"]
 sources/0 = SubResource("TileSetAtlasSource_a4do6")
 
-[node name="Control" type="Control"]
+[node name="Control2" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

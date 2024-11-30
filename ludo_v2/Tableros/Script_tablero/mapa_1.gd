@@ -229,7 +229,6 @@ func tirar_dado():
 	dado = randi() % 6 + 1
 	if dado == 6:
 		veces_dado_igual_seis += 1
-		
 
 func _on_pieza_seleccionada(jugador_num, indice_pieza):
 	if estado_turno != ESTADO_ESPERANDO_PIEZA:
@@ -392,7 +391,6 @@ func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 			
 	else:
 		print("Error: La pieza es null.")
-		
 
 func cambiar_turno():
 	turnoActual += 1
@@ -411,7 +409,7 @@ func terminar_turno():
 	cambiar_turno()
 	veces_dado_igual_seis = 0
 	actualizar_lbl_turno()
-	
+
 func ajustar_posiciones_piezas_en_posicion(jugador_num, posicion_index):
 	var piezas_en_posicion = []
 	for i in range(jugadores[jugador_num]["piezas"].size()):
@@ -488,8 +486,6 @@ func verificar_victoria(pieza, posFinal):
 		await $Timer.timeout
 		# Hacer que la pieza desaparezca
 		pieza.hide()
-		
-
 
 func mostrar_mensaje_ganador(jugador):
 	$Hoja_Ganador.show()
