@@ -164,11 +164,9 @@ func tiene_piezas_en_juego(jugador):
 		if ha_salido == true:
 			return true
 	return false
+	
 
-func tirar_dado():
-	dado = randi() % 6 + 1
-	if dado == 6:
-		veces_dado_igual_seis += 1
+		
 func _on_pieza_seleccionada(jugador_num, indice_pieza):
 	if estado_turno != ESTADO_ESPERANDO_PIEZA:
 		print("No puedes mover una pieza en este momento.")
@@ -192,6 +190,7 @@ func _on_pieza_seleccionada(jugador_num, indice_pieza):
 		var nombre_jugador_actual = nombres_jugadores[turnoActual]
 		print("No es tu turno. Es el turno del " + nombre_jugador_actual + ".")
 
+@rpc("any_peer")
 func mover_pieza(pasos):
 	if pieza_seleccionada == null:
 		print("Debes seleccionar una pieza para mover.")
@@ -308,6 +307,7 @@ func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 	else:
 		print("Error: La pieza es null.")
 
+@rpc("any_peer")
 func cambiar_turno():
 	turnoActual += 1
 	if turnoActual > totalJugadores:
@@ -352,7 +352,7 @@ func verificar_victoria(pieza, nueva_pos):
 			mostrar_mensaje_ganador(jugador)
 			# Implementar lógica para finalizar el juego, por ejemplo, detener la entrada
 			set_process(false)
-
+@rpc("any_peer")
 func mostrar_mensaje_ganador(jugador):
 	$Hoja_Ganador.show()
 	$Hoja_Ganador/timer_ganar.start()
@@ -362,14 +362,16 @@ func mostrar_mensaje_ganador(jugador):
 	
 	$Hoja_Ganador/lbl_Ganador/lbl_Ganador_sadow.text = mensaje;
 	$Hoja_Ganador/lbl_Ganador.text = mensaje;
-
-func _on_tirar_dado_pressed(indice_pieza) -> void:
-	if estado_turno != ESTADO_ESPERANDO_DADO:
-		print("No es tu turno para tirar el dado.")
-		return
-	# Generar el número aleatorio
-	tirar_dado()
-	# Determinar la animación correspondiente
+	
+@rpc("any_peer") 
+func tirar_dado():
+	dado = randi() % 6 + 1
+	if dado == 6:
+		veces_dado_igual_seis += 1
+		# Sincronizamos el valor de veces_dado_igual_seis con todos los nodos
+		rpc("actualizar_veces_dado_igual_seis", veces_dado_igual_seis)
+		
+		# Determinar la animación correspondiente
 	var animacion_numero = ""
 	match dado:
 		1:
@@ -389,6 +391,9 @@ func _on_tirar_dado_pressed(indice_pieza) -> void:
 
 	# Reproducir la animación correspondiente
 	if animacion_numero != "":
+		rpc("reproducir_animacion_dado", animacion_numero)
+		rpc("reproducir_sonido_dado")
+		# Ejecutar la animación localmente
 		dado_sprite.play(animacion_numero)
 		sfx_dado.play()
 		$Timer.wait_time = 1.06
@@ -396,7 +401,14 @@ func _on_tirar_dado_pressed(indice_pieza) -> void:
 		await $Timer.timeout
 	else:
 		print("Error al reproducir la animación del dado.")
-
+		
+func _on_tirar_dado_pressed(indice_pieza) -> void:
+	if estado_turno != ESTADO_ESPERANDO_DADO:
+		print("No es tu turno para tirar el dado.")
+		return
+	# Generar el número aleatorio
+	tirar_dado() 
+	
 	# Opción 1: Continuar la lógica inmediatamente
 	continuar_logica_del_juego()
 
@@ -432,6 +444,7 @@ func verificar_colision_con_otras_piezas(jugador_actual, posicion_index):
 							print("No se puede comer en una posición segura.")
 
 # Modificación aquí: Reemplazar mover_posicion por transportar_pieza_a_casa
+@rpc("any_peer")
 func enviar_pieza_a_casa(jugador_num, indice_pieza):
 	var old_posicion_index = jugadores[jugador_num]["posiciones"][indice_pieza]
 	jugadores[jugador_num]["han_salido"][indice_pieza] = false
@@ -542,6 +555,7 @@ func ajustar_posiciones_piezas_en_posicion(jugador_num, posicion_index):
 func _on_timer_timeout() -> void:
 	print("Termino")
 
+@rpc("any_peer")
 func actualizar_lbl_turno():
 	$Hoja_msg_turno.show()
 	timer_2.start()
@@ -581,3 +595,20 @@ func _on_timer_2_timeout() -> void:
 func _on_timer_ganar_timeout() -> void:
 	$Hoja_Ganador.hide()
 	
+# Función para sincronizar el valor de veces_dado_igual_seis entre nodos.
+func actualizar_veces_dado_igual_seis(nuevo_valor):
+	veces_dado_igual_seis = nuevo_valor
+
+@rpc("any_peer")
+func valorDado(num):
+	dado = num
+
+# Función para sincronizar la animación del dado en todos los nodos
+@rpc("any_peer")
+func reproducir_animacion_dado(animacion: String):
+	dado_sprite.play(animacion)
+
+# Función para sincronizar el sonido del dado en todos los nodos
+@rpc("any_peer")
+func reproducir_sonido_dado():
+	sfx_dado.play()
