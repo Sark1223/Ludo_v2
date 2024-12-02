@@ -36,6 +36,10 @@ mouse_cursor/handheld/orientation=1
 
 project/assembly_name="Ludo_v2"
 
+[global_group]
+
+PlayerSpawnPoint=""
+
 [input]
 
 toque={

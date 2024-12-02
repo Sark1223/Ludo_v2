@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=3 uid="uid://do7hk21ws8xtw"]
+[gd_scene load_steps=108 format=3 uid="uid://do7hk21ws8xtw"]
 
 [ext_resource type="Texture2D" uid="uid://co7aehgepocge" path="res://Personajes/Spritesheets_personajes/Dino/Dino_default_atras.png" id="1_1im6t"]
 [ext_resource type="Texture2D" uid="uid://cft5cw3ipilq" path="res://Personajes/Spritesheets_personajes/Dino/Dino_default_frente.png" id="1_gn4en"]
@@ -726,6 +726,17 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_vs71v"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:animation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:frame")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
 [node name="dino" type="AnimatedSprite2D"]
 position = Vector2(25.5, 10.6293)
 scale = Vector2(1.34375, 1.32058)
@@ -733,3 +744,6 @@ sprite_frames = SubResource("SpriteFrames_7ksmg")
 animation = &"salto_atras"
 autoplay = "default_frente"
 script = ExtResource("13_q5rnw")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_vs71v")

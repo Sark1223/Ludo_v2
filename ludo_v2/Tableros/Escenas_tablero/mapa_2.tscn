@@ -3110,5 +3110,55 @@ texture = ExtResource("21_wi5e7")
 [node name="timer_ganar" type="Timer" parent="Hoja_Ganador"]
 wait_time = 7.851
 
+[node name="SpawnLocation" type="Node2D" parent="."]
+
+[node name="0" type="Node2D" parent="SpawnLocation" groups=["PlayerSpawnPoint"]]
+position = Vector2(-168, 140.827)
+
+[node name="1" type="Node2D" parent="SpawnLocation" groups=["PlayerSpawnPoint"]]
+position = Vector2(-114, 146.819)
+
+[node name="2" type="Node2D" parent="SpawnLocation" groups=["PlayerSpawnPoint"]]
+position = Vector2(-168, 192.763)
+
+[node name="3" type="Node2D" parent="SpawnLocation" groups=["PlayerSpawnPoint"]]
+position = Vector2(-117, 189.767)
+
+[node name="4" type="Node2D" parent="SpawnLocation" groups=["PlayerSpawnPoint"]]
+position = Vector2(159, 140.827)
+
+[node name="5" type="Node2D" parent="SpawnLocation" groups=["PlayerSpawnPoint"]]
+position = Vector2(207, 141.826)
+
+[node name="6" type="Node2D" parent="SpawnLocation" groups=["PlayerSpawnPoint"]]
+position = Vector2(156, 185.771)
+
+[node name="7" type="Node2D" parent="SpawnLocation" groups=["PlayerSpawnPoint"]]
+position = Vector2(209, 185.771)
+
+[node name="8" type="Node2D" parent="SpawnLocation" groups=["PlayerSpawnPoint"]]
+position = Vector2(146, -165.796)
+
+[node name="9" type="Node2D" parent="SpawnLocation" groups=["PlayerSpawnPoint"]]
+position = Vector2(209, -164.797)
+
+[node name="10" type="Node2D" parent="SpawnLocation" groups=["PlayerSpawnPoint"]]
+position = Vector2(150, -120.851)
+
+[node name="11" type="Node2D" parent="SpawnLocation" groups=["PlayerSpawnPoint"]]
+position = Vector2(217, -124.846)
+
+[node name="12" type="Node2D" parent="SpawnLocation" groups=["PlayerSpawnPoint"]]
+position = Vector2(-192, -175.784)
+
+[node name="13" type="Node2D" parent="SpawnLocation" groups=["PlayerSpawnPoint"]]
+position = Vector2(-94, -175.784)
+
+[node name="14" type="Node2D" parent="SpawnLocation" groups=["PlayerSpawnPoint"]]
+position = Vector2(-192, -96.8808)
+
+[node name="15" type="Node2D" parent="SpawnLocation" groups=["PlayerSpawnPoint"]]
+position = Vector2(-95, -97.8796)
+
 [connection signal="timeout" from="Hoja_msg_turno/Timer2" to="." method="_on_timer_2_timeout"]
 [connection signal="timeout" from="Hoja_Ganador/timer_ganar" to="." method="_on_timer_ganar_timeout"]

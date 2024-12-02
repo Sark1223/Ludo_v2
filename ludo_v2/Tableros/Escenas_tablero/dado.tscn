@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cg32rv4pu048g"]
+[gd_scene load_steps=24 format=3 uid="uid://cg32rv4pu048g"]
 
 [ext_resource type="Texture2D" uid="uid://bw6o4rvhsvunw" path="res://Tableros/Diseño_tablero/Dadoinclinado2.png" id="1_as60o"]
 [ext_resource type="Texture2D" uid="uid://d2u2rjm3ktybv" path="res://Tableros/Diseño_tablero/Dadoinclinado.png" id="2_ahxb8"]
@@ -343,8 +343,22 @@ animations = [{
 "speed": 13.0
 }]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_43epf"]
+properties/0/path = NodePath(".:animation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:frame")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:position")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
 [node name="dado" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_0t5he")
 animation = &"cinco"
 frame = 12
 frame_progress = 1.0
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_43epf")

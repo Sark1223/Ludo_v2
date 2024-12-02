@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxxvmy3ca5tm0"]
+[gd_scene load_steps=9 format=3 uid="uid://cxxvmy3ca5tm0"]
 
 [ext_resource type="Texture2D" uid="uid://dwxkocf5uarjy" path="res://Personajes/Spritesheets_personajes/backup-1726972359.png" id="1_i243t"]
 [ext_resource type="Script" path="res://Personajes/Codigo_personajes/Mono.gd" id="2_m7ctx"]
@@ -226,6 +226,17 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ppxw8"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:animation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:frame")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
 [node name="Mono" type="AnimatedSprite2D"]
 texture_filter = 1
 position = Vector2(1, -14)
@@ -234,3 +245,6 @@ sprite_frames = SubResource("SpriteFrames_g4t8g")
 animation = &"salto_atras"
 autoplay = "default_frente"
 script = ExtResource("2_m7ctx")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_ppxw8")

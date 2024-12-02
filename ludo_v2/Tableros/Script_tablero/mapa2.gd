@@ -72,91 +72,50 @@ var nombres_jugadores = {
 
 func _ready():
 	$Hoja_Ganador.hide()
+	
+	# Obtener el nodo SpawnLocation que contiene los nodos de spawn
+	var spawn_locations = get_node("SpawnLocation")
+	
 	# Inicializar jugadores y sus piezas
-	jugadores[1] = {
-		"piezas": [],
-		"posiciones": [],
-		"han_salido": [],
-		"posiciones_iniciales": [],
-		"piezas_en_meta": []
-	}
-	jugadores[2] = {
-		"piezas": [],
-		"posiciones": [],
-		"han_salido": [],
-		"posiciones_iniciales": [],
-		"piezas_en_meta": []
-	}
-	jugadores[3] = {
-		"piezas": [],
-		"posiciones": [],
-		"han_salido": [],
-		"posiciones_iniciales": [],
-		"piezas_en_meta": []
-	}
-	jugadores[4] = {
-		"piezas": [],
-		"posiciones": [],
-		"han_salido": [],
-		"posiciones_iniciales": [],
-		"piezas_en_meta": []
-	}
-	# Configurar piezas del Jugador 1 (gatito)
-	for i in range(1, 5):
-		var pieza_nombre = "gatito" + (str(i) if i > 1 else "")
-		var pieza = get_node("%s" % pieza_nombre)
-		jugadores[1]["piezas"].append(pieza)
-		jugadores[1]["posiciones"].append(-1)
-		jugadores[1]["han_salido"].append(false)
-		jugadores[1]["posiciones_iniciales"].append(pieza.position)
-		pieza.connect("piece_clicked", Callable(self, "_on_pieza_seleccionada"))
-		#Asignar jugador_num e indice_pieza a la pieza
-		pieza.jugador_num = 1
-		pieza.indice_pieza = i - 1 # Los indices comienzan con 0
-	# Configurar piezas del Jugador 2 (sombrero)
-	for i in range(1, 5):
-		var pieza_nombre = "sombrero" + (str(i) if i > 1 else "")
-		var pieza = get_node("%s" % pieza_nombre)
-		jugadores[2]["piezas"].append(pieza)
-		jugadores[2]["posiciones"].append(-1)
-		jugadores[2]["han_salido"].append(false)
-		jugadores[2]["posiciones_iniciales"].append(pieza.position)
-		pieza.connect("piece_clicked", Callable(self, "_on_pieza_seleccionada"))
-		#Asignar jugador_num e indice_pieza a la pieza
-		pieza.jugador_num = 2
-		pieza.indice_pieza = i - 1 # Los indices comienzan con 0
-
-	# Configurar piezas del Jugador 3 (dino)
-	for i in range(1, 5):
-		var pieza_nombre = "dino" + (str(i) if i > 1 else "")
-		var pieza = get_node("%s" % pieza_nombre)
-		jugadores[3]["piezas"].append(pieza)
-		jugadores[3]["posiciones"].append(-1)
-		jugadores[3]["han_salido"].append(false)
-		jugadores[3]["posiciones_iniciales"].append(pieza.position)
-		pieza.connect("piece_clicked", Callable(self, "_on_pieza_seleccionada"))
-		#Asignar jugador_num e indice_pieza a la pieza
-		pieza.jugador_num = 3
-		pieza.indice_pieza = i - 1 # Los indices comienzan con 0
-
-	for i in range(1, 5):
-		var pieza_nombre = "oso" + (str(i) if i > 1 else "")
-		var pieza = get_node("%s" % pieza_nombre)
-		jugadores[4]["piezas"].append(pieza)
-		jugadores[4]["posiciones"].append(-1)
-		jugadores[4]["han_salido"].append(false)
-		jugadores[4]["posiciones_iniciales"].append(pieza.position)
-		pieza.connect("piece_clicked", Callable(self, "_on_pieza_seleccionada"))
-		#Asignar jugador_num e indice_pieza a la pieza
-		pieza.jugador_num = 4
-		pieza.indice_pieza = i - 1 # Los indices comienzan con 0
-
+	for jugador_num in range(1, 5):
+		jugadores[jugador_num] = {
+			"piezas": [],
+			"posiciones": [],
+			"han_salido": [],
+			"posiciones_iniciales": [],
+			"piezas_en_meta": []
+		}
+	
+	# Configurar piezas para cada jugador y posicionarlas en los nodos de spawn
+	configurar_piezas_jugador(1, "gatito", 0, spawn_locations)
+	configurar_piezas_jugador(2, "sombrero", 4, spawn_locations)
+	configurar_piezas_jugador(3, "dino", 8, spawn_locations)
+	configurar_piezas_jugador(4, "oso", 12, spawn_locations)
+	
 	dado_sprite = get_node("dado")
 	dado_sprite.connect("piece_clicked", Callable(self, "_on_tirar_dado_pressed"))
-	# Obtener el nodo lbl_turno (ajusta la ruta si es necesario)
-	#lbl_turno = get_node("lbl_turno")
-	# Actualizar el label al iniciar el juego
+	
 	actualizar_lbl_turno()
+
+# Función auxiliar para configurar las piezas de cada jugador
+func configurar_piezas_jugador(jugador_num, pieza_nombre_base, spawn_start_index, spawn_locations):
+	for i in range(1, 5):
+		var pieza_nombre = pieza_nombre_base + (str(i) if i > 1 else "")
+		var pieza = get_node("%s" % pieza_nombre)
+		
+		# Obtener el nodo de spawn correspondiente
+		var spawn_node_index = spawn_start_index + (i - 1)
+		var spawn_node = spawn_locations.get_node(str(spawn_node_index))
+		pieza.position = spawn_node.position  # Asignar posición de spawn a la pieza
+		
+		jugadores[jugador_num]["piezas"].append(pieza)
+		jugadores[jugador_num]["posiciones"].append(-1)
+		jugadores[jugador_num]["han_salido"].append(false)
+		jugadores[jugador_num]["posiciones_iniciales"].append(pieza.position)
+		
+		pieza.connect("piece_clicked", Callable(self, "_on_pieza_seleccionada"))
+		pieza.jugador_num = jugador_num
+		pieza.indice_pieza = i - 1
 
 # Funcion prueba
 func tiene_piezas_en_juego(jugador):
@@ -164,9 +123,11 @@ func tiene_piezas_en_juego(jugador):
 		if ha_salido == true:
 			return true
 	return false
-	
 
-		
+func tirar_dado():
+	dado = randi() % 6 + 1
+	if dado == 6:
+		veces_dado_igual_seis += 1
 func _on_pieza_seleccionada(jugador_num, indice_pieza):
 	if estado_turno != ESTADO_ESPERANDO_PIEZA:
 		print("No puedes mover una pieza en este momento.")
@@ -190,7 +151,6 @@ func _on_pieza_seleccionada(jugador_num, indice_pieza):
 		var nombre_jugador_actual = nombres_jugadores[turnoActual]
 		print("No es tu turno. Es el turno del " + nombre_jugador_actual + ".")
 
-@rpc("any_peer")
 func mover_pieza(pasos):
 	if pieza_seleccionada == null:
 		print("Debes seleccionar una pieza para mover.")
@@ -307,7 +267,6 @@ func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 	else:
 		print("Error: La pieza es null.")
 
-@rpc("any_peer")
 func cambiar_turno():
 	turnoActual += 1
 	if turnoActual > totalJugadores:
@@ -352,7 +311,7 @@ func verificar_victoria(pieza, nueva_pos):
 			mostrar_mensaje_ganador(jugador)
 			# Implementar lógica para finalizar el juego, por ejemplo, detener la entrada
 			set_process(false)
-@rpc("any_peer")
+
 func mostrar_mensaje_ganador(jugador):
 	$Hoja_Ganador.show()
 	$Hoja_Ganador/timer_ganar.start()
@@ -362,16 +321,14 @@ func mostrar_mensaje_ganador(jugador):
 	
 	$Hoja_Ganador/lbl_Ganador/lbl_Ganador_sadow.text = mensaje;
 	$Hoja_Ganador/lbl_Ganador.text = mensaje;
-	
-@rpc("any_peer") 
-func tirar_dado():
-	dado = randi() % 6 + 1
-	if dado == 6:
-		veces_dado_igual_seis += 1
-		# Sincronizamos el valor de veces_dado_igual_seis con todos los nodos
-		rpc("actualizar_veces_dado_igual_seis", veces_dado_igual_seis)
-		
-		# Determinar la animación correspondiente
+
+func _on_tirar_dado_pressed(indice_pieza) -> void:
+	if estado_turno != ESTADO_ESPERANDO_DADO:
+		print("No es tu turno para tirar el dado.")
+		return
+	# Generar el número aleatorio
+	tirar_dado()
+	# Determinar la animación correspondiente
 	var animacion_numero = ""
 	match dado:
 		1:
@@ -391,9 +348,6 @@ func tirar_dado():
 
 	# Reproducir la animación correspondiente
 	if animacion_numero != "":
-		rpc("reproducir_animacion_dado", animacion_numero)
-		rpc("reproducir_sonido_dado")
-		# Ejecutar la animación localmente
 		dado_sprite.play(animacion_numero)
 		sfx_dado.play()
 		$Timer.wait_time = 1.06
@@ -401,14 +355,7 @@ func tirar_dado():
 		await $Timer.timeout
 	else:
 		print("Error al reproducir la animación del dado.")
-		
-func _on_tirar_dado_pressed(indice_pieza) -> void:
-	if estado_turno != ESTADO_ESPERANDO_DADO:
-		print("No es tu turno para tirar el dado.")
-		return
-	# Generar el número aleatorio
-	tirar_dado() 
-	
+
 	# Opción 1: Continuar la lógica inmediatamente
 	continuar_logica_del_juego()
 
@@ -444,7 +391,6 @@ func verificar_colision_con_otras_piezas(jugador_actual, posicion_index):
 							print("No se puede comer en una posición segura.")
 
 # Modificación aquí: Reemplazar mover_posicion por transportar_pieza_a_casa
-@rpc("any_peer")
 func enviar_pieza_a_casa(jugador_num, indice_pieza):
 	var old_posicion_index = jugadores[jugador_num]["posiciones"][indice_pieza]
 	jugadores[jugador_num]["han_salido"][indice_pieza] = false
@@ -555,7 +501,6 @@ func ajustar_posiciones_piezas_en_posicion(jugador_num, posicion_index):
 func _on_timer_timeout() -> void:
 	print("Termino")
 
-@rpc("any_peer")
 func actualizar_lbl_turno():
 	$Hoja_msg_turno.show()
 	timer_2.start()
@@ -594,21 +539,3 @@ func _on_timer_2_timeout() -> void:
 	
 func _on_timer_ganar_timeout() -> void:
 	$Hoja_Ganador.hide()
-	
-# Función para sincronizar el valor de veces_dado_igual_seis entre nodos.
-func actualizar_veces_dado_igual_seis(nuevo_valor):
-	veces_dado_igual_seis = nuevo_valor
-
-@rpc("any_peer")
-func valorDado(num):
-	dado = num
-
-# Función para sincronizar la animación del dado en todos los nodos
-@rpc("any_peer")
-func reproducir_animacion_dado(animacion: String):
-	dado_sprite.play(animacion)
-
-# Función para sincronizar el sonido del dado en todos los nodos
-@rpc("any_peer")
-func reproducir_sonido_dado():
-	sfx_dado.play()
