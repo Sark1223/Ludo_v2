@@ -13,108 +13,110 @@ var level_3: String = "res://Tableros/Escenas_tablero/Mapa_3.tscn"
 var sceneSelect: String = ""
 @onready var lblmapa_select: Label = $lblmapaSelect
 
-# var GameManager = preload("res://Interfaz/Interfaz_Codigo/GameManager.gd")
+var players = {}  # Estructura para manejar jugadores conectados
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	multiplayer.peer_connected.connect(peer_connected)
 	multiplayer.peer_disconnected.connect(peer_disconnected)
 	multiplayer.connected_to_server.connect(connected_to_server)
 	multiplayer.connection_failed.connect(connection_failed)
 
-# this get called on the server and clients
+# Evento cuando un jugador se conecta
 func peer_connected(id):
-	print("Player Connected " + str(id))
-	
-# this get called on the server and clients
-func peer_disconnected(id):
-	print("Player Disconnected " + str(id))
+	print("Jugador conectado: " + str(id))
 
-# called only from clients
+# Evento cuando un jugador se desconecta
+func peer_disconnected(id):
+	if players.has(id):
+		players.erase(id)
+		print("Jugador desconectado: " + str(id))
+
+# Evento para los clientes cuando se conectan al servidor
 func connected_to_server():
-	print("connected To Sever!")
-	SendPlayerInformation.rpc_id(1,$txt_nombreUsuario.text, multiplayer.get_unique_id())
+	print("Conectado al servidor")
+	SendPlayerInformation.rpc_id(1, $txt_nombreUsuario.text, multiplayer.get_unique_id())
 
 @rpc("any_peer")
 func SendPlayerInformation(name, id):
-	if !GameManager.Players.has(id):
-		GameManager.Players[id] ={
-			"name" : name,
-			"id" : id,
+	if !players.has(id):
+		players[id] = {
+			"name": name,
+			"id": id,
 			"score": 0
 		}
-	
+	print("Información de jugador recibida: " + name)
 	if multiplayer.is_server():
-		for i in GameManager.Players:
-			SendPlayerInformation.rpc(GameManager.Players[i].name, i)
+		# Sincronizar jugadores existentes
+		for player_id in players:
+			SendPlayerInformation.rpc(players[player_id].name, player_id)
 
-# called only from clients
+# Evento cuando falla la conexión
 func connection_failed():
-	print("Couldnt Connect")
+	print("No se pudo conectar al servidor.")
 
-
-
+# Cambiar escena seleccionada
 func change_scene():
-	get_tree().change_scene_to_file(global_var.sceneSelect)
-	
-@rpc("any_peer","call_local")	
+	get_tree().change_scene_to_file(sceneSelect)
+
+@rpc("any_peer", "call_local")
 func StartGame():
-	#var scene = load("res://Tableros/Escenas_tablero/mapa_2.tscn").instantiate()
-	#get_tree().root.add_child(scene)
 	change_scene()
 	self.hide()
 
+# Configurar como host
 func _on_host_button_down():
 	peer = ENetMultiplayerPeer.new()
 	var error = peer.create_server(port, 4)
-	
+
 	if error != OK:
-		print("cannot host: " + error)
+		print("No se pudo iniciar el servidor: " + str(error))
 		return
 	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
-	
 	multiplayer.set_multiplayer_peer(peer)
-	print("Esperando")
+	print("Servidor iniciado. Esperando jugadores...")
 	SendPlayerInformation($txt_nombreUsuario.text, multiplayer.get_unique_id())
-	
 
-
-func _on_join_button_down() -> void:
+# Unirse como cliente
+func _on_join_button_down():
 	peer = ENetMultiplayerPeer.new()
-	peer.create_client(Address, port)
+	var error = peer.create_client(Address, port)
+
+	if error != OK:
+		print("No se pudo conectar al servidor: " + str(error))
+		return
 	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
 	multiplayer.set_multiplayer_peer(peer)
+	print("Conectando al servidor...")
 
-func _on_empezar_button_down() -> void:
+# Iniciar juego (puede ser usado por cualquier par conectado)
+func _on_empezar_button_down():
 	StartGame.rpc()
-	pass
 
-func _on_campos_pressed() -> void:
-	global_var.sceneSelect = level_1
+# Selección de nivel
+func _on_campos_pressed():
+	sceneSelect = level_1
 	lblmapa_select.text = "Seleccionaste: Campo"
-	print("Se eligio el escenario del campo")
+	print("Escenario seleccionado: Campo")
 
-
-func _on_puerto_pressed() -> void:
-	global_var.sceneSelect = level_2
+func _on_puerto_pressed():
+	sceneSelect = level_2
 	lblmapa_select.text = "Seleccionaste: Puerto"
-	print("Se eligio el escenario del puerto")
+	print("Escenario seleccionado: Puerto")
 
-func _on_lavas_pressed() -> void:
-	global_var.sceneSelect = level_3
-	lblmapa_select.text = "Seleccionaste: Campo"
-	print("Se eligio el escenario del campo")
+func _on_lavas_pressed():
+	sceneSelect = level_3
+	lblmapa_select.text = "Seleccionaste: Lava"
+	print("Escenario seleccionado: Lava")
 
-func _on_btn_chango_pressed() -> void:
+# Selección de personaje
+func _on_btn_chango_pressed():
 	global_var.playerChar = monkey
-	print("Se eligio el personaje chango")
+	print("Personaje seleccionado: Chango")
 
-
-func _on_btn_sombrero_pressed() -> void:
+func _on_btn_sombrero_pressed():
 	global_var.playerChar = hat
-	print("Se eligio el personaje sombrero")
+	print("Personaje seleccionado: Sombrero")
 
-
-func _on_btn_gato_pressed() -> void:
+func _on_btn_gato_pressed():
 	global_var.playerChar = cat
-	print("Se eligio el personaje gato")
+	print("Personaje seleccionado: Gato")
