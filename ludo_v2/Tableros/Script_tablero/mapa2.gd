@@ -124,10 +124,7 @@ func tiene_piezas_en_juego(jugador):
 			return true
 	return false
 
-func tirar_dado():
-	dado = randi() % 6 + 1
-	if dado == 6:
-		veces_dado_igual_seis += 1
+
 func _on_pieza_seleccionada(jugador_num, indice_pieza):
 	if estado_turno != ESTADO_ESPERANDO_PIEZA:
 		print("No puedes mover una pieza en este momento.")
@@ -267,23 +264,28 @@ func mover_posicion(pieza, nueva_pos, jugador, posicion_index):
 	else:
 		print("Error: La pieza es null.")
 
+@rpc("any_peer","call_local")
 func cambiar_turno():
 	turnoActual += 1
+	print(turnoActual)
 	if turnoActual > totalJugadores:
 		turnoActual = 1
 	estado_turno = ESTADO_ESPERANDO_DADO
 	sfx_plop.play()
+	
 	var nombre_jugador = nombres_jugadores[turnoActual]
 	print("Es el turno del " + nombre_jugador)
-	actualizar_lbl_turno()
+	actualizar_turno_y_mensaje()
 
+@rpc("any_peer","call_local")
 func terminar_turno():
 	pieza_seleccionada = null
 	indice_pieza_seleccionada = null
 	estado_turno = ESTADO_ESPERANDO_DADO
-	cambiar_turno()
+	rpc("cambiar_turno")
 	veces_dado_igual_seis = 0
-	actualizar_lbl_turno()
+	actualizar_turno_y_mensaje()
+
 
 func verificar_victoria(pieza, nueva_pos):
 	if nueva_pos == PosicionGanar * 15.9:
@@ -321,14 +323,15 @@ func mostrar_mensaje_ganador(jugador):
 	
 	$Hoja_Ganador/lbl_Ganador/lbl_Ganador_sadow.text = mensaje;
 	$Hoja_Ganador/lbl_Ganador.text = mensaje;
-
-func _on_tirar_dado_pressed(indice_pieza) -> void:
-	if estado_turno != ESTADO_ESPERANDO_DADO:
-		print("No es tu turno para tirar el dado.")
-		return
-	# Generar el número aleatorio
-	tirar_dado()
-	# Determinar la animación correspondiente
+@rpc("any_peer","call_local") 
+func tirar_dado():
+	dado = randi() % 6 + 1
+	if dado == 6:
+		veces_dado_igual_seis += 1
+		# Sincronizamos el valor de veces_dado_igual_seis con todos los nodos
+		rpc("actualizar_veces_dado_igual_seis", veces_dado_igual_seis)
+		
+		# Determinar la animación correspondiente
 	var animacion_numero = ""
 	match dado:
 		1:
@@ -348,6 +351,9 @@ func _on_tirar_dado_pressed(indice_pieza) -> void:
 
 	# Reproducir la animación correspondiente
 	if animacion_numero != "":
+		rpc("reproducir_animacion_dado", animacion_numero)
+		rpc("reproducir_sonido_dado")
+		# Ejecutar la animación localmente
 		dado_sprite.play(animacion_numero)
 		sfx_dado.play()
 		$Timer.wait_time = 1.06
@@ -355,7 +361,14 @@ func _on_tirar_dado_pressed(indice_pieza) -> void:
 		await $Timer.timeout
 	else:
 		print("Error al reproducir la animación del dado.")
-
+		
+func _on_tirar_dado_pressed(indice_pieza) -> void:
+	if estado_turno != ESTADO_ESPERANDO_DADO:
+		print("No es tu turno para tirar el dado.")
+		return
+	# Generar el número aleatorio
+	tirar_dado() 
+	
 	# Opción 1: Continuar la lógica inmediatamente
 	continuar_logica_del_juego()
 
@@ -367,8 +380,9 @@ func continuar_logica_del_juego():
 		estado_turno = ESTADO_ESPERANDO_PIEZA
 	else:
 		print("No tienes movimientos válidos. Turno pasa al siguiente jugador.")
-		terminar_turno()
-	actualizar_lbl_turno()
+		rpc("terminar_turno")
+	actualizar_turno_y_mensaje()
+
 
 func verificar_colision_con_otras_piezas(jugador_actual, posicion_index):
 	var posiciones_validas_actual = obtener_posiciones_validas(jugador_actual)
@@ -424,7 +438,7 @@ func transportar_pieza_a_casa(pieza, posicion_inicial, jugador_num, old_posicion
 		# Now adjust positions at the old position
 		ajustar_posiciones_piezas_en_posicion(jugador_num, old_posicion_index)
 		if movimientos_pendientes == 0:
-			terminar_turno()
+			rpc("terminar_turno")
 	else:
 		print("Error: La pieza es null.")
 
@@ -501,16 +515,25 @@ func ajustar_posiciones_piezas_en_posicion(jugador_num, posicion_index):
 func _on_timer_timeout() -> void:
 	print("Termino")
 
+@rpc("any_peer","call_local")
 func actualizar_lbl_turno():
+	 # Mostrar el mensaje del turno actual
 	$Hoja_msg_turno.show()
-	timer_2.start()
+	timer_2.start()  # Iniciar el temporizador si es necesario
+	
+	# Determinar el nombre del jugador actual
 	var nombre_jugador = nombres_jugadores[turnoActual]
-	lbl_turno.text = "turno del " + nombre_jugador.to_upper()
-	#mostrar_mensaje_ganador(turnoActual)
+	
+	# Actualizar la etiqueta del turno
+	lbl_turno.text = "Turno del " + nombre_jugador.to_upper()
+	
+	# Mostrar el mensaje correspondiente según el estado del turno
 	if estado_turno == ESTADO_ESPERANDO_DADO:
 		lbl_accion.text = "Toca el dado."
 	elif estado_turno == ESTADO_ESPERANDO_PIEZA:
-		lbl_accion.text =  "Selecciona una pieza."
+		lbl_accion.text = "Selecciona una pieza."
+	else:
+		lbl_accion.text = ""  # Limpiar el mensaje si el turno no está en estos estados
 
 func tiene_movimientos_validos(jugador, dado):
 	for i in range(jugadores[jugador]["piezas"].size()):
@@ -530,12 +553,27 @@ func tiene_movimientos_validos(jugador, dado):
 	# Si ninguna pieza puede moverse, retorna false
 	return false
 
-
-func _on_window_close_requested() -> void:
-	pass # Replace with function body.
-
 func _on_timer_2_timeout() -> void:
 	$Hoja_msg_turno.hide()
 	
 func _on_timer_ganar_timeout() -> void:
 	$Hoja_Ganador.hide()
+	
+# Función para sincronizar el valor de veces_dado_igual_seis entre nodos.
+func actualizar_veces_dado_igual_seis(nuevo_valor):
+	veces_dado_igual_seis = nuevo_valor
+
+# Función para sincronizar la animación del dado en todos los nodos
+@rpc("any_peer")
+func reproducir_animacion_dado(animacion: String):
+	dado_sprite.play(animacion)
+
+# Función para sincronizar el sonido del dado en todos los nodos
+@rpc("any_peer")
+func reproducir_sonido_dado():
+	sfx_dado.play()
+
+# Llamada a esta función cuando sea necesario actualizar el turno en todos los clientes
+func actualizar_turno_y_mensaje():
+	# Aquí puedes hacer cualquier cambio en las variables relacionadas con el turno
+	rpc("actualizar_lbl_turno")  # Llamamos a la función remota para actualizar todos los clientes
