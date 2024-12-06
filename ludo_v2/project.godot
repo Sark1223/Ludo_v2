@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="Ludo_v2"
+config/name="Ludo"
+config/version="2"
 run/main_scene="res://Interfaz/Interfaz_Escenas/multi_control.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://fondoblanco.svg"
 
 [autoload]
 

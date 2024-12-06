@@ -10214,7 +10214,7 @@ frame = 0
 frame_progress = 0.0
 
 [node name="dado" parent="." instance=ExtResource("7_sq2nu")]
-position = Vector2(420, 247)
+position = Vector2(417, 270)
 scale = Vector2(3.40625, 3.46531)
 animation = &"uno"
 frame = 0
@@ -10288,17 +10288,22 @@ one_shot = true
 
 [node name="oso" parent="." instance=ExtResource("16_6uvfh")]
 position = Vector2(-138, -94)
+animation = &"salto_lado_izq"
 
 [node name="oso2" parent="." instance=ExtResource("16_6uvfh")]
 position = Vector2(-235, -94)
+animation = &"salto_frente"
 
 [node name="oso3" parent="." instance=ExtResource("16_6uvfh")]
 position = Vector2(-235, -175)
+animation = &"salto_lado"
 
 [node name="oso4" parent="." instance=ExtResource("16_6uvfh")]
 position = Vector2(-137, -175)
+animation = &"salto_atras"
 
 [node name="Hoja_msg_turno" type="TileMapLayer" parent="."]
+visible = false
 position = Vector2(-54.478, 116.174)
 scale = Vector2(1.28125, 1.28125)
 tile_set = SubResource("TileSet_bpau8")
